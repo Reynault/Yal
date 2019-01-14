@@ -1,0 +1,72 @@
+@startuml
+skinparam class {
+BackgroundColor AliceBlue
+ArrowColor DarkTurquoise
+BorderColor Turquoise
+}
+
+skinparam stereotypeCBackgroundColor DarkTurquoise
+skinparam stereotypeIBackgroundColor Magenta
+skinparam stereotypeABackgroundColor Yellow
+
+hide stereotype
+hide empty member
+
+abstract class AnalyseException
+
+AnalyseException -up-|> RuntimeException
+
+AnalyseLexicaleException -up-|> AnalyseException
+AnalyseSyntaxiqueException -up-|> AnalyseException
+
+abstract class ArbreAbstrait {
+   int noLigne
+   protected ArbreAbstrait(int n)
+   void verifier()
+   String toMIPS()
+}
+
+class BlocDInstructions {
+   BlocDInstructions(int n)
+   void verifier()
+   String toMIPS()
+}
+
+BlocDInstructions -up-|> ArbreAbstrait
+BlocDInstructions -up- "*" ArbreAbstrait
+
+abstract class Instruction {
+   protected Instruction(int n)
+}
+
+Instruction -up-|> ArbreAbstrait
+class Ecrire {
+   Ecrire(int n)
+   void verifier()
+   String toMIPS()
+}
+
+Ecrire  -up-|> Instruction
+
+abstract class Expression {
+   protected Expression(int n)
+}
+
+Expression  -up-|> ArbreAbstrait
+Ecrire - "1" Expression
+
+abstract class Constante {
+   String cste
+   protected Constante(String texte, int n)
+   void verfier()
+}
+
+Constante  -up-|> Expression
+
+class ConstanteEntiere {
+   ConstanteEntiere(String texte, int n)
+   String toMIPS()
+}
+
+ConstanteEntiere  -up-|> Constante
+@enduml
