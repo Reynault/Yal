@@ -39,7 +39,7 @@ guillemet = [\"]
 finDeLigne = \r|\n
 espace = {finDeLigne}  | [ \t\f]
 
-commentaire = [\][\].*
+commentaire = [/][/].*
 
 %%
 

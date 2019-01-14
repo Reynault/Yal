@@ -13,7 +13,7 @@ action code {:
 
 parser code {:
 
-    public void report_error(String message, Object info) {
+    public void report_error(String message, Object info){
 
         HashMap<Integer, String> lesTerminaux = new HashMap<>() ;
     
@@ -47,7 +47,7 @@ parser code {:
         throw new AnalyseSyntaxiqueException("" + m) ;
     }
 
-    public void report_fatal_error(String message, Object info) {
+    public void report_fatal_error(String message, Object info){
         report_error(message, info);
     }
 :};
