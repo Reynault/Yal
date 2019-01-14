@@ -39,6 +39,8 @@ guillemet = [\"]
 finDeLigne = \r|\n
 espace = {finDeLigne}  | [ \t\f]
 
+commentaire = [\][\].*
+
 %%
 
 "programme"            { return symbol(CodesLexicaux.PROGRAMME); }
@@ -49,10 +51,11 @@ espace = {finDeLigne}  | [ \t\f]
 
 ";"                    { return symbol(CodesLexicaux.POINTVIRGULE); }
 
+{commentaire}          { }
+
 {csteE}      	       { return symbol(CodesLexicaux.CSTENTIERE, yytext()); }
 
 {idf}      	           { return symbol(CodesLexicaux.IDF, yytext()); }
 
 {espace}               { }
 .                      { throw new AnalyseLexicaleException(yyline, yycolumn, yytext()) ; }
-
