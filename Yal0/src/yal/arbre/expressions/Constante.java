@@ -12,14 +12,7 @@ public abstract class Constante extends Expression {
     }
     
     @Override
-    public void verifier() {
-        // On vérifie si c'est bien un entier correct
-        try {
-            int i = Integer.parseInt(cste);
-        }catch (Exception e){
-            throw new AnalyseSemantiqueException(noLigne,"Constante entière non correctement définie");
-        }
-    }
+    public abstract void verifier();
 
     @Override
     public String toString() {
