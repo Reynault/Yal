@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Yal0">
+    <output-path>$PROJECT_DIR$/out/artifacts/Yal0</output-path>
+    <root id="archive" name="Yal0.jar">
+      <element id="module-output" name="Yal0" />
+      <element id="extracted-dir" path="/opt/depot/projetToucan/jflex-1.6.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="/opt/depot/projetToucan/java-cup-11a.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
