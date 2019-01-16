@@ -11,9 +11,9 @@ for fichier in `ls ./src/yal/test/sources/` ; do
 
     java -jar /opt/depot/compilation/Mars4_5.jar  src/yal/test/generer/${name}.mips > src/yal/test/generer/${name}.txt
 
-    err = $(diff src/yal/test/generer/${name}.txt src/yal/test/comparer/${name}.txt)
+    err=$(diff src/yal/test/generer/${name}.txt src/yal/test/comparer/${name}.txt)
     echo $err
-    if "$err" -ne 0; then
+    if "$err" -ne "0"; then
         echo "Erreur fichier: " + ${name}
     fi
 
