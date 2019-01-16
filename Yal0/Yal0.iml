@@ -11,5 +11,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="java-cup-11a1" level="project" />
     <orderEntry type="library" name="jflex-1.6.11" level="project" />
+    <orderEntry type="library" name="java-cup-11a" level="project" />
   </component>
 </module>

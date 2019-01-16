@@ -12,14 +12,17 @@ public class BlocDInstructions extends ArbreAbstrait {
     
     protected ArrayList<ArbreAbstrait> programme ;
     
-    protected static String zoneData = ".data\n" +
+    protected static String zoneData = "# Code généré par Yal\n" +
+            ".data\n" +
+            "# Caractère de fin de ligne\n" +
                                             "finLigne:     .asciiz \"\\n\"\n" +
                                             "              .align 2\n" ;
     
-    protected static String debutCode = ".text\n" +
+    protected static String debutCode = "# Début du programme\n" +
+            ".text\n" +
                                         "main :\n" ;
     protected static String finCode = "end :\n" +
-                                      "    li $v0, 10            # retour au système\n" +
+                                      "    li $v0, 10\n" +
                                       "    syscall\n" ;
 
     public BlocDInstructions(int n) {
