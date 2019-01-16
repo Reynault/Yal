@@ -51,11 +51,12 @@ commentaire = [/][/].*
 
 ";"                    { return symbol(CodesLexicaux.POINTVIRGULE); }
 
-{commentaire}          { }
 
 {csteE}      	       { return symbol(CodesLexicaux.CSTENTIERE, yytext()); }
 
 {idf}      	           { return symbol(CodesLexicaux.IDF, yytext()); }
+
+{commentaire}          { }
 
 {espace}               { }
 .                      { throw new AnalyseLexicaleException(yyline, yycolumn, yytext()) ; }
