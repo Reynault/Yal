@@ -1,17 +1,21 @@
 #!/usr/bin/env bash
 
-for fichier in `ls ./src/yal/test/sources/` ; do
+version=$1
+
+echo "TEST VERSION : "${version}
+
+for fichier in `ls ./Yal${version}/src/yal/test/sources/` ; do
 #    echo ${fichier}
 
     name=${fichier%.*}
 #    echo ${name}
 
-    java -jar ../out/artifacts/Yal0/Yal0.jar src/yal/test/sources/${name}.yal >> /dev/null
-    mv src/yal/test/sources/${name}.mips src/yal/test/generer/
+    java -jar out/artifacts/Yal${version}/Yal${version}.jar Yal${version}/src/yal/test/sources/${name}.yal >> /dev/null
+    mv Yal${version}/src/yal/test/sources/${name}.mips Yal${version}/src/yal/test/generer/
 
-    java -jar /opt/depot/compilation/Mars4_5.jar  src/yal/test/generer/${name}.mips > src/yal/test/generer/${name}.txt
+    java -jar /opt/depot/compilation/Mars4_5.jar  Yal${version}/src/yal/test/generer/${name}.mips > Yal${version}/src/yal/test/generer/${name}.txt
 
-    err=$(diff src/yal/test/generer/${name}.txt src/yal/test/comparer/${name}.txt)
+    err=$(diff Yal${version}/src/yal/test/generer/${name}.txt Yal${version}/src/yal/test/comparer/${name}.txt)
 #    echo ">"$err"<"
 #    if "$err" -ne "0"; then
     if [ ! "$err" = "" ]; then

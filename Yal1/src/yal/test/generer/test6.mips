@@ -1,0 +1,12 @@
+# Code généré par Yal
+.data
+# Caractère de fin de ligne
+finLigne:     .asciiz "\n"
+              .align 2
+# Début du programme
+.text
+main :
+end :
+    li $v0, 10
+    syscall
+
