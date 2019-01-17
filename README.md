@@ -8,7 +8,7 @@ Ce projet est un compilateur permettant de passer du langage __YAL__ au langage 
 Le langage __YAL__ est un langage de programmation type rudimentaire incluant les variables entières, les tableaux, les structures de contrôles élémentaires et les fonctions.
 
 ## Commandes de compilation de jflex / cup
-* java -jar /opt/depot/projetToucan/java-cup-11a.jar -parser AnalyseurSyntaxique -symbols CodeLexicaux Grammaire.cup
+* java -jar /opt/depot/projetToucan/java-cup-11a.jar -parser AnalyseurSyntaxique -symbols CodesLexicaux Grammaire.cup
 * java -jar /opt/depot/projetToucan/jflex-1.6.1.jar AnalyseurLexical.jflex
 
 ## Version du projet

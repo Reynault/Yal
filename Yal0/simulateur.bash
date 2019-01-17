@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 for fichier in `ls ./src/yal/test/sources/` ; do
-    echo ${fichier}
+#    echo ${fichier}
 
     name=${fichier%.*}
 #    echo ${name}
@@ -15,11 +15,16 @@ for fichier in `ls ./src/yal/test/sources/` ; do
 #    echo ">"$err"<"
 #    if "$err" -ne "0"; then
     if [ ! "$err" = "" ]; then
-        echo "Erreur fichier: " ${name}
+        echo ${name} " Erreur"
+    else
+        echo ${name} " OK"
     fi
 
 done
 
+#rm src/yal/test/generer/*.mips
+
+echo "DONE"
 
 #java -jar ../out/artifacts/Yal0/Yal0.jar src/yal/test/sources/test3.yal >> /dev/null
 #mv src/yal/test/sources/test3.mips src/yal/test/generer/

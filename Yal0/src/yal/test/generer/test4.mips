@@ -8,7 +8,7 @@ finLigne:     .asciiz "\n"
 main :
                    # affichage de l'expression
                    # Chargement immédiat d'une constante entière
-    li $v0, 50
+    li $v0, 20
     move $a0, $v0
     li $v0, 1
     syscall
