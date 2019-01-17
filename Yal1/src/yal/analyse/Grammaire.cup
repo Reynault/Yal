@@ -56,12 +56,12 @@ parser code {:
    
 /* Terminals (tokens returned by the scanner).  */
 
-terminal Symbol    PROGRAMME, DEBUT, FIN, POINTVIRGULE, ECRIRE ;
-terminal String    IDF, CSTENTIERE ;
+terminal Symbol    PROGRAMME, DEBUT, FIN, POINTVIRGULE, ECRIRE, LIRE, TYPE;
+terminal String    IDF, CSTENTIERE, EGAL ;
    
 /* Non terminals used in the grammar section.  */
 
-non terminal ArbreAbstrait PROG, LINST, INST ;
+non terminal ArbreAbstrait PROG, LINST, INST, DECL, AFF ;
 non terminal Expression EXP ;
 
 /* ----------------------------Grammar Section-------------------- */
@@ -69,7 +69,9 @@ non terminal Expression EXP ;
 start with PROG ;
 
 PROG    ::=     PROGRAMME  IDF  DEBUT  LINST:li  FIN
-                {: RESULT = li ; :}
+                {:
+                RESULT = li ;
+                :}
         |
                 PROGRAMME IDF DEBUT FIN
                 {: BlocDInstructions b = new BlocDInstructions(1);
@@ -88,8 +90,34 @@ LINST   ::=     LINST:li  INST:i
 
 INST    ::=     ECRIRE EXP:e POINTVIRGULE
                 {: RESULT = new Ecrire(e, eleft + 1) ; :}
+        |
+                LIRE IDF:i POINTVIRGULE
+                {:
+
+                :}
+        |
+                DECL:i
+                {:
+
+                :}
+        |
+                AFF:i
+                {:
+
+                :}
                 ;
-    
+
+DECL    ::=     TYPE IDF:i POINTVIRGULE
+                {:  :}
+                ;
+
+AFF  ::=        IDF:i EGAL IDF:i2
+                {:  :}
+        |
+                IDF:i EGAL EXP:e
+                {:  :}
+                ;
+
 EXP    ::=     CSTENTIERE:c
                 {: RESULT = new ConstanteEntiere(c, cleft + 1) ; :}
                 ;
