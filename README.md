@@ -2,10 +2,13 @@
 
 ## Description du projet
 
-Ce projet est un compilateur permettant de passer du langage __YAL__ au langage __MIPS__.
+Ce projet est un compilateur permettant de passer du langage __YAL__ 
+au langage __MIPS__.
 
 ## Description du langage YAL
-Le langage __YAL__ est un langage de programmation type rudimentaire incluant les variables entières, les tableaux, les structures de contrôles élémentaires et les fonctions.
+Le langage __YAL__ est un langage de programmation type rudimentaire 
+incluant les variables entières, les tableaux, les structures 
+de contrôles élémentaires et les fonctions.
 
 ## Commandes de compilation de jflex / cup
 * java -jar /opt/depot/projetToucan/java-cup-11a.jar -parser AnalyseurSyntaxique -symbols CodesLexicaux Grammaire.cup

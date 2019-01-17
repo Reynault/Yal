@@ -108,7 +108,7 @@ INST    ::=     ECRIRE EXP:e POINTVIRGULE
                 ;
 
 DECL    ::=     TYPE IDF:i POINTVIRGULE
-                {:  :}
+                {: TDS.getInstance().ajouter(i, new Symbole()); //TODO:}
                 ;
 
 AFF  ::=        IDF:i EGAL IDF:i2

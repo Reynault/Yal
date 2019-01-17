@@ -4,6 +4,10 @@ public class Symbole {
     private int deplacement;
     private String type;
 
+    public Symbole(int deplacement) {
+        this.deplacement = deplacement;
+    }
+
     public int getDeplacement() {
         return deplacement;
     }

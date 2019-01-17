@@ -5,6 +5,8 @@ import java.util.HashMap;
 public class TDS {
     private static TDS instance = new TDS();
 
+    private int deplacement = 0;
+
     private HashMap<String,Symbole> table;
 
     private TDS(){}
@@ -17,5 +19,10 @@ public class TDS {
     }
     public Symbole identifier(String entree){
         return table.get(entree);
+    }
+    public int getDeplacement(){
+        int temp = deplacement;
+        deplacement = deplacement - 4;
+        return temp;
     }
 }
