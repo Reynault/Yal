@@ -14,12 +14,15 @@ public class TDS {
     public static TDS getInstance() {
         return instance;
     }
+
     public void ajouter(String entree, Symbole deplacement){
         table.put(entree, deplacement);
     }
+
     public Symbole identifier(String entree){
         return table.get(entree);
     }
+
     public int getDeplacement(){
         int temp = deplacement;
         deplacement = deplacement - 4;

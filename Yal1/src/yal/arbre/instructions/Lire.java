@@ -1,11 +1,16 @@
 package yal.arbre.instructions;
 
+import yal.analyse.Symbole;
+import yal.analyse.TDS;
 import yal.arbre.expressions.Expression;
 
 public class Lire extends Instruction{
 
-    protected Lire(Expression exp, int n) {
+    protected String idf;
+
+    public Lire(String idf, int n) {
         super(n);
+        this.idf = idf;
     }
 
     @Override
@@ -14,6 +19,12 @@ public class Lire extends Instruction{
 
     @Override
     public String toMIPS() {
-        return null;
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("\t# Lire un entier\n");
+        stringBuilder.append("\tli $v0 , 5 \t# $v0 <- 5 (code du read entier)\n");
+        stringBuilder.append("\tsyscall \t# le résultat de la lecture est dans $V0 \n");
+        Symbole s = TDS.getInstance().identifier(idf);
+        stringBuilder.append("\tsw $v0, "+s.getDeplacement()+"($s7)");
+        return stringBuilder.toString();
     }
 }

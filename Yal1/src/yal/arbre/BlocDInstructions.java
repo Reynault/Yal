@@ -1,6 +1,12 @@
 package yal.arbre;
 
+import yal.analyse.Symbole;
+import yal.analyse.TDS;
+
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Set;
 
 /**
  * 21 novembre 2018
@@ -20,7 +26,9 @@ public class BlocDInstructions extends ArbreAbstrait {
     
     protected static String debutCode = "# Début du programme\n" +
             ".text\n" +
-                                        "main :\n" ;
+            "main :\n" +
+            "\t# Initialisation de s7 avec sp\n" +
+            "\tmove $s7, $sp\n" ;
     protected static String finCode = "end :\n" +
                                       "    li $v0, 10\n" +
                                       "    syscall\n" ;
@@ -51,6 +59,10 @@ public class BlocDInstructions extends ArbreAbstrait {
         StringBuilder sb = new StringBuilder("") ;
         sb.append(zoneData) ;
         sb.append(debutCode) ;
+        // On initialise toutes les variables utilisées
+        TDS instance = TDS.getInstance();
+        sb.append("\t# Réservation de l'espace dans la pile\n");
+        sb.append("\taddi $sp, $sp, "+instance.getDeplacement()+"\n");
         for (ArbreAbstrait a : programme) {
             sb.append(a.toMIPS()) ;
         }

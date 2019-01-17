@@ -4,6 +4,7 @@ import java.util.*;
 import yal.arbre.* ;
 import yal.arbre.expressions.* ;
 import yal.arbre.instructions.* ;
+import yal.arbre.instructions.affectation.* ;
 import yal.exceptions.AnalyseSyntaxiqueException;
 
 import java_cup.runtime.*;
@@ -56,8 +57,8 @@ parser code {:
    
 /* Terminals (tokens returned by the scanner).  */
 
-terminal Symbol    PROGRAMME, DEBUT, FIN, POINTVIRGULE, ECRIRE, LIRE, TYPE;
-terminal String    IDF, CSTENTIERE, EGAL ;
+terminal Symbol    PROGRAMME, DEBUT, FIN, POINTVIRGULE, ECRIRE, LIRE, EGAL;
+terminal String    IDF, CSTENTIERE, TYPE;
    
 /* Non terminals used in the grammar section.  */
 
@@ -92,32 +93,25 @@ INST    ::=     ECRIRE EXP:e POINTVIRGULE
                 {: RESULT = new Ecrire(e, eleft + 1) ; :}
         |
                 LIRE IDF:i POINTVIRGULE
-                {:
-
-                :}
-        |
-                DECL:i
-                {:
-
-                :}
+                {: RESULT = new Lire(i, ileft + 1); :}
         |
                 AFF:i
+                {: RESULT = i;  :}
+                ;
+
+DECL    ::=     TYPE:t IDF:i POINTVIRGULE
                 {:
-
-                :}
+                    TDS instance = TDS.getInstance();
+                    instance.ajouter(i, new Symbole(instance.getDeplacement(),t)); :}
                 ;
 
-DECL    ::=     TYPE IDF:i POINTVIRGULE
-                {: TDS.getInstance().ajouter(i, new Symbole()); //TODO:}
-                ;
-
-AFF  ::=        IDF:i EGAL IDF:i2
-                {:  :}
-        |
-                IDF:i EGAL EXP:e
-                {:  :}
+AFF  ::=        IDF:i EGAL EXP:e
+                {: RESULT = new AffectationSimple(eleft + 1,e,i); :}
                 ;
 
 EXP    ::=     CSTENTIERE:c
-                {: RESULT = new ConstanteEntiere(c, cleft + 1) ; :}
-                ;
+               {: RESULT = new ConstanteEntiere(c, cleft + 1) ; :}
+        |
+               IDF:i
+               {: RESULT = new Variable(ileft + 1,i); :}
+               ;

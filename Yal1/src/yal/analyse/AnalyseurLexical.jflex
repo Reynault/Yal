@@ -53,6 +53,8 @@ commentaire = [/][/].*
 
 "ecrire"               { return symbol(CodesLexicaux.ECRIRE); }
 
+"="                    { return symbol(CodesLexicaux.EGAL); }
+
 "lire"                 { return symbol(CodesLexicaux.LIRE); }
 
 ";"                    { return symbol(CodesLexicaux.POINTVIRGULE); }

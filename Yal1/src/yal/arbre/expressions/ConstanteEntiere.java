@@ -21,8 +21,8 @@ public class ConstanteEntiere extends Constante {
     @Override
     public String toMIPS() {
         StringBuilder sb = new StringBuilder("") ;
-        sb.append("                   # Chargement immédiat d'une constante entière\n");
-        sb.append("    li $v0, ") ;
+        sb.append("\t# Chargement immédiat d'une constante entière\n");
+        sb.append("\tli $v0, ") ;
         sb.append(cste) ;
         sb.append("\n") ;
         return sb.toString() ;

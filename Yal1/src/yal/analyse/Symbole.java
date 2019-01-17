@@ -4,8 +4,9 @@ public class Symbole {
     private int deplacement;
     private String type;
 
-    public Symbole(int deplacement) {
+    public Symbole(int deplacement, String type) {
         this.deplacement = deplacement;
+        this.type = type;
     }
 
     public int getDeplacement() {
