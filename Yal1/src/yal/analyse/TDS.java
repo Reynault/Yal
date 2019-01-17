@@ -5,7 +5,7 @@ import java.util.HashMap;
 public class TDS {
     private static TDS instance = new TDS();
 
-    private HashMap<String,Integer> table;
+    private HashMap<String,Symbole> table;
 
     private TDS(){}
 
@@ -13,16 +13,9 @@ public class TDS {
         return instance;
     }
     public void ajouter(String entree, Symbole deplacement){
-
+        table.put(entree, deplacement);
     }
     public Symbole identifier(String entree){
-        return null;
-    }
-    private HashMap<String, Integer> getTable() {
-        return table;
-    }
-
-    private void setTable(HashMap<String, Integer> table) {
-        this.table = table;
+        return table.get(entree);
     }
 }
