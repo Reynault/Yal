@@ -8,6 +8,9 @@ import yal.exceptions.AnalyseSemantiqueException;
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertFalse;
 
+/**
+ * Classe ArbreAbstrait test qui contient les tests unitaires liés à l'arbre abstrait
+ */
 public class ArbreAbstraitTest {
 
     @org.junit.Test

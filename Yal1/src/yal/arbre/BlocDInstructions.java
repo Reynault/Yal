@@ -1,12 +1,8 @@
 package yal.arbre;
 
-import yal.analyse.Symbole;
 import yal.analyse.TDS;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Set;
 
 /**
  * 21 novembre 2018
@@ -15,45 +11,64 @@ import java.util.Set;
  */
 
 public class BlocDInstructions extends ArbreAbstrait {
-    
+    // Liste des instructions du programme
     protected ArrayList<ArbreAbstrait> programme ;
-    
+    // Zone du code qui stocke les données utilisées
     protected static String zoneData = "# Code généré par Yal\n" +
             ".data\n" +
             "# Caractère de fin de ligne\n" +
                                             "finLigne:     .asciiz \"\\n\"\n" +
                                             "              .align 2\n" ;
-    
+    // Début du programme
     protected static String debutCode = "# Début du programme\n" +
             ".text\n" +
             "main :\n" +
             "\t# Initialisation de s7 avec sp\n" +
             "\tmove $s7, $sp\n" ;
+    // Fin du programme
     protected static String finCode = "end :\n" +
                                       "    li $v0, 10\n" +
                                       "    syscall\n" ;
-
+    /**
+     * Constructeur
+     * @param n numéro de la ligne
+     */
     public BlocDInstructions(int n) {
         super(n) ;
         programme = new ArrayList<>() ;
     }
-    
+
+    /**
+     * Méthode qui permet d'ajouter un arbre abstrait
+     * @param a le nouvel arbre
+     */
     public void ajouter(ArbreAbstrait a) {
         programme.add(a) ;
     }
-    
+
+    /**
+     * Méthode toString
+     * @return
+     */
     @Override
     public String toString() {
         return programme.toString() ;
     }
 
+    /**
+     * Méthode vérifier qui vérifie la sémantique
+     */
     @Override
     public void verifier() {
         for (ArbreAbstrait a : programme) {
             a.verifier() ;
         }
     }
-    
+
+    /**
+     * Méthode qui permet de traduire en mips
+     * @return
+     */
     @Override
     public String toMIPS() {
         StringBuilder sb = new StringBuilder("") ;
