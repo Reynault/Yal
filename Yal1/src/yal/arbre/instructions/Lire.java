@@ -4,6 +4,7 @@ import yal.analyse.Symbole;
 import yal.analyse.TDS;
 import yal.arbre.expressions.Expression;
 import yal.arbre.instructions.affectation.Affectation;
+import yal.exceptions.AnalyseSemantiqueException;
 
 /**
  * Classe qui représente une lecture en entrée
@@ -28,6 +29,9 @@ public class Lire extends Instruction{
     @Override
     public void verifier() {
         // Vérification de l'existence de la variable
+        if(!TDS.getInstance().existe(idf)){
+            throw new AnalyseSemantiqueException(noLigne,"Identificateur non déclaré");
+        }
     }
 
     /**
