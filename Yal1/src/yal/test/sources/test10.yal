@@ -1,0 +1,4 @@
+programme test debut
+    entier v = 6;
+    ecrire v;
+fin

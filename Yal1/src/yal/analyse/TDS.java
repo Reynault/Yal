@@ -9,7 +9,9 @@ public class TDS {
 
     private HashMap<String,Symbole> table;
 
-    private TDS(){}
+    private TDS(){
+        table = new HashMap<String,Symbole>();
+    }
 
     public static TDS getInstance() {
         return instance;

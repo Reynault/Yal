@@ -24,6 +24,7 @@ public class AffectationSimple extends Affectation {
         StringBuilder sb = new StringBuilder();
         Symbole symbole = TDS.getInstance().identifier(idf);
         sb.append(exp.toMIPS());
+        sb.append("\t# Affectation simple\n");
         sb.append("\tsw $v0, "+symbole.getDeplacement()+"($s7)\n");
         return sb.toString();
     }

@@ -1,0 +1,8 @@
+programme test debut
+    entier v = 10;
+    entier s = 20;
+    entier w;
+    v = s;
+    w = v;
+    ecrire w;
+fin

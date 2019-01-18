@@ -39,8 +39,6 @@ guillemet = [\"]
 finDeLigne = \r|\n
 espace = {finDeLigne}  | [ \t\f]
 
-type = "entier"
-
 commentaire = [/][/].*
 
 %%
@@ -49,7 +47,7 @@ commentaire = [/][/].*
 "debut"                { return symbol(CodesLexicaux.DEBUT); }
 "fin"              	   { return symbol(CodesLexicaux.FIN); }
 
-{type}                 { return symbol(CodesLexicaux.TYPE, yytext()); }
+"entier"                 { return symbol(CodesLexicaux.TYPE, yytext()); }
 
 "ecrire"               { return symbol(CodesLexicaux.ECRIRE); }
 

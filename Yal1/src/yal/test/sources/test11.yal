@@ -1,0 +1,6 @@
+programme test debut
+    entier v = 10;
+    entier s;
+    s = v;
+    ecrire s;
+fin

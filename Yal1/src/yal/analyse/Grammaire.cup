@@ -95,14 +95,26 @@ INST    ::=     ECRIRE EXP:e POINTVIRGULE
                 LIRE IDF:i POINTVIRGULE
                 {: RESULT = new Lire(i, ileft + 1); :}
         |
-                AFF:i
+                AFF:i POINTVIRGULE
                 {: RESULT = i;  :}
+        |
+                DECL:i POINTVIRGULE
+                {: RESULT = i; :}
                 ;
 
-DECL    ::=     TYPE:t IDF:i POINTVIRGULE
+DECL    ::=     TYPE:t IDF:i
                 {:
                     TDS instance = TDS.getInstance();
-                    instance.ajouter(i, new Symbole(instance.getDeplacement(),t)); :}
+                    instance.ajouter(i, new Symbole(instance.getDeplacement(),t));
+                    RESULT = new AffectationSimple(ileft + 1,new ConstanteEntiere("0",ileft + 1),i);
+                :}
+        |
+                TYPE:t IDF:i EGAL EXP:e
+                {:
+                    TDS instance = TDS.getInstance();
+                    instance.ajouter(i, new Symbole(instance.getDeplacement(),t));
+                    RESULT = new AffectationSimple(eleft + 1,e,i);
+                :}
                 ;
 
 AFF  ::=        IDF:i EGAL EXP:e
