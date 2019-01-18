@@ -6,6 +6,10 @@ finLigne:     .asciiz "\n"
 # Début du programme
 .text
 main :
+	# Initialisation de s7 avec sp
+	move $s7, $sp
+	# Réservation de l'espace dans la pile
+	addi $sp, $sp, 0
 end :
     li $v0, 10
     syscall

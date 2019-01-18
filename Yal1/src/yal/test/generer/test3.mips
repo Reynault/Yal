@@ -6,15 +6,19 @@ finLigne:     .asciiz "\n"
 # Début du programme
 .text
 main :
-                   # affichage de l'expression
-                   # Chargement immédiat d'une constante entière
-    li $v0, 5
-    move $a0, $v0
-    li $v0, 1
-    syscall
-    li $v0, 4      # retour à la ligne
-    la $a0, finLigne
-    syscall
+	# Initialisation de s7 avec sp
+	move $s7, $sp
+	# Réservation de l'espace dans la pile
+	addi $sp, $sp, 0
+	# affichage de l'expression
+	# Chargement immédiat d'une constante entière
+	li $v0, 5
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	li $v0, 4      # retour à la ligne
+	la $a0, finLigne
+	syscall
 end :
     li $v0, 10
     syscall

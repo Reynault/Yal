@@ -10,7 +10,7 @@ for fichier in `ls ./Yal${version}/src/yal/test/sources/` ; do
     name=${fichier%.*}
 #    echo ${name}
 
-    java -jar out/artifacts/Yal${version}/Yal${version}.jar Yal${version}/src/yal/test/sources/${name}.yal >> /dev/null
+    java -jar Yal${version}/out/artifacts/Yal${version}/Yal${version}.jar Yal${version}/src/yal/test/sources/${name}.yal >> /dev/null
     mv Yal${version}/src/yal/test/sources/${name}.mips Yal${version}/src/yal/test/generer/
 
     java -jar /opt/depot/compilation/Mars4_5.jar  Yal${version}/src/yal/test/generer/${name}.mips > Yal${version}/src/yal/test/generer/${name}.txt
