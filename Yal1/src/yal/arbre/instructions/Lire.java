@@ -11,7 +11,7 @@ import yal.arbre.instructions.affectation.Affectation;
 public class Lire extends Instruction{
     // Variable dans laquelle est stockée la valeur
     protected String idf;
-    protected Affectation aff;
+
     /**
      * Constructeur à deux paramètres
      * @param idf identificateur de la variable dans laquelle on stocke la valeur
