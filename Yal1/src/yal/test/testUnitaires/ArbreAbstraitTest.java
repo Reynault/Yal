@@ -1,8 +1,13 @@
 package yal.test.testUnitaires;
 
+import yal.analyse.Symbole;
+import yal.analyse.TDS;
 import yal.arbre.BlocDInstructions;
 import yal.arbre.expressions.ConstanteEntiere;
+import yal.arbre.expressions.Variable;
 import yal.arbre.instructions.Ecrire;
+import yal.arbre.instructions.Lire;
+import yal.arbre.instructions.affectation.AffectationSimple;
 import yal.exceptions.AnalyseSemantiqueException;
 
 import static junit.framework.TestCase.assertEquals;
@@ -143,6 +148,99 @@ public class ArbreAbstraitTest {
     public void code_ecrire_valeurNonValide_verifier() throws Exception {
         BlocDInstructions b = new BlocDInstructions(1);
         b.ajouter(new Ecrire(new ConstanteEntiere("50000000000000000000000000000",2),2));
+        b.verifier();
+    }
+
+    @org.junit.Test (expected = AnalyseSemantiqueException.class)
+    public void lire_variable_non_declarer_verifier() throws Exception {
+        BlocDInstructions b = new BlocDInstructions(1);
+        b.ajouter(new Lire("a",2));
+        b.verifier();
+    }
+
+    @org.junit.Test
+    public void lire_variable_declarer_verifier() throws Exception {
+        // Table des symboles
+        TDS instance = TDS.getInstance();
+        int depl = instance.getDeplacement();
+        instance.ajouter("a",new Symbole(depl,"entier"));
+        // Instructions
+        BlocDInstructions b = new BlocDInstructions(1);
+        b.ajouter(new Lire("a",2));
+        b.verifier();
+    }
+
+    @org.junit.Test
+    public void affectation_variable_declarer_verifier() throws Exception {
+        // Table des symboles
+        TDS instance = TDS.getInstance();
+        int depl = instance.getDeplacement();
+        instance.ajouter("a",new Symbole(depl,"entier"));
+        depl = instance.getDeplacement();
+        instance.ajouter("b",new Symbole(depl,"entier"));
+        // Instructions
+        BlocDInstructions b = new BlocDInstructions(1);
+        b.ajouter(new AffectationSimple(2,new Variable(2,"b"),"a"));
+        b.verifier();
+    }
+
+    @org.junit.Test
+    public void affectation_constante_verifier() throws Exception {
+        // Table des symboles
+        TDS instance = TDS.getInstance();
+        int depl = instance.getDeplacement();
+        instance.ajouter("a",new Symbole(depl,"entier"));
+        // Instructions
+        BlocDInstructions b = new BlocDInstructions(1);
+        b.ajouter(new AffectationSimple(2,new ConstanteEntiere("5",2),"a"));
+        b.verifier();
+    }
+
+    @org.junit.Test (expected = AnalyseSemantiqueException.class)
+    public void affectation_non_declarer_verifier() throws Exception {
+        // Instructions
+        BlocDInstructions b = new BlocDInstructions(1);
+        b.ajouter(new AffectationSimple(2,new ConstanteEntiere("5",2),"a"));
+        b.verifier();
+    }
+
+    @org.junit.Test (expected = AnalyseSemantiqueException.class)
+    public void affectation_variable_non_declarer_verifier() throws Exception {
+        // Table des symboles
+        TDS instance = TDS.getInstance();
+        int depl = instance.getDeplacement();
+        instance.ajouter("a",new Symbole(depl,"entier"));
+        // Instructions
+        BlocDInstructions b = new BlocDInstructions(1);
+        b.ajouter(new AffectationSimple(2,new Variable(2,"b"),"a"));
+        b.verifier();
+    }
+
+    @org.junit.Test
+    public void ecriture_variable_declarer_verifier() throws Exception {
+        // Table des symboles
+        TDS instance = TDS.getInstance();
+        int depl = instance.getDeplacement();
+        instance.ajouter("a",new Symbole(depl,"entier"));
+        // Instructions
+        BlocDInstructions b = new BlocDInstructions(1);
+        b.ajouter(new Ecrire(new Variable(2,"a"),2));
+        b.verifier();
+    }
+
+    @org.junit.Test (expected = AnalyseSemantiqueException.class)
+    public void ecriture_variable_non_declarer_verifier() throws Exception {
+        // Instructions
+        BlocDInstructions b = new BlocDInstructions(1);
+        b.ajouter(new Ecrire(new Variable(2,"a"),2));
+        b.verifier();
+    }
+
+    @org.junit.Test (expected = AnalyseSemantiqueException.class)
+    public void ecriture_constante_invalide_verifier() throws Exception {
+        // Instructions
+        BlocDInstructions b = new BlocDInstructions(1);
+        b.ajouter(new Ecrire(new ConstanteEntiere("500000000000000000000000000000000000",2),2));
         b.verifier();
     }
 }
