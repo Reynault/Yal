@@ -23,5 +23,6 @@
     </orderEntry>
     <orderEntry type="library" name="java-cup-11a" level="project" />
     <orderEntry type="library" name="jflex-1.6.1" level="project" />
+    <orderEntry type="library" name="java-cup-11a" level="project" />
   </component>
 </module>

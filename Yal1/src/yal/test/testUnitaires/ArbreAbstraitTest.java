@@ -18,6 +18,11 @@ import static junit.framework.TestCase.assertFalse;
  */
 public class ArbreAbstraitTest {
 
+    @org.junit.Before
+    public void initialisation(){
+        TDS.getInstance().reinitialiserTable();
+    }
+
     @org.junit.Test
     public void code_Null_toMIPS() throws Exception {
         BlocDInstructions bloc = new BlocDInstructions(1);
@@ -28,7 +33,6 @@ public class ArbreAbstraitTest {
     @org.junit.Test
     public void programme_Vide_toMIPS() throws Exception {
         TDS instance = TDS.getInstance();
-        instance.reinitialiserDeplacement();
         BlocDInstructions bloc = new BlocDInstructions(1);
         String code = bloc.toMIPS();
         String codeAttendu = "# Code généré par Yal\n" +
@@ -53,7 +57,6 @@ public class ArbreAbstraitTest {
     @org.junit.Test
     public void ecriture_Constante_Entiere_toMIPS() throws Exception {
         TDS instance = TDS.getInstance();
-        instance.reinitialiserDeplacement();
         BlocDInstructions bloc = new BlocDInstructions(1);
         bloc.ajouter(new Ecrire(new ConstanteEntiere("4",2),2));
         String code = bloc.toMIPS();
@@ -127,17 +130,25 @@ public class ArbreAbstraitTest {
                 "# Début du programme\n" +
                 ".text\n" +
                 "main :\n" +
-                "                   # Chargement immédiat d'une constante entière\n"+
-                "    li $v0, 5\n"+
-                "                   # affichage de l'expression\n" +
-                "                   # Chargement immédiat d'une constante entière\n"+
-                "    li $v0, 4\n"+
-                "    move $a0, $v0\n" +
-                "    li $v0, 1\n" +
-                "    syscall\n" +
-                "    li $v0, 4      # retour à la ligne\n" +
-                "    la $a0, finLigne\n" +
-                "    syscall\n"+
+                "\t# Initialisation de s7 avec sp\n" +
+                "\tmove $s7, $sp\n"+
+                "\t# Réservation de l'espace dans la pile\n"+
+                "\taddi $sp, $sp, 0\n"+
+                "\t# Chargement immédiat d'une constante entière\n"+
+                "\tli $v0, "+
+                "5" +
+                "\n" +
+                "\t# affichage de l'expression\n" +
+                "\t# Chargement immédiat d'une constante entière\n"+
+                "\tli $v0, "+
+                "4" +
+                "\n" +
+                "\tmove $a0, $v0\n" +
+                "\tli $v0, 1\n" +
+                "\tsyscall\n" +
+                "\tli $v0, 4      # retour à la ligne\n" +
+                "\tla $a0, finLigne\n" +
+                "\tsyscall\n"+
                 "end :\n" +
                 "    li $v0, 10\n" +
                 "    syscall\n" ;
@@ -229,7 +240,7 @@ public class ArbreAbstraitTest {
         // Table des symboles
         TDS instance = TDS.getInstance();
         int depl = instance.getDeplacement();
-        instance.ajouter("a",new Symbole(depl,"entier"));
+        instance.ajouter("b",new Symbole(depl,"entier"));
         // Instructions
         BlocDInstructions b = new BlocDInstructions(1);
         b.ajouter(new AffectationSimple(2,new Variable(2,"b"),"a"));

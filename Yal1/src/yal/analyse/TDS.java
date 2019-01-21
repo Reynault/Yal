@@ -74,10 +74,10 @@ public class TDS {
     }
 
     /**
-     * Méthode qui permet de réinitialiser le déplacement
-     * @return
+     * Méthode qui permet de réinitialiser la table des symboles
      */
-    public void reinitialiserDeplacement(){
+    public void reinitialiserTable(){
         deplacement = 0;
+        table = new HashMap<String,Symbole>();
     }
 }
