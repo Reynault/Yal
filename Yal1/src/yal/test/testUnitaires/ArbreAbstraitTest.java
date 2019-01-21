@@ -1,5 +1,6 @@
 package yal.test.testUnitaires;
 
+import org.junit.Test;
 import yal.analyse.Symbole;
 import yal.analyse.TDS;
 import yal.arbre.BlocDInstructions;
@@ -273,5 +274,159 @@ public class ArbreAbstraitTest {
         BlocDInstructions b = new BlocDInstructions(1);
         b.ajouter(new Ecrire(new ConstanteEntiere("500000000000000000000000000000000000",2),2));
         b.verifier();
+    }
+
+    @org.junit.Test
+    public void lecture_variable(){
+        TDS instance = TDS.getInstance();
+        instance.ajouter("a",new Symbole(instance.getDeplacement(),"entier"));
+        BlocDInstructions i = new BlocDInstructions(1);
+        i.ajouter(new Lire("a",2));
+        String code = i.toMIPS();
+        String codeAttendu = "# Code généré par Yal\n" +
+                ".data\n" +
+                "# Caractère de fin de ligne\n" +
+                "finLigne:     .asciiz \"\\n\"\n" +
+                "              .align 2\n"+
+                "# Début du programme\n" +
+                ".text\n" +
+                "main :\n" +
+                "\t# Initialisation de s7 avec sp\n" +
+                "\tmove $s7, $sp\n"+
+                "\t# Réservation de l'espace dans la pile\n"+
+                "\taddi $sp, $sp, -4\n"+
+                "\t# Lire un entier\n"+
+                "\tli $v0 , 5 \t# $v0 <- 5 (code du read entier)\n"+
+                "\tsyscall \t# le résultat de la lecture est dans $V0 \n"+
+                "\tsw $v0, 0($s7)"+
+                "end :\n" +
+                "    li $v0, 10\n" +
+                "    syscall\n" ;
+        assertEquals("Code != Code attendu",code,codeAttendu);
+    }
+
+    @org.junit.Test
+    public void ecriture_variable(){
+        TDS instance = TDS.getInstance();
+        instance.ajouter("a",new Symbole(instance.getDeplacement(),"entier"));
+        BlocDInstructions i = new BlocDInstructions(1);
+        i.ajouter(new Ecrire(new Variable(2,"a"),2));
+        String code = i.toMIPS();
+        String codeAttendu = "# Code généré par Yal\n" +
+                ".data\n" +
+                "# Caractère de fin de ligne\n" +
+                "finLigne:     .asciiz \"\\n\"\n" +
+                "              .align 2\n"+
+                "# Début du programme\n" +
+                ".text\n" +
+                "main :\n" +
+                "\t# Initialisation de s7 avec sp\n" +
+                "\tmove $s7, $sp\n"+
+                "\t# Réservation de l'espace dans la pile\n"+
+                "\taddi $sp, $sp, -4\n"+
+                "\t# affichage de l'expression\n" +
+                "\t# Chargement de la valeur de la variable dans v0\n"+
+                "\tlw $v0, 0($s7)\n"+
+                "\tmove $a0, $v0\n" +
+                "\tli $v0, 1\n" +
+                "\tsyscall\n" +
+                "\tli $v0, 4      # retour à la ligne\n" +
+                "\tla $a0, finLigne\n" +
+                "\tsyscall\n"+
+                "end :\n" +
+                "    li $v0, 10\n" +
+                "    syscall\n" ;
+        assertEquals("Code != Code attendu",code,codeAttendu);
+    }
+
+    @org.junit.Test
+    public void affectation_constante_entiere(){
+        TDS instance = TDS.getInstance();
+        instance.ajouter("a",new Symbole(instance.getDeplacement(),"entier"));
+        BlocDInstructions i = new BlocDInstructions(1);
+        i.ajouter(new AffectationSimple(2,new ConstanteEntiere("2",2),"a"));
+        String code = i.toMIPS();
+        String codeAttendu = "# Code généré par Yal\n" +
+                ".data\n" +
+                "# Caractère de fin de ligne\n" +
+                "finLigne:     .asciiz \"\\n\"\n" +
+                "              .align 2\n"+
+                "# Début du programme\n" +
+                ".text\n" +
+                "main :\n" +
+                "\t# Initialisation de s7 avec sp\n" +
+                "\tmove $s7, $sp\n"+
+                "\t# Réservation de l'espace dans la pile\n"+
+                "\taddi $sp, $sp, -4\n"+
+                "\t# Chargement immédiat d'une constante entière\n"+
+                "\tli $v0, "+
+                "2"+
+                "\n"+
+                "\t# Affectation simple\n"+
+                "\tsw $v0, 0($s7)\n"+
+                "end :\n" +
+                "    li $v0, 10\n" +
+                "    syscall\n" ;
+        assertEquals("Code != Code attendu",code,codeAttendu);
+    }
+
+    @org.junit.Test
+    public void affectation_variable(){
+        TDS instance = TDS.getInstance();
+        instance.ajouter("a",new Symbole(instance.getDeplacement(),"entier"));
+        instance.ajouter("b",new Symbole(instance.getDeplacement(),"entier"));
+        BlocDInstructions i = new BlocDInstructions(1);
+        i.ajouter(new AffectationSimple(2,new Variable(2,"b"),"a"));
+        String code = i.toMIPS();
+        String codeAttendu = "# Code généré par Yal\n" +
+                ".data\n" +
+                "# Caractère de fin de ligne\n" +
+                "finLigne:     .asciiz \"\\n\"\n" +
+                "              .align 2\n"+
+                "# Début du programme\n" +
+                ".text\n" +
+                "main :\n" +
+                "\t# Initialisation de s7 avec sp\n" +
+                "\tmove $s7, $sp\n"+
+                "\t# Réservation de l'espace dans la pile\n"+
+                "\taddi $sp, $sp, -8\n"+
+                "\t# Chargement de la valeur de la variable dans v0\n"+
+                "\tlw $v0, -4($s7)\n"+
+                "\t# Affectation simple\n"+
+                "\tsw $v0, 0($s7)\n"+
+                "end :\n" +
+                "    li $v0, 10\n" +
+                "    syscall\n" ;
+        assertEquals("Code != Code attendu",code,codeAttendu);
+    }
+
+    @org.junit.Test
+    public void affectation_variable_inverse(){
+        TDS instance = TDS.getInstance();
+        instance.ajouter("b",new Symbole(instance.getDeplacement(),"entier"));
+        instance.ajouter("a",new Symbole(instance.getDeplacement(),"entier"));
+        BlocDInstructions i = new BlocDInstructions(1);
+        i.ajouter(new AffectationSimple(2,new Variable(2,"b"),"a"));
+        String code = i.toMIPS();
+        String codeAttendu = "# Code généré par Yal\n" +
+                ".data\n" +
+                "# Caractère de fin de ligne\n" +
+                "finLigne:     .asciiz \"\\n\"\n" +
+                "              .align 2\n"+
+                "# Début du programme\n" +
+                ".text\n" +
+                "main :\n" +
+                "\t# Initialisation de s7 avec sp\n" +
+                "\tmove $s7, $sp\n"+
+                "\t# Réservation de l'espace dans la pile\n"+
+                "\taddi $sp, $sp, -8\n"+
+                "\t# Chargement de la valeur de la variable dans v0\n"+
+                "\tlw $v0, 0($s7)\n"+
+                "\t# Affectation simple\n"+
+                "\tsw $v0, -4($s7)\n"+
+                "end :\n" +
+                "    li $v0, 10\n" +
+                "    syscall\n" ;
+        assertEquals("Code != Code attendu",code,codeAttendu);
     }
 }
