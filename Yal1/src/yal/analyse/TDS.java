@@ -72,4 +72,12 @@ public class TDS {
         deplacement = deplacement - 4;
         return temp;
     }
+
+    /**
+     * Méthode qui permet de réinitialiser le déplacement
+     * @return
+     */
+    public void reinitialiserDeplacement(){
+        deplacement = 0;
+    }
 }

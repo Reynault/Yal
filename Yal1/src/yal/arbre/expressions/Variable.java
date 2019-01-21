@@ -30,6 +30,7 @@ public class Variable extends Expression{
         TDS instance = TDS.getInstance();
         // Si ce n'est pas le cas, on lance une exception
         if(!instance.existe(idf)){
+            System.out.println("pipop");
             throw new AnalyseSemantiqueException(noLigne,"Identificateur non déclaré");
         }
     }
