@@ -80,4 +80,8 @@ public class TDS {
         deplacement = 0;
         table = new HashMap<String,Symbole>();
     }
+
+    public int getPeak(){
+        return deplacement;
+    }
 }

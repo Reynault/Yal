@@ -77,7 +77,7 @@ public class BlocDInstructions extends ArbreAbstrait {
         // On initialise toutes les variables utilisées
         TDS instance = TDS.getInstance();
         sb.append("\t# Réservation de l'espace dans la pile\n");
-        sb.append("\taddi $sp, $sp, "+instance.getDeplacement()+"\n");
+        sb.append("\taddi $sp, $sp, "+instance.getPeak()+"\n");
         for (ArbreAbstrait a : programme) {
             sb.append(a.toMIPS()) ;
         }
