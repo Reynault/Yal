@@ -1,5 +1,0 @@
-programme test debut
-    entier v = 50;
-    // v = 15;
-    ecrire v;
-fin

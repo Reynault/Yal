@@ -1,5 +1,0 @@
-programme test debut
-    entier v = 5;
-    entier w = v;
-    ecrire w;
-fin
