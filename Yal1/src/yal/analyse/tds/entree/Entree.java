@@ -18,28 +18,6 @@ public abstract class Entree {
     }
 
     /**
-     * Méthode equals
-     * @param o
-     * @return
-     */
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Entree entree = (Entree) o;
-        return Objects.equals(nom, entree.nom);
-    }
-
-    /**
-     * Méthode de hashcode
-     * @return
-     */
-    @Override
-    public int hashCode() {
-        return Objects.hash(nom);
-    }
-
-    /**
      * Méthode de récupération du nom de l'entrée
      * @return le nom
      */

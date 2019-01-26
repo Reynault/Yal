@@ -1,4 +1,4 @@
 programme test debut
     entier v;
-    ecrire v;
+    lire v;
 fin
