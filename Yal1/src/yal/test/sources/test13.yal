@@ -1,8 +1,11 @@
 programme test debut
-    entier v = 10;
-    entier s = 20;
+    entier v;
+    entier s;
     entier w;
-    v = s;
-    w = v;
+    entier z;
+    s = 50;
+    s = v;
+    w = s;
+    z = w;
     ecrire w;
 fin
