@@ -1,4 +1,4 @@
 programme test debut
-// Test
-ecrire 20;
+    entier v;
+    ecrire v;
 fin

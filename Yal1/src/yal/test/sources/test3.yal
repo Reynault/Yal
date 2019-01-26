@@ -1,3 +1,4 @@
 programme test debut
-ecrire 5;
+    // Commentaire : ecrire 600;
+    ecrire 150;
 fin

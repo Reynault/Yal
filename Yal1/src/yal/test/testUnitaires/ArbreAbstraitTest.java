@@ -432,4 +432,11 @@ public class ArbreAbstraitTest {
                 "    syscall\n" ;
         assertEquals("Code != Code attendu",code,codeAttendu);
     }
+
+    @org.junit.Test (expected = AnalyseSemantiqueException.class)
+    public void declarer_variable_deja_declare(){
+        TDS instance = TDS.getInstance();
+        instance.ajouter(1,new EntreeVariable("b"),new SymboleVariable(instance.getDeplacement(),"entier"));
+        instance.ajouter(1,new EntreeVariable("b"),new SymboleVariable(instance.getDeplacement(),"entier"));
+    }
 }
