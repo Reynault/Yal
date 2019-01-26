@@ -1,1 +1,9 @@
-programme test debut entier v = 15; ecrire v; fin
+programme test debut
+    entier v;
+    entier s;
+    entier w;
+    v = 5;
+    s = v;
+    w = s;
+    ecrire w;
+fin

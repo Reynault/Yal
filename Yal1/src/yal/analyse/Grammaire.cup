@@ -74,15 +74,17 @@ start with PROG ;
 
 PROG    ::=     PROGRAMME  IDF  DEBUT  LINST:li  FIN
                 {:
-                    RESULT = li ;
+                    Programme p = new Programme(0,(BlocDInstructions) li);
+                    RESULT = p;
                 :}
         |
                 PROGRAMME  IDF  DEBUT  LDECL:ld  LINST:li  FIN
                 {:
-                    BlocDInstructions bi = new BlocDInstructions(ldleft+1);
-                    bi.ajouter(ld);
-                    bi.ajouter(li);
-                    RESULT = bi;
+                    BlocDInstructions b = new BlocDInstructions(ldleft+1);
+                    b.ajouter(ld);
+                    b.ajouter(li);
+                    Programme p = new Programme(0,(BlocDInstructions) b);
+                    RESULT = p;
                 :}
                 ;
 
@@ -96,11 +98,14 @@ LINST   ::=     LINST:li  INST:i
                    RESULT = b ; :}
                 ;
 
-LDECL   ::=     LDECL DECL:i
-                {: RESULT = i; :}
+LDECL   ::=     LDECL:li DECL:i
+                {: ((BlocDInstructions)li).ajouter(i) ;
+                RESULT = li ; :}
         |
                 DECL:i
-                {: RESULT = i; :}
+                {: BlocDInstructions b = new BlocDInstructions(ileft + 1) ;
+                b.ajouter(i) ;
+                RESULT = b ; :}
                 ;
 
 INST    ::=     ECRIRE EXP:e POINTVIRGULE
