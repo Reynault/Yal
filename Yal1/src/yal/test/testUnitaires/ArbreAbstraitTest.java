@@ -5,6 +5,7 @@ import yal.analyse.tds.symbole.Symbole;
 import yal.analyse.tds.TDS;
 import yal.analyse.tds.symbole.SymboleVariable;
 import yal.arbre.BlocDInstructions;
+import yal.arbre.Programme;
 import yal.arbre.expressions.ConstanteEntiere;
 import yal.arbre.expressions.Variable;
 import yal.arbre.instructions.Ecrire;
@@ -36,7 +37,8 @@ public class ArbreAbstraitTest {
     public void programme_Vide_toMIPS() throws Exception {
         TDS instance = TDS.getInstance();
         BlocDInstructions bloc = new BlocDInstructions(1);
-        String code = bloc.toMIPS();
+        Programme p = new Programme(0,bloc);
+        String code = p.toMIPS();
         String codeAttendu = "# Code généré par Yal\n" +
                 ".data\n" +
                 "# Caractère de fin de ligne\n" +
@@ -61,7 +63,8 @@ public class ArbreAbstraitTest {
         TDS instance = TDS.getInstance();
         BlocDInstructions bloc = new BlocDInstructions(1);
         bloc.ajouter(new Ecrire(new ConstanteEntiere("4",2),2));
-        String code = bloc.toMIPS();
+        Programme p = new Programme(0,bloc);
+        String code = p.toMIPS();
         String codeAttendu = "# Code généré par Yal\n" +
                 ".data\n" +
                 "# Caractère de fin de ligne\n" +
@@ -95,7 +98,8 @@ public class ArbreAbstraitTest {
     public void stockage_Constante_Entiere_toMIPS() throws Exception {
         BlocDInstructions bloc = new BlocDInstructions(1);
         bloc.ajouter(new ConstanteEntiere("4",2));
-        String code = bloc.toMIPS();
+        Programme p = new Programme(0,bloc);
+        String code = p.toMIPS();
         String codeAttendu = "# Code généré par Yal\n" +
                 ".data\n" +
                 "# Caractère de fin de ligne\n" +
@@ -123,7 +127,8 @@ public class ArbreAbstraitTest {
         BlocDInstructions bloc = new BlocDInstructions(1);
         bloc.ajouter(new ConstanteEntiere("5",2));
         bloc.ajouter(new Ecrire(new ConstanteEntiere("4",3),3));
-        String code = bloc.toMIPS();
+        Programme p = new Programme(0,bloc);
+        String code = p.toMIPS();
         String codeAttendu = "# Code généré par Yal\n" +
                 ".data\n" +
                 "# Caractère de fin de ligne\n" +
@@ -283,7 +288,8 @@ public class ArbreAbstraitTest {
         instance.ajouter(1,new EntreeVariable("a"),new SymboleVariable(instance.getDeplacement(),"entier"));
         BlocDInstructions i = new BlocDInstructions(1);
         i.ajouter(new Lire(new Variable(2,"a"),2));
-        String code = i.toMIPS();
+        Programme p = new Programme(0,i);
+        String code = p.toMIPS();
         String codeAttendu = "# Code généré par Yal\n" +
                 ".data\n" +
                 "# Caractère de fin de ligne\n" +
@@ -312,7 +318,8 @@ public class ArbreAbstraitTest {
         instance.ajouter(1,new EntreeVariable("a"),new SymboleVariable(instance.getDeplacement(),"entier"));
         BlocDInstructions i = new BlocDInstructions(1);
         i.ajouter(new Ecrire(new Variable(2,"a"),2));
-        String code = i.toMIPS();
+        Programme p = new Programme(0,i);
+        String code = p.toMIPS();
         String codeAttendu = "# Code généré par Yal\n" +
                 ".data\n" +
                 "# Caractère de fin de ligne\n" +
@@ -346,7 +353,8 @@ public class ArbreAbstraitTest {
         instance.ajouter(1,new EntreeVariable("a"),new SymboleVariable(instance.getDeplacement(),"entier"));
         BlocDInstructions i = new BlocDInstructions(1);
         i.ajouter(new AffectationSimple(2,new ConstanteEntiere("2",2),new Variable(2,"a")));
-        String code = i.toMIPS();
+        Programme p = new Programme(0,i);
+        String code = p.toMIPS();
         String codeAttendu = "# Code généré par Yal\n" +
                 ".data\n" +
                 "# Caractère de fin de ligne\n" +
@@ -379,7 +387,8 @@ public class ArbreAbstraitTest {
         BlocDInstructions i = new BlocDInstructions(1);
         i.ajouter(new AffectationSimple(2,new Variable(2,"a"),new Variable(2,"b")));
         i.verifier();
-        String code = i.toMIPS();
+        Programme p = new Programme(0,i);
+        String code = p.toMIPS();
         String codeAttendu = "# Code généré par Yal\n" +
                 ".data\n" +
                 "# Caractère de fin de ligne\n" +
@@ -409,8 +418,9 @@ public class ArbreAbstraitTest {
         instance.ajouter(1,new EntreeVariable("a"),new SymboleVariable(instance.getDeplacement(),"entier"));
         BlocDInstructions i = new BlocDInstructions(1);
         i.ajouter(new AffectationSimple(2,new Variable(2,"b"),new Variable(2,"a")));
-        i.verifier();
-        String code = i.toMIPS();
+        Programme p = new Programme(0,i);
+        p.verifier();
+        String code = p.toMIPS();
         String codeAttendu = "# Code généré par Yal\n" +
                 ".data\n" +
                 "# Caractère de fin de ligne\n" +
