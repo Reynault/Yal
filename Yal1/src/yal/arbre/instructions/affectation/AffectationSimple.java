@@ -1,8 +1,9 @@
 package yal.arbre.instructions.affectation;
 
-import yal.analyse.Symbole;
-import yal.analyse.TDS;
+import yal.analyse.tds.symbole.Symbole;
+import yal.analyse.tds.TDS;
 import yal.arbre.expressions.Expression;
+import yal.arbre.expressions.Variable;
 import yal.exceptions.AnalyseSemantiqueException;
 
 /**
@@ -11,8 +12,8 @@ import yal.exceptions.AnalyseSemantiqueException;
 public class AffectationSimple extends Affectation {
     // Expression à affecter
     protected  Expression exp;
-    // Identificateur de la variable
-    protected  String idf;
+    // Variable
+    protected Variable idf;
 
     /**
      * Constructeur à trois paramètres
@@ -20,7 +21,7 @@ public class AffectationSimple extends Affectation {
      * @param exp expression à affecter
      * @param idf variable
      */
-    public AffectationSimple(int n, Expression exp, String idf) {
+    public AffectationSimple(int n, Expression exp, Variable idf) {
         super(n);
         this.exp = exp;
         this.idf = idf;
@@ -32,11 +33,8 @@ public class AffectationSimple extends Affectation {
     @Override
     public void verifier() {
         // Vérification de l'expression
+        idf.verifier();
         exp.verifier();
-        // Vérification de l'existence de la variable
-        if(!TDS.getInstance().existe(idf)){
-            throw new AnalyseSemantiqueException(noLigne,"Identificateur non déclaré");
-        }
     }
 
     /**
@@ -47,12 +45,10 @@ public class AffectationSimple extends Affectation {
     public String toMIPS() {
         // Construction du code
         StringBuilder sb = new StringBuilder();
-        // Récupération du symbole lié à la variable
-        Symbole symbole = TDS.getInstance().identifier(idf);
         // Récupération du code de l'expression
         sb.append(exp.toMIPS());
         sb.append("\t# Affectation simple\n");
-        sb.append("\tsw $v0, "+symbole.getDeplacement()+"($s7)\n");
+        sb.append("\tsw $v0, "+idf.getDeplacement()+"($s7)\n");
         return sb.toString();
     }
 }

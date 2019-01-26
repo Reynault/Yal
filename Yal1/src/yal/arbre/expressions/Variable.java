@@ -1,15 +1,21 @@
 package yal.arbre.expressions;
 
-import yal.analyse.Symbole;
-import yal.analyse.TDS;
+import yal.analyse.tds.entree.EntreeVariable;
+import yal.analyse.tds.symbole.Symbole;
+import yal.analyse.tds.TDS;
+import yal.analyse.tds.symbole.SymboleVariable;
 import yal.exceptions.AnalyseSemantiqueException;
 
 /**
  * Classe Variable qui représente une variable dans une expression
  */
 public class Variable extends Expression{
+
     // Identificateur de la variable
     protected String idf;
+
+    // Déplacement de la variable mis à jour lors de la vérification de l'arbre
+    protected int deplacement;
 
     /**
      * Constructeur de la classe variable qui prend deux paramètres
@@ -21,17 +27,20 @@ public class Variable extends Expression{
         this.idf = idf;
     }
 
+    public int getDeplacement() {
+        return deplacement;
+    }
+
     /**
      * Méthode vérifier : vérification de la sémantique
      */
     @Override
     public void verifier() {
-        // On vérifie que la variable se trouve bien dans la table des symboles
+        // Récupération de l'instance de tds
         TDS instance = TDS.getInstance();
-        // Si ce n'est pas le cas, on lance une exception
-        if(!instance.existe(idf)){
-            throw new AnalyseSemantiqueException(noLigne,"Identificateur non déclaré");
-        }
+        // On récupère le deplacement de l'identificateur
+        Symbole sv = instance.identifier(noLigne,new EntreeVariable(idf));
+        deplacement = sv.getDeplacement();
     }
 
     /**
@@ -40,12 +49,10 @@ public class Variable extends Expression{
      */
     @Override
     public String toMIPS() {
-        // Récupération du symbole de la variable
-        Symbole symbole = TDS.getInstance().identifier(idf);
         // Construction du code dans un string builder
         StringBuilder sb = new StringBuilder();
         sb.append("\t# Chargement de la valeur de la variable dans v0\n");
-        sb.append("\tlw $v0, "+symbole.getDeplacement()+"($s7)\n");
+        sb.append("\tlw $v0, "+deplacement+"($s7)\n");
         return sb.toString();
     }
 }

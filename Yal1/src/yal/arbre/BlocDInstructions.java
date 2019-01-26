@@ -1,6 +1,6 @@
 package yal.arbre;
 
-import yal.analyse.TDS;
+import yal.analyse.tds.TDS;
 
 import java.util.ArrayList;
 

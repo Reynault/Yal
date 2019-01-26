@@ -1,5 +1,8 @@
 package yal.analyse ;
 
+import yal.analyse.tds.*;
+import yal.analyse.tds.entree.*;
+import yal.analyse.tds.symbole.*;
 import java.util.*;
 import yal.arbre.* ;
 import yal.arbre.expressions.* ;
@@ -62,7 +65,7 @@ terminal String    IDF, CSTENTIERE, TYPE;
    
 /* Non terminals used in the grammar section.  */
 
-non terminal ArbreAbstrait PROG, LINST, INST, DECL, AFF ;
+non terminal ArbreAbstrait PROG, LINST, INST, LDECL, DECL, AFF ;
 non terminal Expression EXP ;
 
 /* ----------------------------Grammar Section-------------------- */
@@ -71,12 +74,16 @@ start with PROG ;
 
 PROG    ::=     PROGRAMME  IDF  DEBUT  LINST:li  FIN
                 {:
-                RESULT = li ;
+                    RESULT = li ;
                 :}
         |
-                PROGRAMME IDF DEBUT FIN
-                {: BlocDInstructions b = new BlocDInstructions(1);
-                   RESULT = b; :}
+                PROGRAMME  IDF  DEBUT  LDECL:ld  LINST:li  FIN
+                {:
+                    BlocDInstructions bi = new BlocDInstructions(ldleft+1);
+                    bi.ajouter(ld);
+                    bi.ajouter(li);
+                    RESULT = bi;
+                :}
                 ;
 
 LINST   ::=     LINST:li  INST:i
@@ -89,36 +96,33 @@ LINST   ::=     LINST:li  INST:i
                    RESULT = b ; :}
                 ;
 
+LDECL   ::=     LDECL DECL:i
+                {: RESULT = i; :}
+        |
+                DECL:i
+                {: RESULT = i; :}
+                ;
+
 INST    ::=     ECRIRE EXP:e POINTVIRGULE
                 {: RESULT = new Ecrire(e, eleft + 1) ; :}
         |
                 LIRE IDF:i POINTVIRGULE
-                {: RESULT = new Lire(i, ileft + 1); :}
+                {: RESULT = new Lire(new Variable(ileft+1,i), ileft + 1); :}
         |
                 AFF:i POINTVIRGULE
                 {: RESULT = i;  :}
-        |
-                DECL:i POINTVIRGULE
-                {: RESULT = i; :}
                 ;
 
-DECL    ::=     TYPE:t IDF:i
+DECL    ::=     TYPE:t IDF:i POINTVIRGULE
                 {:
                     TDS instance = TDS.getInstance();
-                    instance.ajouter(i, new Symbole(instance.getDeplacement(),t));
-                    RESULT = new AffectationSimple(ileft + 1,new ConstanteEntiere("0",ileft + 1),i);
-                :}
-        |
-                TYPE:t IDF:i EGAL EXP:e
-                {:
-                    TDS instance = TDS.getInstance();
-                    instance.ajouter(i, new Symbole(instance.getDeplacement(),t));
-                    RESULT = new AffectationSimple(eleft + 1,e,i);
+                    instance.ajouter(ileft+1, new EntreeVariable(i), new SymboleVariable(instance.getDeplacement(),t));
+                    RESULT = new AffectationSimple(ileft + 1,new ConstanteEntiere("0",ileft + 1),new Variable(ileft+1,i));
                 :}
                 ;
 
 AFF  ::=        IDF:i EGAL EXP:e
-                {: RESULT = new AffectationSimple(eleft + 1,e,i); :}
+                {: RESULT = new AffectationSimple(eleft + 1,e,new Variable(eleft+1,i)); :}
                 ;
 
 EXP    ::=     CSTENTIERE:c

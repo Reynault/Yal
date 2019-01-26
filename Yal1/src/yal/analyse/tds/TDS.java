@@ -1,11 +1,15 @@
-package yal.analyse;
+package yal.analyse.tds;
+
+import yal.analyse.tds.entree.Entree;
+import yal.analyse.tds.symbole.Symbole;
+import yal.exceptions.AnalyseSemantiqueException;
 
 import java.util.HashMap;
 
 /**
  * Classe TDS qui représente la table des symboles
  *
- * elle contient une liste qui permet de retrouver les variables / fonctions qui ont été déclarées
+ * elle contient un dictionnaire qui permet de retrouver les variables / fonctions qui ont été déclarées
  * dans le code source
  *
  * Classe Singleton
@@ -15,14 +19,14 @@ public class TDS {
     private static TDS instance = new TDS();
     // Position actuelle dans la pile
     private int deplacement = 0;
-    // Dictionnaire qui permet de stocker et de retrouver les symboles
-    private HashMap<String,Symbole> table;
+    // Dictionnaire qui permet de stocker et de retrouver les symboles via des entrées
+    private HashMap<Entree, Symbole> table;
 
     /**
      * Constructeur de la classe
      */
     private TDS(){
-        table = new HashMap<String,Symbole>();
+        table = new HashMap<Entree,Symbole>();
     }
 
     /**
@@ -36,11 +40,17 @@ public class TDS {
     /**
      * Méthode ajouter qui permet d'ajouter une entrée dans la table
      * des symboles
+     * @param noligne numéro de la ligne
      * @param entree nouvelle entrée
      * @param deplacement position dans la pile
      */
-    public void ajouter(String entree, Symbole deplacement){
-        table.put(entree, deplacement);
+    public void ajouter(int noligne, Entree entree, Symbole deplacement){
+        // Vérification
+        if(existe(entree)){
+            throw new AnalyseSemantiqueException(noligne,"Variable déjà déclarée");
+        }else {
+            table.put(entree, deplacement);
+        }
     }
 
     /**
@@ -49,8 +59,12 @@ public class TDS {
      * @param entree entrée recherchée
      * @return Symbole de l'entrée
      */
-    public Symbole identifier(String entree){
-        return table.get(entree);
+    public Symbole identifier(int noligne, Entree entree){
+        if(existe(entree)){
+            return table.get(entree);
+        }else{
+            throw new AnalyseSemantiqueException(noligne, "Variable non déclarée");
+        }
     }
 
     /***
@@ -58,7 +72,7 @@ public class TDS {
      * @param entree entrée à vérifier
      * @return booléen qui indique si l'entrée existe
      */
-    public boolean existe(String entree){
+    public boolean existe(Entree entree){
         return table.containsKey(entree);
     }
 
@@ -78,9 +92,13 @@ public class TDS {
      */
     public void reinitialiserTable(){
         deplacement = 0;
-        table = new HashMap<String,Symbole>();
+        table = new HashMap<Entree,Symbole>();
     }
 
+    /**
+     * Méthode qui permet de récupérer le sommet de la pile sans le déplacer.
+     * @return la valeur actuelle du déplacement
+     */
     public int getPeak(){
         return deplacement;
     }

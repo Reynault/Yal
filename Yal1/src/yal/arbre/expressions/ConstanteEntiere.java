@@ -2,12 +2,23 @@ package yal.arbre.expressions;
 
 import yal.exceptions.AnalyseSemantiqueException;
 
+/**
+ * Classe qui représente une constante entière
+ */
 public class ConstanteEntiere extends Constante {
-    
+
+    /**
+     * Constructeur de la classe constante entiere
+     * @param texte valeur de la constante
+     * @param n numéro de la ligne
+     */
     public ConstanteEntiere(String texte, int n) {
         super(texte, n) ;
     }
 
+    /**
+     * Méthode de vérification de la sémantique
+     */
     @Override
     public void verifier() {
         // On vérifie si c'est bien un entier correct
@@ -18,6 +29,10 @@ public class ConstanteEntiere extends Constante {
         }
     }
 
+    /**
+     * Méthode de traduction en mips
+     * @return
+     */
     @Override
     public String toMIPS() {
         StringBuilder sb = new StringBuilder("") ;
