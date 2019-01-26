@@ -30,5 +30,6 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="java-cup-11a1" level="project" />
+    <orderEntry type="library" name="java-cup-11b-runtime1" level="project" />
   </component>
 </module>

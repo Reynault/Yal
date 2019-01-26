@@ -10,16 +10,8 @@ public class EntreeVariable extends Entree{
      * Constructeur
      * @param nom nom de l'entrée
      */
-    public EntreeVariable(String nom) {
-        super(nom);
-    }
-
-    /**
-     * Méthode getteur de nom
-     * @return valeur de nom
-     */
-    public String getNom(){
-        return this.nom;
+    public EntreeVariable(String nom, int ligne) {
+        super(nom, ligne);
     }
 
     /**

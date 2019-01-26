@@ -86,27 +86,35 @@ PROG    ::=     PROGRAMME  IDF  DEBUT  LINST:li  FIN
                     Programme p = new Programme(0,(BlocDInstructions) b);
                     RESULT = p;
                 :}
-                ;
+        ;
 
 LINST   ::=     LINST:li  INST:i
-                {: ((BlocDInstructions)li).ajouter(i) ;
-                   RESULT = li ; :}
+                {:
+                    ((BlocDInstructions)li).ajouter(i) ;
+                    RESULT = li ;
+                :}
         |
                 INST:i
-                {: BlocDInstructions b = new BlocDInstructions(ileft + 1) ;
-                   b.ajouter(i) ;
-                   RESULT = b ; :}
-                ;
+                {:
+                    BlocDInstructions b = new BlocDInstructions(ileft + 1) ;
+                    b.ajouter(i) ;
+                    RESULT = b ;
+                :}
+        ;
 
 LDECL   ::=     LDECL:li DECL:i
-                {: ((BlocDInstructions)li).ajouter(i) ;
-                RESULT = li ; :}
+                {:
+                    ((BlocDInstructions)li).ajouter(i) ;
+                    RESULT = li ;
+                :}
         |
                 DECL:i
-                {: BlocDInstructions b = new BlocDInstructions(ileft + 1) ;
-                b.ajouter(i) ;
-                RESULT = b ; :}
-                ;
+                {:
+                    BlocDInstructions b = new BlocDInstructions(ileft + 1) ;
+                    b.ajouter(i) ;
+                    RESULT = b ;
+                :}
+        ;
 
 INST    ::=     ECRIRE EXP:e POINTVIRGULE
                 {: RESULT = new Ecrire(e, eleft + 1) ; :}
@@ -116,23 +124,23 @@ INST    ::=     ECRIRE EXP:e POINTVIRGULE
         |
                 AFF:i POINTVIRGULE
                 {: RESULT = i;  :}
-                ;
+        ;
 
 DECL    ::=     TYPE:t IDF:i POINTVIRGULE
                 {:
                     TDS instance = TDS.getInstance();
-                    instance.ajouter(ileft+1, new EntreeVariable(i), new SymboleVariable(instance.getDeplacement(),t));
+                    instance.ajouter(new EntreeVariable(i, ileft+1), new SymboleVariable(instance.getDeplacement(),t));
                     RESULT = new AffectationSimple(ileft + 1,new ConstanteEntiere("0",ileft + 1),new Variable(ileft+1,i));
                 :}
-                ;
+        ;
 
-AFF  ::=        IDF:i EGAL EXP:e
+AFF     ::=     IDF:i EGAL EXP:e
                 {: RESULT = new AffectationSimple(eleft + 1,e,new Variable(eleft+1,i)); :}
-                ;
+        ;
 
-EXP    ::=     CSTENTIERE:c
+EXP     ::=    CSTENTIERE:c
                {: RESULT = new ConstanteEntiere(c, cleft + 1) ; :}
         |
                IDF:i
                {: RESULT = new Variable(ileft + 1,i); :}
-               ;
+        ;

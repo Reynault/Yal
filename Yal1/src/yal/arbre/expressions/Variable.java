@@ -39,7 +39,7 @@ public class Variable extends Expression{
         // Récupération de l'instance de tds
         TDS instance = TDS.getInstance();
         // On récupère le deplacement de l'identificateur
-        Symbole sv = instance.identifier(noLigne,new EntreeVariable(idf));
+        Symbole sv = instance.identifier(new EntreeVariable(idf, noLigne));
         deplacement = sv.getDeplacement();
     }
 

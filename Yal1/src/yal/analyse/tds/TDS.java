@@ -40,14 +40,13 @@ public class TDS {
     /**
      * Méthode ajouter qui permet d'ajouter une entrée dans la table
      * des symboles
-     * @param noligne numéro de la ligne
      * @param entree nouvelle entrée
      * @param deplacement position dans la pile
      */
-    public void ajouter(int noligne, Entree entree, Symbole deplacement){
+    public void ajouter(Entree entree, Symbole deplacement){
         // Vérification
         if(existe(entree)){
-            throw new AnalyseSemantiqueException(noligne,"Variable déjà déclarée");
+            throw new AnalyseSemantiqueException(entree.getLigne(),"Variable déjà déclarée");
         }else {
             table.put(entree, deplacement);
         }
@@ -59,11 +58,11 @@ public class TDS {
      * @param entree entrée recherchée
      * @return Symbole de l'entrée
      */
-    public Symbole identifier(int noligne, Entree entree){
+    public Symbole identifier(Entree entree){
         if(existe(entree)){
             return table.get(entree);
         }else{
-            throw new AnalyseSemantiqueException(noligne, "Variable non déclarée");
+            throw new AnalyseSemantiqueException(entree.getLigne(), "Variable non déclarée");
         }
     }
 

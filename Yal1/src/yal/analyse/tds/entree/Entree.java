@@ -8,18 +8,26 @@ import java.util.Objects;
 public abstract class Entree {
     // Nom de l'entrée
     protected String nom;
+    protected int ligne;
 
     /**
      * Constructeur
      * @param nom le nom de l'entrée
      */
-    public Entree(String nom) {
+    protected Entree(String nom, int ligne) {
         this.nom = nom;
+        this.ligne = ligne;
     }
 
     /**
      * Méthode de récupération du nom de l'entrée
      * @return le nom
      */
-    public abstract String getNom();
+    public String getNom(){
+        return nom;
+    }
+
+    public int getLigne() {
+        return ligne;
+    }
 }
