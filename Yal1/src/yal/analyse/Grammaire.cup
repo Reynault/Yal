@@ -71,7 +71,10 @@ non terminal Expression EXP ;
 /* ----------------------------Grammar Section-------------------- */
  
 start with PROG ;
-
+/*  Programme posséde au moins une instruction, les declarations se trouve avant les instructions
+    les declarations ne sont pas garder dans l'arbre abstrait mais seulement les declarations simpre
+    (les intialisations a 0)
+ */
 PROG    ::=     PROGRAMME  IDF  DEBUT  LINST:li  FIN
                 {:
                     Programme p = new Programme(0,(BlocDInstructions) li);
