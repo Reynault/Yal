@@ -41,7 +41,7 @@ public class Lire extends Instruction{
         stringBuilder.append("\t# Lire un entier\n");
         stringBuilder.append("\tli $v0 , 5 \t# $v0 <- 5 (code du read entier)\n");
         stringBuilder.append("\tsyscall \t# le résultat de la lecture est dans $V0 \n");
-        stringBuilder.append("\tsw $v0, "+idf.getDeplacement()+"($s7)");
+        stringBuilder.append("\tsw $v0, "+idf.getDeplacement()+"($s7)\n");
         return stringBuilder.toString();
     }
 }
