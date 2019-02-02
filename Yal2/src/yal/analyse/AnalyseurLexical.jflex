@@ -51,32 +51,37 @@ commentaire = [/][/].*
 
 "ecrire"               { return symbol(CodesLexicaux.ECRIRE); }
 
-"=="                   { return symbol(CodesLexicaux.EGALLOGIQUE }
+"=="                   { return symbol(CodesLexicaux.EGALLOGIQUE, yytext()); }
 
-"ou"                   { return symbol(CodesLexicaux.ET }
+"ou"                   { return symbol(CodesLexicaux.OU, yytext()); }
 
-"et"                   { return symbol(CodesLexicaux.OU }
+"et"                   { return symbol(CodesLexicaux.ET, yytext()); }
 
-"!="                   { return symbol(CodesLexicaux.DIFFERENT }
+"!="                   { return symbol(CodesLexicaux.DIFFERENT, yytext()); }
 
-"<"                   { return symbol(CodesLexicaux.INFERIEUR }
+"<"                   { return symbol(CodesLexicaux.INFERIEUR, yytext()); }
 
-">"                   { return symbol(CodesLexicaux.SUPERIEUR }
+">"                   { return symbol(CodesLexicaux.SUPERIEUR, yytext()); }
 
-"="                    { return symbol(CodesLexicaux.EGAL); }
+"="                    { return symbol(CodesLexicaux.EGAL, yytext()); }
 
-"+"                   { return symbol(CodesLexicaux.ADDITION }
+"non"                   { return symbol(CodesLexicaux.NON, yytext()); }
 
-"-"                   { return symbol(CodesLexicaux.SOUSTRACTION }
+"+"                   { return symbol(CodesLexicaux.ADDITION, yytext()); }
 
-"/"                   { return symbol(CodesLexicaux.DIVISION }
+"-"                   { return symbol(CodesLexicaux.MOINS, yytext()); }
 
-"*"                   { return symbol(CodesLexicaux.MULTIPLICATION }
+"/"                   { return symbol(CodesLexicaux.DIVISION, yytext()); }
+
+"*"                   { return symbol(CodesLexicaux.MULTIPLICATION, yytext()); }
 
 "lire"                 { return symbol(CodesLexicaux.LIRE); }
 
 ";"                    { return symbol(CodesLexicaux.POINTVIRGULE); }
 
+"("                    { return symbol(CodesLexicaux.PAROUVERT); }
+
+")"                    { return symbol(CodesLexicaux.PARFERMER); }
 
 {csteE}      	       { return symbol(CodesLexicaux.CSTENTIERE, yytext()); }
 

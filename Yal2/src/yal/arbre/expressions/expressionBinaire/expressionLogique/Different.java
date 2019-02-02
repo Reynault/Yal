@@ -1,4 +1,12 @@
 package yal.arbre.expressions.expressionBinaire.expressionLogique;
 
-public class Different {
+public class Different extends ExpressionLogique {
+    /**
+     * Constructeur qui prend le numéro de la ligne en paramètre
+     *
+     * @param n numéro de la ligne
+     */
+    protected Different(int n) {
+        super(n);
+    }
 }
