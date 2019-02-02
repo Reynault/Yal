@@ -14,4 +14,14 @@ public class ExpressionArithmetique extends ExpressionBinaire {
     public ExpressionArithmetique(int n, Expression gauche, Expression droite) {
         super(n, gauche, droite);
     }
+
+    @Override
+    public void verifier() {
+        super.verifier();
+    }
+
+    @Override
+    public String toMIPS() {
+        return super.toMIPS();
+    }
 }

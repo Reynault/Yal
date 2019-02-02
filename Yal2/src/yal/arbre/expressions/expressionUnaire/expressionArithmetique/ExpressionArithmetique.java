@@ -3,28 +3,24 @@ package yal.arbre.expressions.expressionUnaire.expressionArithmetique;
 import yal.arbre.expressions.Expression;
 import yal.arbre.expressions.expressionUnaire.ExpressionUnaire;
 
-public class Negatif extends ExpressionArithmetique{
+public class ExpressionArithmetique extends ExpressionUnaire {
     /**
      * Constructeur qui prend le numéro de la ligne en paramètre
      *
      * @param n   numéro de la ligne
      * @param exp expression qui suit
      */
-    public Negatif(int n, Expression exp) {
+    public ExpressionArithmetique(int n, Expression exp) {
         super(n, exp);
     }
 
     @Override
-    public void verifier() {
-
+    public void verifier(){
+        super.verifier();
     }
 
     @Override
-    public String toMIPS() {
-        String res = super.toMIPS();
-        StringBuilder sb = new StringBuilder();
-        sb.append(res);
-        sb.append("neg $v0, $v0\n");
-        return sb.toString();
+    public String toMIPS(){
+        return super.toMIPS();
     }
 }

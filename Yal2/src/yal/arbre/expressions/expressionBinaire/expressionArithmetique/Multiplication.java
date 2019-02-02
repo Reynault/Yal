@@ -13,4 +13,19 @@ public class Multiplication extends ExpressionArithmetique {
     public Multiplication(int n, Expression gauche, Expression droite) {
         super(n, gauche, droite);
     }
+
+    @Override
+    public void verifier() {
+        super.verifier();
+    }
+
+    @Override
+    public String toMIPS() {
+        String res = super.toMIPS();
+        StringBuilder sb = new StringBuilder();
+        sb.append(res);
+        sb.append("mult $t8, $v0\n");
+        sb.append("mflo $v0\n");
+        return sb.toString();
+    }
 }

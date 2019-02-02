@@ -13,4 +13,18 @@ public class Addition extends ExpressionArithmetique {
     public Addition(int n, Expression gauche, Expression droite) {
         super(n, gauche, droite);
     }
+
+    @Override
+    public void verifier() {
+        super.verifier();
+    }
+
+    @Override
+    public String toMIPS() {
+        String res = super.toMIPS();
+        StringBuilder sb = new StringBuilder();
+        sb.append(res);
+        sb.append("add $v0, $t8, $v0\n");
+        return sb.toString();
+    }
 }

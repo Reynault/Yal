@@ -1,0 +1,4 @@
+programme test debut
+    entier v;
+    v = 50 + 50 + 50 / 50;
+fin

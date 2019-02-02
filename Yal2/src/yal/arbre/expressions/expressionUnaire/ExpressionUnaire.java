@@ -7,7 +7,7 @@ import yal.arbre.expressions.Expression;
  */
 public class ExpressionUnaire extends Expression {
     // Expression qui suit
-    private Expression exp;
+    protected Expression exp;
 
     /**
      * Constructeur qui prend le numéro de la ligne en paramètre
@@ -30,6 +30,6 @@ public class ExpressionUnaire extends Expression {
 
     @Override
     public String toMIPS() {
-        return null;
+        return exp.toMIPS();
     }
 }

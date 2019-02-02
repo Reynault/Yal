@@ -4,6 +4,7 @@ public class GestionnaireNombres {
 
     private int num_condition;
     private int num_iteration;
+    private int num_expression;
 
     private static GestionnaireNombres instance = new GestionnaireNombres();
     private GestionnaireNombres(){
@@ -22,5 +23,10 @@ public class GestionnaireNombres {
     public int nouvelleCondition(){
         num_condition ++;
         return num_condition;
+    }
+
+    public int nouvelleExpression(){
+        num_expression++;
+        return num_expression;
     }
 }

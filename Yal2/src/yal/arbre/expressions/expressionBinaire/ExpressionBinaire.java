@@ -7,9 +7,9 @@ import yal.arbre.expressions.Expression;
  */
 public class ExpressionBinaire extends Expression {
     // Expression de gauche
-    private Expression gauche;
+    protected Expression gauche;
     // Expression de droite
-    private Expression droite;
+    protected Expression droite;
 
     /**
      * Constructeur
@@ -30,6 +30,13 @@ public class ExpressionBinaire extends Expression {
 
     @Override
     public String toMIPS() {
-        return null;
+        StringBuilder sb = new StringBuilder();
+        sb.append(gauche.toMIPS());
+        sb.append("sw $v0, 0($sb)");
+        sb.append("add $sb, $sb, -4");
+        sb.append(droite.toMIPS());
+        sb.append("add $sb, $sb, 4");
+        sb.append("lw $t8, 0($sb)");
+        return sb.toString();
     }
 }
