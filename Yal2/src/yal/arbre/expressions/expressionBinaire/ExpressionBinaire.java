@@ -32,11 +32,11 @@ public class ExpressionBinaire extends Expression {
     public String toMIPS() {
         StringBuilder sb = new StringBuilder();
         sb.append(gauche.toMIPS());
-        sb.append("sw $v0, 0($sb)");
-        sb.append("add $sb, $sb, -4");
+        sb.append("\tsw $v0, 0($sp)\n");
+        sb.append("\tadd $sp, $sp, -4\n");
         sb.append(droite.toMIPS());
-        sb.append("add $sb, $sb, 4");
-        sb.append("lw $t8, 0($sb)");
+        sb.append("\tadd $sp, $sp, 4\n");
+        sb.append("\tlw $t8, 0($sp)\n");
         return sb.toString();
     }
 }

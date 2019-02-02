@@ -24,7 +24,7 @@ public class Negatif extends ExpressionArithmetique{
         String res = super.toMIPS();
         StringBuilder sb = new StringBuilder();
         sb.append(res);
-        sb.append("neg $v0, $v0\n");
+        sb.append("\tneg $v0, $v0\n");
         return sb.toString();
     }
 }

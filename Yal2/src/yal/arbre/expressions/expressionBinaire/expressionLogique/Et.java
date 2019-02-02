@@ -25,7 +25,7 @@ public class Et extends ExpressionLogique {
         String res = super.toMIPS();
         StringBuilder sb = new StringBuilder();
         sb.append(res);
-        sb.append("and $v0, $t8, $v0\n");
+        sb.append("\tand $v0, $t8, $v0\n");
         return sb.toString();
     }
 }

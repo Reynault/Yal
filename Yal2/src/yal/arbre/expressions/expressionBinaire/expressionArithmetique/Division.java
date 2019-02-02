@@ -24,7 +24,7 @@ public class Division extends ExpressionArithmetique {
         String res = super.toMIPS();
         StringBuilder sb = new StringBuilder();
         sb.append(res);
-        sb.append("div $v0, $t8, $v0\n");
+        sb.append("\tdiv $v0, $t8, $v0\n");
         return sb.toString();
     }
 }

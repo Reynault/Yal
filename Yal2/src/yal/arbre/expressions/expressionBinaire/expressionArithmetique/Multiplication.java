@@ -24,8 +24,8 @@ public class Multiplication extends ExpressionArithmetique {
         String res = super.toMIPS();
         StringBuilder sb = new StringBuilder();
         sb.append(res);
-        sb.append("mult $t8, $v0\n");
-        sb.append("mflo $v0\n");
+        sb.append("\tmult $t8, $v0\n");
+        sb.append("\tmflo $v0\n");
         return sb.toString();
     }
 }

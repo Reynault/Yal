@@ -25,7 +25,7 @@ public class Ou extends ExpressionLogique {
         String res = super.toMIPS();
         StringBuilder sb = new StringBuilder();
         sb.append(res);
-        sb.append("or $v0, $t8, $v0\n");
+        sb.append("\tor $v0, $t8, $v0\n");
         return sb.toString();
     }
 }

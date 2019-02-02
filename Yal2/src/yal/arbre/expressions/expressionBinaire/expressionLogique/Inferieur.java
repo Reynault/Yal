@@ -26,12 +26,12 @@ public class Inferieur extends ExpressionLogique {
         int numero = GestionnaireNombres.getInstance().nouvelleExpression();
         StringBuilder sb = new StringBuilder();
         sb.append(res);
-        sb.append("blt $t8, $v0, Vrai"+ numero +"\n");
-        sb.append("li $v0, 0\n");
-        sb.append("b FinSi"+numero+"\n");
-        sb.append("Vrai"+ numero +" :\n");
-        sb.append("li $v0, 1\n");
-        sb.append("FinSi"+numero+":\n");
+        sb.append("\tblt $t8, $v0, Vrai"+ numero +"\n");
+        sb.append("\tli $v0, 0\n");
+        sb.append("\tb FinSi"+numero+"\n");
+        sb.append("\tVrai"+ numero +" :\n");
+        sb.append("\tli $v0, 1\n");
+        sb.append("\tFinSi"+numero+":\n");
         return sb.toString();
     }
 }

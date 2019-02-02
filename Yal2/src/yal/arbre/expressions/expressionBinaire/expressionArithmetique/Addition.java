@@ -24,7 +24,7 @@ public class Addition extends ExpressionArithmetique {
         String res = super.toMIPS();
         StringBuilder sb = new StringBuilder();
         sb.append(res);
-        sb.append("add $v0, $t8, $v0\n");
+        sb.append("\tadd $v0, $t8, $v0\n");
         return sb.toString();
     }
 }

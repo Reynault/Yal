@@ -1,4 +1,5 @@
 programme test debut
     entier v;
-    v = 50 + 50 + 50 / 50;
+    v = 15020 * 50 / 50;
+    ecrire v;
 fin
