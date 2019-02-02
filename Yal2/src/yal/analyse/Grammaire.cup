@@ -10,6 +10,12 @@ import yal.arbre.instructions.* ;
 import yal.arbre.instructions.affectation.* ;
 import yal.arbre.expressions.* ;
 import yal.exceptions.AnalyseSyntaxiqueException;
+import yal.arbre.expressions.expressionBinaire.*;
+import yal.arbre.expressions.expressionBinaire.expressionArithmetique.*;
+import yal.arbre.expressions.expressionBinaire.expressionLogique.*;
+import yal.arbre.expressions.expressionUnaire.*;
+import yal.arbre.expressions.expressionUnaire.expressionArithmetique.*;
+import yal.arbre.expressions.expressionUnaire.expressionLogique.*;
 
 import java_cup.runtime.*;
 
