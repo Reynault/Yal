@@ -67,12 +67,12 @@ parser code {:
    
 /* Terminals (tokens returned by the scanner).  */
 
-terminal Symbol    PROGRAMME, DEBUT, FIN, POINTVIRGULE, ECRIRE, LIRE, EGAL, PARFERMER, PAROUVERT;
+terminal Symbol    PROGRAMME, DEBUT, FIN, POINTVIRGULE, ECRIRE, LIRE, EGAL, PARFERMER, PAROUVERT, TANTQUE, FINTANTQUE, REPETER, SI, ALORS, SINON, FINSI;
 terminal String    IDF, CSTENTIERE, TYPE, EGALLOGIQUE, OU, ET, DIFFERENT, INFERIEUR, SUPERIEUR, NON, ADDITION, MOINS, DIVISION, MULTIPLICATION;
    
 /* Non terminals used in the grammar section.  */
 
-non terminal ArbreAbstrait PROG, LINST, INST, LDECL, DECL, AFF ;
+non terminal ArbreAbstrait PROG, LINST, INST, LDECL, DECL, AFF, BOUCLE, CONDITION ;
 non terminal Expression EXP, OPERBINAIRE, OPERUNAIRE;
 
 precedence left EGALLOGIQUE, OU, ET, DIFFERENT, INFERIEUR, SUPERIEUR, NON, ADDITION, MOINS, DIVISION, MULTIPLICATION;
@@ -136,6 +136,20 @@ INST    ::=     ECRIRE EXP:e POINTVIRGULE
         |
                 AFF:i POINTVIRGULE
                 {: RESULT = i;  :}
+        |
+                BOUCLE:i
+                {: RESULT = i; :}
+        |
+                CONDITION:i
+                {: RESULT = i; :}
+        ;
+
+BOUCLE  ::=     TANTQUE EXP:e REPETER LINST FINTANTQUE
+                {:   :}
+        ;
+
+CONDITION ::=   SI EXP:e ALORS LINST SINON LINST FINSI
+                {:  :}
         ;
 
 DECL    ::=     TYPE:t IDF:i POINTVIRGULE

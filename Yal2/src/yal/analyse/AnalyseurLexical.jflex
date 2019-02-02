@@ -61,6 +61,20 @@ commentaire = [/][/].*
 
 "<"                   { return symbol(CodesLexicaux.INFERIEUR, yytext()); }
 
+"si"                  { return symbol(CodesLexicaux.SI); }
+
+"alors"               { return symbol(CodesLexicaux.ALORS); }
+
+"sinon"               { return symbol(CodesLexicaux.SINON); }
+
+"finsi"               { return symbol(CodesLexicaux.FINSI); }
+
+"tantque"             { return symbol(CodesLexicaux.TANTQUE); }
+
+"repeter"             { return symbol(CodesLexicaux.REPETER); }
+
+"fintantque"          { return symbol(CodesLexicaux.FINTANTQUE); }
+
 ">"                   { return symbol(CodesLexicaux.SUPERIEUR, yytext()); }
 
 "="                    { return symbol(CodesLexicaux.EGAL, yytext()); }
