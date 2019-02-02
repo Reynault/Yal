@@ -5,13 +5,14 @@
 
 package yal.analyse;
 
-import java.util.*;
-import yal.arbre.*;
-import yal.arbre.expressions.*;
-import yal.arbre.instructions.*;
+import yal.arbre.ArbreAbstrait;
+import yal.arbre.BlocDInstructions;
+import yal.arbre.expressions.ConstanteEntiere;
+import yal.arbre.expressions.Expression;
+import yal.arbre.instructions.Ecrire;
 import yal.exceptions.AnalyseSyntaxiqueException;
-import java_cup.runtime.*;
-import java_cup.runtime.XMLElement;
+
+import java.util.HashMap;
 
 /** CUP v0.11b 20160615 (GIT 4ac7450) generated parser.
   */
