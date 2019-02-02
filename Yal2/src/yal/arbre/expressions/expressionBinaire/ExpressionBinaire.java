@@ -2,25 +2,24 @@ package yal.arbre.expressions.expressionBinaire;
 
 import yal.arbre.expressions.Expression;
 
+/**
+ * Class qui modélise une expression binaire
+ */
 public class ExpressionBinaire extends Expression {
-
+    // Expression de gauche
     private Expression gauche;
+    // Expression de droite
     private Expression droite;
 
     /**
-     * Constructeur qui prend le numéro de la ligne en paramètre
-     *
+     * Constructeur
      * @param n numéro de la ligne
+     * @param gauche expression de gauche
+     * @param droite expression de droite
      */
-    protected ExpressionBinaire(int n) {
+    public ExpressionBinaire(int n, Expression gauche, Expression droite) {
         super(n);
-    }
-
-    public void setGauche(Expression gauche) {
         this.gauche = gauche;
-    }
-
-    public void setDroite(Expression droite) {
         this.droite = droite;
     }
 

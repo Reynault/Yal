@@ -1,12 +1,16 @@
 package yal.arbre.expressions.expressionBinaire.expressionLogique;
 
+import yal.arbre.expressions.Expression;
+
 public class Different extends ExpressionLogique {
     /**
-     * Constructeur qui prend le numéro de la ligne en paramètre
+     * Constructeur
      *
-     * @param n numéro de la ligne
+     * @param n      numéro de la ligne
+     * @param gauche expression de gauche
+     * @param droite expression de droite
      */
-    protected Different(int n) {
-        super(n);
+    public Different(int n, Expression gauche, Expression droite) {
+        super(n, gauche, droite);
     }
 }

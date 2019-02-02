@@ -1,12 +1,16 @@
 package yal.arbre.expressions.expressionBinaire.expressionLogique;
 
+import yal.arbre.expressions.Expression;
+
 public class Superieur extends ExpressionLogique {
     /**
-     * Constructeur qui prend le numéro de la ligne en paramètre
+     * Constructeur
      *
-     * @param n numéro de la ligne
+     * @param n      numéro de la ligne
+     * @param gauche expression de gauche
+     * @param droite expression de droite
      */
-    protected Superieur(int n) {
-        super(n);
+    public Superieur(int n, Expression gauche, Expression droite) {
+        super(n, gauche, droite);
     }
 }

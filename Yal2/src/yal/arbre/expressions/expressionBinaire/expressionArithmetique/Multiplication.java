@@ -1,12 +1,16 @@
 package yal.arbre.expressions.expressionBinaire.expressionArithmetique;
 
+import yal.arbre.expressions.Expression;
+
 public class Multiplication extends ExpressionArithmetique {
     /**
-     * Constructeur qui prend le numéro de la ligne en paramètre
+     * Constructeur
      *
-     * @param n numéro de la ligne
+     * @param n      numéro de la ligne
+     * @param gauche expression de gauche
+     * @param droite expression de droite
      */
-    protected Multiplication(int n) {
-        super(n);
+    public Multiplication(int n, Expression gauche, Expression droite) {
+        super(n, gauche, droite);
     }
 }

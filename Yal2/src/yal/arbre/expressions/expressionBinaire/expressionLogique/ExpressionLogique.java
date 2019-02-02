@@ -1,14 +1,17 @@
 package yal.arbre.expressions.expressionBinaire.expressionLogique;
 
+import yal.arbre.expressions.Expression;
 import yal.arbre.expressions.expressionBinaire.ExpressionBinaire;
 
 public class ExpressionLogique extends ExpressionBinaire {
     /**
-     * Constructeur qui prend le numéro de la ligne en paramètre
+     * Constructeur
      *
-     * @param n numéro de la ligne
+     * @param n      numéro de la ligne
+     * @param gauche expression de gauche
+     * @param droite expression de droite
      */
-    protected ExpressionLogique(int n) {
-        super(n);
+    public ExpressionLogique(int n, Expression gauche, Expression droite) {
+        super(n, gauche, droite);
     }
 }
