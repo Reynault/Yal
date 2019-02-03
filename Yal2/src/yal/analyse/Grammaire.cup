@@ -144,12 +144,12 @@ INST    ::=     ECRIRE EXP:e POINTVIRGULE
                 {: RESULT = i; :}
         ;
 
-BOUCLE  ::=     TANTQUE EXP:e REPETER LINST FINTANTQUE
-                {:   :}
+BOUCLE  ::=     TANTQUE EXP:e REPETER LINST:l FINTANTQUE
+                {: RESULT = new Boucle(eleft+1,e,l); :}
         ;
 
-CONDITION ::=   SI EXP:e ALORS LINST SINON LINST FINSI
-                {:  :}
+CONDITION ::=   SI EXP:e ALORS LINST:alors SINON LINST:sinon FINSI
+                {: RESULT = new Condition(eleft + 1, e, alors, sinon); :}
         ;
 
 DECL    ::=     TYPE:t IDF:i POINTVIRGULE
