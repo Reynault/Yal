@@ -1,6 +1,7 @@
 package yal.arbre.instructions;
 
 import yal.arbre.BlocDInstructions;
+import yal.arbre.GestionnaireNombres;
 import yal.arbre.expressions.Expression;
 
 /**
@@ -33,6 +34,15 @@ public class Condition extends Instruction{
 
     @Override
     public String toMIPS() {
-        return null;
+        int numero = GestionnaireNombres.getInstance().nouvelleCondition();
+        StringBuilder sb = new StringBuilder();
+        sb.append(condition.toMIPS());
+        sb.append("\tbeqz $v0, Alors"+ numero +"\n");
+        sb.append(alors.toMIPS());
+        sb.append("\tb FinSiAlors"+numero+"\n");
+        sb.append("\tAlors"+ numero +" :\n");
+        sb.append(sinon.toMIPS());
+        sb.append("\tFinSiAlors"+numero+":\n");
+        return sb.toString();
     }
 }
