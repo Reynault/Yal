@@ -5,7 +5,7 @@ import yal.arbre.expressions.Expression;
 /**
  * Classe qui modélise une expression unaire
  */
-public class ExpressionUnaire extends Expression {
+public abstract class ExpressionUnaire extends Expression {
     // Expression qui suit
     protected Expression exp;
 

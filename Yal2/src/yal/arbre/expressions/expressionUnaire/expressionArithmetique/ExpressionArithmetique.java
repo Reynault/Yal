@@ -23,4 +23,9 @@ public class ExpressionArithmetique extends ExpressionUnaire {
     public String toMIPS(){
         return super.toMIPS();
     }
+
+    @Override
+    protected boolean isArithmetique() {
+        return true;
+    }
 }

@@ -18,10 +18,16 @@ public class ExpressionArithmetique extends ExpressionBinaire {
     @Override
     public void verifier() {
         super.verifier();
+
     }
 
     @Override
     public String toMIPS() {
         return super.toMIPS();
+    }
+
+    @Override
+    protected boolean isArithmetique() {
+        return true;
     }
 }

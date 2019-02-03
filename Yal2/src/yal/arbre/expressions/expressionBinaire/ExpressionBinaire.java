@@ -5,7 +5,7 @@ import yal.arbre.expressions.Expression;
 /**
  * Class qui modélise une expression binaire
  */
-public class ExpressionBinaire extends Expression {
+public abstract class ExpressionBinaire extends Expression {
     // Expression de gauche
     protected Expression gauche;
     // Expression de droite
