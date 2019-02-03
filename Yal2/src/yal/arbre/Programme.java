@@ -14,6 +14,8 @@ public class Programme extends ArbreAbstrait {
             ".data\n" +
             "# Caractère de fin de ligne\n" +
             "finLigne:     .asciiz \"\\n\"\n" +
+            "booleenVrai:   .asciiz \"vrai\"\n"+
+            "booleenFaux:   .asciiz \"faux\"\n"+
             "              .align 2\n" ;
     // Début du programme
     protected static String debutCode = "# Début du programme\n" +
