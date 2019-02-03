@@ -1,5 +1,6 @@
 package yal.arbre.instructions;
 
+import yal.arbre.GestionnaireNombres;
 import yal.arbre.expressions.Expression;
 
 /**
@@ -8,6 +9,8 @@ import yal.arbre.expressions.Expression;
 public class Ecrire extends Instruction {
     // Expression à écrire
     protected Expression exp ;
+
+    protected boolean arithmetique;
 
     /**
      * Constructeur
@@ -25,6 +28,7 @@ public class Ecrire extends Instruction {
     @Override
     public void verifier() {
         exp.verifier();
+        arithmetique = exp.isArithmetique();
     }
 
     /**
@@ -33,14 +37,32 @@ public class Ecrire extends Instruction {
      */
     @Override
     public String toMIPS() {
-        return  "\t# affichage de l'expression\n" +
-                exp.toMIPS() +
-                "\tmove $a0, $v0\n" +
-                "\tli $v0, 1\n" +
-                "\tsyscall\n" +
-                "\tli $v0, 4      # retour à la ligne\n" +
-                "\tla $a0, finLigne\n" +
-                "\tsyscall\n" ;
+        GestionnaireNombres g = GestionnaireNombres.getInstance();
+        int nombre = g.nouvelleEcriture();
+        StringBuilder sb = new StringBuilder();
+        sb.append("\t# affichage de l'expression\n");
+        sb.append(exp.toMIPS());
+        if(arithmetique){
+            sb.append("\tmove $a0, $v0\n");
+            sb.append("\tli $v0, 1\n");
+            sb.append("\tsyscall\n");
+        }else{
+            sb.append("\tbeqz $v0, ECRITURE"+nombre+"\n");
+            sb.append("\t\tli $v0, 4\n");
+            sb.append("\t\tla $a0, booleenVrai\n");
+            sb.append("\t\tsyscall\n");
+            sb.append("\t\tb FINECRITURE"+nombre+"\n");
+            sb.append("\tECRITURE"+nombre+":\n");
+            sb.append("\t\tli $v0, 4\n");
+            sb.append("\t\tla $a0, booleenFaux\n");
+            sb.append("\t\tsyscall\n");
+            sb.append("\tFINECRITURE"+nombre+":\n");
+        }
+        sb.append("\tli $v0, 4      # retour à la ligne\n");
+        sb.append("\tla $a0, finLigne\n");
+        sb.append("\tsyscall\n");
+        sb.append("\tmove $v0, $a0\n");
+        return sb.toString();
     }
 
 }

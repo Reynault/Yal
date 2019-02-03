@@ -3,6 +3,7 @@ package yal.arbre.instructions;
 import yal.arbre.BlocDInstructions;
 import yal.arbre.GestionnaireNombres;
 import yal.arbre.expressions.Expression;
+import yal.exceptions.AnalyseSemantiqueException;
 
 /**
  * Classe boucle qui modélise une boucle dans un programme yal
@@ -24,6 +25,10 @@ public class Boucle extends Instruction {
         super(n);
         this.condition = condition;
         this.instructions = instructions;
+        if(condition.isArithmetique()){
+            throw new AnalyseSemantiqueException(noLigne,"Une boucle doit prendre une expression logique en " +
+                    "condition");
+        }
     }
 
     @Override

@@ -3,6 +3,7 @@ package yal.arbre.instructions;
 import yal.arbre.BlocDInstructions;
 import yal.arbre.GestionnaireNombres;
 import yal.arbre.expressions.Expression;
+import yal.exceptions.AnalyseSemantiqueException;
 
 /**
  * Classe qui représente une condition
@@ -32,6 +33,10 @@ public class Condition extends Instruction{
         condition.verifier();
         alors.verifier();
         sinon.verifier();
+        if(condition.isArithmetique()){
+            throw new AnalyseSemantiqueException(noLigne,"Une instruction conditionnelle doit prendre une expression" +
+                    "logique en condition");
+        }
     }
 
     @Override

@@ -1,7 +1,5 @@
 package yal.arbre.instructions.affectation;
 
-import yal.analyse.tds.symbole.Symbole;
-import yal.analyse.tds.TDS;
 import yal.arbre.expressions.Expression;
 import yal.arbre.expressions.Variable;
 import yal.exceptions.AnalyseSemantiqueException;
@@ -35,6 +33,9 @@ public class AffectationSimple extends Affectation {
         // Vérification de l'expression
         idf.verifier();
         exp.verifier();
+        if(!exp.isArithmetique()){
+            throw new AnalyseSemantiqueException(noLigne,"Compatibilié de type invalide : Booléen -> Entier");
+        }
     }
 
     /**
