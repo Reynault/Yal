@@ -28,7 +28,8 @@ public class Boucle extends Instruction {
 
     @Override
     public void verifier() {
-
+        condition.verifier();
+        instructions.verifier();
     }
 
     @Override
