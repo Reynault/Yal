@@ -55,4 +55,9 @@ public class Variable extends Expression{
         sb.append("\tlw $v0, "+deplacement+"($s7)\n");
         return sb.toString();
     }
+
+    @Override
+    protected boolean isArithmetique() {
+        return true;
+    }
 }

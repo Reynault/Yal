@@ -43,4 +43,8 @@ public class ConstanteEntiere extends Constante {
         return sb.toString() ;
     }
 
+    @Override
+    protected boolean isArithmetique() {
+        return true;
+    }
 }
