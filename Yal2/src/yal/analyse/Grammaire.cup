@@ -145,11 +145,19 @@ INST    ::=     ECRIRE EXP:e POINTVIRGULE
         ;
 
 BOUCLE  ::=     TANTQUE EXP:e REPETER LINST:l FINTANTQUE
-                {: RESULT = new Boucle(eleft+1,e,l); :}
+                {:
+                BlocDInstructions inst = new BlocDInstructions(eleft + 1);
+                inst.ajouter(l);
+                RESULT = new Boucle(eleft+1,e,inst); :}
         ;
 
 CONDITION ::=   SI EXP:e ALORS LINST:alors SINON LINST:sinon FINSI
-                {: RESULT = new Condition(eleft + 1, e, alors, sinon); :}
+                {:
+                BlocDInstructions a = new BlocDInstructions(eleft + 1);
+                a.ajouter(alors);
+                BlocDInstructions s = new BlocDInstructions(eleft + 1);
+                s.ajouter(sinon);
+                RESULT = new Condition(eleft + 1, e, a, s); :}
         ;
 
 DECL    ::=     TYPE:t IDF:i POINTVIRGULE
