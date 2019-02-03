@@ -25,7 +25,7 @@ public class ExpressionUnaire extends Expression {
 
     @Override
     public void verifier() {
-
+        exp.verifier();
     }
 
     @Override

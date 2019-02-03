@@ -25,7 +25,8 @@ public class ExpressionBinaire extends Expression {
 
     @Override
     public void verifier() {
-
+        gauche.verifier();
+        droite.verifier();
     }
 
     @Override

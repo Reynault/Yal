@@ -61,8 +61,6 @@ public class Yal {
             System.err.println("\tjava -jar yal.jar <fichierSource.yal>") ;
             System.exit(1) ;
         }
-        int e = 50 + 50 / 10 * 10;
-        System.out.println("TEST : "+e);
         new Yal(args[0]) ;
     }
     

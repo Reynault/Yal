@@ -82,7 +82,7 @@ public class TDS {
      */
     public int creerDeplacement(){
         int temp = deplacement;
-        deplacement = deplacement - 4;
+        this.deplacement = deplacement - 4;
         return temp;
     }
 
