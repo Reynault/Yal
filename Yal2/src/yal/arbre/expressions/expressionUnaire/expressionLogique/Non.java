@@ -2,9 +2,8 @@ package yal.arbre.expressions.expressionUnaire.expressionLogique;
 
 import yal.arbre.GestionnaireNombres;
 import yal.arbre.expressions.Expression;
-import yal.arbre.expressions.expressionUnaire.ExpressionUnaire;
 
-public class Non extends ExpressionLogique {
+public class Non extends ExpressionLogiqueUnaire {
     /**
      * Constructeur qui prend le numéro de la ligne en paramètre
      *

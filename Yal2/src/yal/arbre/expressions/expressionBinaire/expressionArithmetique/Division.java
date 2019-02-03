@@ -2,7 +2,7 @@ package yal.arbre.expressions.expressionBinaire.expressionArithmetique;
 
 import yal.arbre.expressions.Expression;
 
-public class Division extends ExpressionArithmetique {
+public class Division extends ExpressionArithmetiqueBinaire {
     /**
      * Constructeur
      *

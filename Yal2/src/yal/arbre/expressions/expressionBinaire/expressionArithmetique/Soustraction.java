@@ -2,7 +2,7 @@ package yal.arbre.expressions.expressionBinaire.expressionArithmetique;
 
 import yal.arbre.expressions.Expression;
 
-public class Soustraction extends ExpressionArithmetique {
+public class Soustraction extends ExpressionArithmetiqueBinaire {
     /**
      * Constructeur
      *

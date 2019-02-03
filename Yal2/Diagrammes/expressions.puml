@@ -1,0 +1,103 @@
+@startuml
+
+title Diagramme de classes des expressions de l'arbre abstrait
+
+
+package expressions{
+abstract Expression{
+
+}
+
+abstract ExpressionBinaire{
+
+}
+
+abstract ExpressionUnaire{
+
+}
+
+ExpressionBinaire --|> Expression
+ExpressionUnaire --|> Expression
+
+class ExpressionArithmetiqueBinaire{
+
+}
+
+class ExpressionLogiqueBinaire{
+
+}
+
+class ExpressionArithmetiqueUnaire{
+
+}
+
+class ExpressionLogiqueUnaire{
+
+}
+
+class Non{
+
+}
+
+class Negatif{
+
+}
+
+class Ou{
+
+}
+
+class Et{
+
+}
+
+class Inferieur{
+
+}
+
+class Superieur{
+
+}
+
+class Egal{
+
+}
+
+class Different{
+
+}
+
+class Multiplication{
+
+}
+
+class Soustraction{
+
+}
+
+class Addition{
+
+}
+
+class Division{
+
+}
+
+}
+Non --|> ExpressionLogiqueUnaire
+Negatif --|> ExpressionArithmetiqueUnaire
+Ou --|> ExpressionLogiqueBinaire
+Et --|> ExpressionLogiqueBinaire
+Inferieur --|> ExpressionLogiqueBinaire
+Superieur --|> ExpressionLogiqueBinaire
+Egal --|> ExpressionLogiqueBinaire
+Different --|> ExpressionLogiqueBinaire
+Multiplication --|> ExpressionArithmetiqueBinaire
+Soustraction --|> ExpressionArithmetiqueBinaire
+Addition --|> ExpressionArithmetiqueBinaire
+Division --|> ExpressionArithmetiqueBinaire
+ExpressionLogiqueBinaire --|> ExpressionBinaire
+ExpressionArithmetiqueBinaire --|> ExpressionBinaire
+ExpressionArithmetiqueUnaire --|> ExpressionUnaire
+ExpressionLogiqueUnaire --|> ExpressionUnaire
+@enduml

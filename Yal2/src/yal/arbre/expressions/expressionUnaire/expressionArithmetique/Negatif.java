@@ -1,9 +1,8 @@
 package yal.arbre.expressions.expressionUnaire.expressionArithmetique;
 
 import yal.arbre.expressions.Expression;
-import yal.arbre.expressions.expressionUnaire.ExpressionUnaire;
 
-public class Negatif extends ExpressionArithmetique{
+public class Negatif extends ExpressionArithmetiqueUnaire {
     /**
      * Constructeur qui prend le numéro de la ligne en paramètre
      *

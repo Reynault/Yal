@@ -1,9 +1,8 @@
 package yal.arbre.expressions.expressionBinaire.expressionLogique;
 
-import yal.arbre.GestionnaireNombres;
 import yal.arbre.expressions.Expression;
 
-public class Ou extends ExpressionLogique {
+public class Ou extends ExpressionLogiqueBinaire {
     /**
      * Constructeur
      *

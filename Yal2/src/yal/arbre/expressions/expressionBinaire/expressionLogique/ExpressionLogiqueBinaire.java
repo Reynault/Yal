@@ -4,7 +4,7 @@ import yal.arbre.GestionnaireNombres;
 import yal.arbre.expressions.Expression;
 import yal.arbre.expressions.expressionBinaire.ExpressionBinaire;
 
-public class ExpressionLogique extends ExpressionBinaire {
+public class ExpressionLogiqueBinaire extends ExpressionBinaire {
     /**
      * Constructeur
      *
@@ -12,7 +12,7 @@ public class ExpressionLogique extends ExpressionBinaire {
      * @param gauche expression de gauche
      * @param droite expression de droite
      */
-    public ExpressionLogique(int n, Expression gauche, Expression droite) {
+    public ExpressionLogiqueBinaire(int n, Expression gauche, Expression droite) {
         super(n, gauche, droite);
     }
 
