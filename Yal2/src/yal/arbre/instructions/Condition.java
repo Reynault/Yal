@@ -30,8 +30,12 @@ public class Condition extends Instruction{
     @Override
     public void verifier() {
         condition.verifier();
-        alors.verifier();
-        sinon.verifier();
+        if (alors != null){
+            alors.verifier();
+        }
+        if (sinon != null){
+            sinon.verifier();
+        }
     }
 
     @Override
@@ -40,10 +44,14 @@ public class Condition extends Instruction{
         StringBuilder sb = new StringBuilder();
         sb.append(condition.toMIPS());
         sb.append("\tbeqz $v0, Alors"+ numero +"\n");
-        sb.append(alors.toMIPS());
+        if (alors != null){
+            sb.append(alors.toMIPS());
+        }
         sb.append("\tb FinSiAlors"+numero+"\n");
-        sb.append("\tAlors"+ numero +" :\n");
-        sb.append(sinon.toMIPS());
+        if (sinon != null){
+            sb.append("\tAlors"+ numero +" :\n");
+            sb.append(sinon.toMIPS());
+        }
         sb.append("\tFinSiAlors"+numero+":\n");
         return sb.toString();
     }

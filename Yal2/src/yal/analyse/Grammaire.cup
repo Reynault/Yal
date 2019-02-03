@@ -165,6 +165,22 @@ CONDITION ::=   SI EXP:e ALORS LINST:alors SINON LINST:sinon FINSI
                 BlocDInstructions s = new BlocDInstructions(eleft + 1);
                 s.ajouter(sinon);
                 RESULT = new Condition(eleft + 1, e, a, s); :}
+                |
+                SI EXP:e ALORS LINST:alors FINSI
+                {:
+                BlocDInstructions a = new BlocDInstructions(eleft + 1);
+                a.ajouter(alors);
+                RESULT = new Condition(eleft + 1, e, a, null); :}
+                |
+                SI EXP:e ALORS SINON LINST:sinon FINSI
+                {:
+                BlocDInstructions s = new BlocDInstructions(eleft + 1);
+                s.ajouter(sinon);
+                RESULT = new Condition(eleft + 1, e, null, s); :}
+                |
+                SI EXP:e ALORS FINSI
+                {:
+                RESULT = new Condition(eleft + 1, e, null, null); :}
         ;
 
 DECL    ::=     TYPE:t IDF:i POINTVIRGULE
