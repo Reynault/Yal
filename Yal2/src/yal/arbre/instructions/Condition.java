@@ -29,7 +29,9 @@ public class Condition extends Instruction{
 
     @Override
     public void verifier() {
-
+        condition.verifier();
+        alors.verifier();
+        sinon.verifier();
     }
 
     @Override
