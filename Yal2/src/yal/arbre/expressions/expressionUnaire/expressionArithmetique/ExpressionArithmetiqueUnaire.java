@@ -2,6 +2,7 @@ package yal.arbre.expressions.expressionUnaire.expressionArithmetique;
 
 import yal.arbre.expressions.Expression;
 import yal.arbre.expressions.expressionUnaire.ExpressionUnaire;
+import yal.exceptions.AnalyseSemantiqueException;
 
 public class ExpressionArithmetiqueUnaire extends ExpressionUnaire {
     /**
@@ -17,6 +18,11 @@ public class ExpressionArithmetiqueUnaire extends ExpressionUnaire {
     @Override
     public void verifier(){
         super.verifier();
+        // On vérifie si l'expression est entière
+        if(!exp.isArithmetique()){
+            throw new AnalyseSemantiqueException(noLigne, "Une expression arithmétique unaire est composée d'une" +
+                    "autre expression arithmétique");
+        }
     }
 
     @Override
@@ -25,7 +31,7 @@ public class ExpressionArithmetiqueUnaire extends ExpressionUnaire {
     }
 
     @Override
-    protected boolean isArithmetique() {
+    public boolean isArithmetique() {
         return true;
     }
 }

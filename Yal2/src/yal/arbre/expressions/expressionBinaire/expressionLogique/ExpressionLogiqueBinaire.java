@@ -27,7 +27,7 @@ public class ExpressionLogiqueBinaire extends ExpressionBinaire {
     }
 
     @Override
-    protected boolean isArithmetique() {
+    public boolean isArithmetique() {
         return false;
     }
 }

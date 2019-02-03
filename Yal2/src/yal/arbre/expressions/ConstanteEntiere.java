@@ -44,7 +44,7 @@ public class ConstanteEntiere extends Constante {
     }
 
     @Override
-    protected boolean isArithmetique() {
+    public boolean isArithmetique() {
         return true;
     }
 }

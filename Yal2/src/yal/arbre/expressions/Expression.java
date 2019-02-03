@@ -7,7 +7,7 @@ import yal.arbre.ArbreAbstrait;
  *
  * Elle hérite de la classe ArbreAbstrait
  */
-public abstract class Expression extends ArbreAbstrait {
+public class Expression extends ArbreAbstrait {
     /**
      * Constructeur qui prend le numéro de la ligne en paramètre
      * @param n numéro de la ligne
@@ -16,5 +16,23 @@ public abstract class Expression extends ArbreAbstrait {
         super(n) ;
     }
 
-    protected abstract boolean isArithmetique();
+    @Override
+    public void verifier() {
+    }
+
+    @Override
+    public String toMIPS() {
+        return null;
+    }
+
+    /**
+     * Méthode isArithmetique qui permet d'identifier les expressions qui sont
+     * des expressions arithmétiques.
+     *
+     * Méthode utilisée dans la vérification de l'arbre abstrait
+     * @return
+     */
+    public boolean isArithmetique(){
+        return false;
+    }
 }

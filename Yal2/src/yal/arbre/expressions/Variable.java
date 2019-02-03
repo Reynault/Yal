@@ -57,7 +57,7 @@ public class Variable extends Expression{
     }
 
     @Override
-    protected boolean isArithmetique() {
+    public boolean isArithmetique() {
         return true;
     }
 }

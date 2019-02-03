@@ -2,7 +2,7 @@ package yal.arbre.expressions.expressionBinaire.expressionLogique;
 
 import yal.arbre.expressions.Expression;
 
-public class Ou extends ExpressionLogiqueBinaire {
+public class Ou extends OperandesBooleens {
     /**
      * Constructeur
      *

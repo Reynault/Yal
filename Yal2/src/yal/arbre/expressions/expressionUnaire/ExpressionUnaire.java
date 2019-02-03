@@ -20,9 +20,6 @@ public abstract class ExpressionUnaire extends Expression {
         this.exp = exp;
     }
 
-
-
-
     @Override
     public void verifier() {
         exp.verifier();

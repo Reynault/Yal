@@ -3,7 +3,7 @@ package yal.arbre.expressions.expressionBinaire.expressionLogique;
 import yal.arbre.GestionnaireNombres;
 import yal.arbre.expressions.Expression;
 
-public class Inferieur extends ExpressionLogiqueBinaire {
+public class Inferieur extends OperandesEntiers {
     /**
      * Constructeur
      *

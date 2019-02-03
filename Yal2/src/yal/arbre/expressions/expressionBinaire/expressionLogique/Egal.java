@@ -3,7 +3,7 @@ package yal.arbre.expressions.expressionBinaire.expressionLogique;
 import yal.arbre.GestionnaireNombres;
 import yal.arbre.expressions.Expression;
 
-public class Egal extends ExpressionLogiqueBinaire {
+public class Egal extends OperandesMemeType {
     /**
      * Constructeur
      *
