@@ -172,7 +172,10 @@ AFF     ::=     IDF:i EGAL EXP:e
                 {: RESULT = new AffectationSimple(eleft + 1,e,new Variable(eleft+1,i)); :}
         ;
 
-EXP     ::=    OPERUNAIRE:o
+EXP     ::=    PAROUVERT EXP:e PARFERMER
+               {: RESULT = e; :}
+        |
+               OPERUNAIRE:o
                {:
                RESULT = o;
                :}
@@ -180,9 +183,6 @@ EXP     ::=    OPERUNAIRE:o
                OPERBINAIRE:o
                {:
                RESULT = o; :}
-        |
-               PAROUVERT EXP:e PARFERMER
-               {: RESULT = e; :}
         |
                CSTENTIERE:c
                {: RESULT = new ConstanteEntiere(c, cleft + 1) ; :}
@@ -192,23 +192,11 @@ EXP     ::=    OPERUNAIRE:o
 
         ;
 
-OPERBINAIRE    ::= EXP:g EGALLOGIQUE:e EXP:d
-               {: RESULT = new Egal(eleft + 1,g,d); :}
+OPERBINAIRE    ::= EXP:g MULTIPLICATION:e EXP:d
+               {: RESULT = new Multiplication(eleft + 1,g,d); :}
         |
-               EXP:g OU:e EXP:d
-               {: RESULT = new Ou(eleft + 1,g,d); :}
-        |
-               EXP:g ET:e EXP:d
-               {: RESULT = new Et(eleft + 1,g,d); :}
-        |
-               EXP:g DIFFERENT:e EXP:d
-               {: RESULT = new Different(eleft + 1,g,d); :}
-        |
-               EXP:g INFERIEUR:e EXP:d
-               {: RESULT = new Inferieur(eleft + 1,g,d); :}
-        |
-               EXP:g SUPERIEUR:e EXP:d
-               {: RESULT = new Superieur(eleft + 1,g,d); :}
+               EXP:g DIVISION:e EXP:d
+               {: RESULT = new Division(eleft + 1,g,d); :}
         |
                EXP:g ADDITION:e EXP:d
                {: RESULT = new Addition(eleft + 1,g,d); :}
@@ -216,17 +204,29 @@ OPERBINAIRE    ::= EXP:g EGALLOGIQUE:e EXP:d
                EXP:g MOINS:e EXP:d
                {: RESULT = new Soustraction(eleft + 1,g,d); :}
         |
-               EXP:g DIVISION:e EXP:d
-               {: RESULT = new Division(eleft + 1,g,d); :}
+               EXP:g INFERIEUR:e EXP:d
+               {: RESULT = new Inferieur(eleft + 1,g,d); :}
         |
-               EXP:g MULTIPLICATION:e EXP:d
-               {: RESULT = new Multiplication(eleft + 1,g,d); :}
+               EXP:g SUPERIEUR:e EXP:d
+               {: RESULT = new Superieur(eleft + 1,g,d); :}
+        |
+               EXP:g EGALLOGIQUE:e EXP:d
+               {: RESULT = new Egal(eleft + 1,g,d); :}
+        |
+               EXP:g DIFFERENT:e EXP:d
+               {: RESULT = new Different(eleft + 1,g,d); :}
+        |
+               EXP:g ET:e EXP:d
+               {: RESULT = new Et(eleft + 1,g,d); :}
+        |
+               EXP:g OU:e EXP:d
+               {: RESULT = new Ou(eleft + 1,g,d); :}
         ;
 
 
-OPERUNAIRE  ::= MOINS:e EXP:g
-                {: RESULT = new Negatif(eleft + 1,g); :}
-        |
-                NON:e EXP:g
+OPERUNAIRE  ::= NON:e EXP:g
                 {: RESULT = new Non(eleft + 1,g); :}
+        |
+                MOINS:e EXP:g
+                {: RESULT = new Negatif(eleft + 1,g); :}
         ;
