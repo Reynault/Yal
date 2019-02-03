@@ -36,6 +36,16 @@ des programmes incluant des instructions de déclaration de variables entières,
 * Instructions de lecture
 * Expressions réduites à une constante entière
 
+### [Yal2](Yal2)
+#### description
+Le compilateur peut désormais traiter des programmes incluant
+des expressions générales (logiques, arithmetique), des conditions et des boucles.
+
+#### Constructions Reconnues par le compilateur
+* Expressions quelconques
+* Instruction conditionnelle
+* Instruction itérative
+
 ## Participants
 * Sies Reynault
 * Cesaro Alexis
