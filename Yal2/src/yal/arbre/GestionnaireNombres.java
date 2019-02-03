@@ -9,6 +9,7 @@ public class GestionnaireNombres {
     private static GestionnaireNombres instance = new GestionnaireNombres();
     private GestionnaireNombres(){
         num_condition = 0;
+        num_expression = 0;
         num_iteration = 0;
     }
     public static GestionnaireNombres getInstance(){

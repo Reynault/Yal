@@ -1,6 +1,7 @@
 package yal.arbre.instructions;
 
 import yal.arbre.BlocDInstructions;
+import yal.arbre.GestionnaireNombres;
 import yal.arbre.expressions.Expression;
 
 /**
@@ -32,6 +33,17 @@ public class Boucle extends Instruction {
 
     @Override
     public String toMIPS() {
-        return null;
+        int numero_boucle = GestionnaireNombres.getInstance().nouvelleIteration();
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("BOUCLE" + numero_boucle + ":\n");
+        sb.append("\t#evaluation de la condition\n");
+        sb.append(condition.toMIPS());
+        sb.append("\tbeqz $v0, BOUCLE" + numero_boucle + "FIN\n");
+        sb.append(instructions.toMIPS());
+        sb.append("\tb BOUCLE" + numero_boucle + "\n");
+        sb.append("BOUCLE" + numero_boucle + "FIN:\n");
+
+        return sb.toString();
     }
 }
