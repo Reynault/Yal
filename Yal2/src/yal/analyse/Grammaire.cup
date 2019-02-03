@@ -73,9 +73,16 @@ terminal String    IDF, CSTENTIERE, TYPE, EGALLOGIQUE, OU, ET, DIFFERENT, INFERI
 /* Non terminals used in the grammar section.  */
 
 non terminal ArbreAbstrait PROG, LINST, INST, LDECL, DECL, AFF, BOUCLE, CONDITION ;
-non terminal Expression EXP, OPERBINAIRE, OPERUNAIRE;
+non terminal Expression EXP, OPERBINAIRE;
 
-precedence left EGALLOGIQUE, OU, ET, DIFFERENT, INFERIEUR, SUPERIEUR, NON, ADDITION, MOINS, DIVISION, MULTIPLICATION;
+precedence left OU;
+precedence left ET;
+precedence left EGALLOGIQUE, DIFFERENT;
+precedence left INFERIEUR, SUPERIEUR;
+precedence left ADDITION, MOINS;
+precedence left DIVISION;
+precedence left MULTIPLICATION;
+precedence left NON;
 
 /* ----------------------------Grammar Section-------------------- */
  
@@ -172,17 +179,19 @@ AFF     ::=     IDF:i EGAL EXP:e
                 {: RESULT = new AffectationSimple(eleft + 1,e,new Variable(eleft+1,i)); :}
         ;
 
-EXP     ::=    PAROUVERT EXP:e PARFERMER
-               {: RESULT = e; :}
-        |
-               OPERUNAIRE:o
-               {:
-               RESULT = o;
-               :}
-        |
+EXP     ::=
                OPERBINAIRE:o
                {:
                RESULT = o; :}
+        |
+               PAROUVERT EXP:e PARFERMER
+               {: RESULT = e; :}
+        |
+               MOINS:e EXP:g
+               {: RESULT = new Negatif(eleft + 1,g); :}
+        |
+               NON:e EXP:g
+               {: RESULT = new Non(eleft + 1,g); :}
         |
                CSTENTIERE:c
                {: RESULT = new ConstanteEntiere(c, cleft + 1) ; :}
@@ -192,7 +201,8 @@ EXP     ::=    PAROUVERT EXP:e PARFERMER
 
         ;
 
-OPERBINAIRE    ::= EXP:g MULTIPLICATION:e EXP:d
+OPERBINAIRE    ::=
+               EXP:g MULTIPLICATION:e EXP:d
                {: RESULT = new Multiplication(eleft + 1,g,d); :}
         |
                EXP:g DIVISION:e EXP:d
@@ -221,12 +231,4 @@ OPERBINAIRE    ::= EXP:g MULTIPLICATION:e EXP:d
         |
                EXP:g OU:e EXP:d
                {: RESULT = new Ou(eleft + 1,g,d); :}
-        ;
-
-
-OPERUNAIRE  ::= NON:e EXP:g
-                {: RESULT = new Non(eleft + 1,g); :}
-        |
-                MOINS:e EXP:g
-                {: RESULT = new Negatif(eleft + 1,g); :}
         ;
