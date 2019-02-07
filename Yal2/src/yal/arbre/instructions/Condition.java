@@ -48,8 +48,8 @@ public class Condition extends Instruction{
             sb.append(alors.toMIPS());
         }
         sb.append("\tb FinSiAlors"+numero+"\n");
+        sb.append("\tAlors"+ numero +" :\n");
         if (sinon != null){
-            sb.append("\tAlors"+ numero +" :\n");
             sb.append(sinon.toMIPS());
         }
         sb.append("\tFinSiAlors"+numero+":\n");
