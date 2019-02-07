@@ -1,0 +1,5 @@
+programme test debut
+    entier a;
+    a = 10/10;
+    ecrire a;
+fin

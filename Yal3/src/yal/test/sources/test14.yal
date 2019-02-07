@@ -1,0 +1,8 @@
+programme test debut
+    entier v;
+    entier s;
+    lire v;
+    s = v;
+    ecrire s;
+    lire s;
+fin

@@ -1,0 +1,33 @@
+programme test debut
+    entier a;
+    entier b;
+    a = 2;
+    b = a;
+
+    si a == 2 et b == 2 alors
+        ecrire a;
+    sinon
+        ecrire b;
+    finsi
+
+    b = 4;
+
+    si a == 2 ou b == 9 alors
+        ecrire b;
+    sinon
+        ecrire a;
+    finsi
+
+    si a == 2 et b == 9 alors
+        ecrire a;
+    sinon
+        ecrire b;
+    finsi
+
+    si a == 2 ou b == 4 alors
+        ecrire a;
+    sinon
+        ecrire b;
+    finsi
+
+fin
