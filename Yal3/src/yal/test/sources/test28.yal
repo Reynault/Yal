@@ -1,5 +1,0 @@
-programme test debut
-    entier a;
-    a = 5 / 5 * 90 + 50 - 50;
-    ecrire a;
-fin

@@ -1,8 +1,0 @@
-programme test debut
-    entier v;
-    entier b;
-    b = 999;
-    v = 18;
-    v = b;
-    ecrire v;
-fin

@@ -1,6 +1,0 @@
-programme qsd debut
-    entier aaez;
-    entier aa;
-    aaez = 50 + 10;
-    ecrire aaez + 50;
-fin

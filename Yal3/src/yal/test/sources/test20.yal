@@ -1,5 +1,0 @@
-programme test debut
-    entier z;
-    z = 40 - 23;
-    ecrire z;
-fin

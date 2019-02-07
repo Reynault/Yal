@@ -1,8 +1,0 @@
-programme d debut
-    entier v;
-    v = 0;
-    tantque v < 10 repeter
-        v = v + 1;
-        ecrire v;
-    fintantque
-fin

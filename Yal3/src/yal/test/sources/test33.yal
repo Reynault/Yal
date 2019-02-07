@@ -1,8 +1,0 @@
-programme test debut
-    entier a;
-    lire a;
-    si a > 10 alors
-        ecrire a;
-    finsi
-    ecrire 10;
-fin

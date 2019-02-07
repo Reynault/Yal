@@ -1,5 +1,0 @@
-programme test debut
-    entier z;
-    z = 8 * 8;
-    ecrire z;
-fin

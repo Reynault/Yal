@@ -1,5 +1,0 @@
-programme test debut
-    entier b;
-    b = 80 + 10;
-    ecrire b;
-fin

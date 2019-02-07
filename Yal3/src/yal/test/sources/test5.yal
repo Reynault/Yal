@@ -1,5 +1,0 @@
-programme test debut
-    entier b;
-    b = 5;
-    ecrire b;
-fin
