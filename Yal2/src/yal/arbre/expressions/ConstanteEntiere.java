@@ -29,6 +29,15 @@ public class ConstanteEntiere extends Constante {
         }
     }
 
+    @Override
+    public boolean isZero() {
+        boolean res = false;
+        if(cste.equals("0")){
+            res = true;
+        }
+        return res;
+    }
+
     /**
      * Méthode de traduction en mips
      * @return

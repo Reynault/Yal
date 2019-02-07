@@ -1,6 +1,7 @@
 package yal.arbre.expressions.expressionBinaire.expressionArithmetique;
 
 import yal.arbre.expressions.Expression;
+import yal.exceptions.AnalyseSemantiqueException;
 
 public class Division extends ExpressionArithmetiqueBinaire {
     /**
@@ -17,6 +18,9 @@ public class Division extends ExpressionArithmetiqueBinaire {
     @Override
     public void verifier() {
         super.verifier();
+        if(droite.isZero()){
+            throw new AnalyseSemantiqueException(noLigne,"Division par un zéro");
+        }
     }
 
     @Override

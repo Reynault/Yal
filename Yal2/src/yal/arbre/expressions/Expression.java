@@ -35,4 +35,11 @@ public class Expression extends ArbreAbstrait {
     public boolean isArithmetique(){
         return false;
     }
+
+    /**
+     * Méthode qui indique si l'expression est une
+     * constante égale à zero
+     * @return boolean
+     */
+    public boolean isZero(){ return false; }
 }
