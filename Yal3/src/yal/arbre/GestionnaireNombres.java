@@ -51,9 +51,19 @@ public class GestionnaireNombres {
         return num_ecrire;
     }
 
-    public int nouveau_bloc(){
-        int i = compteur_blocs;
-        compteur_blocs ++;
-        return i;
+    public int getCompteur_blocs() {
+        return compteur_blocs;
+    }
+
+    public void incrementer(){
+        compteur_blocs++;
+    }
+
+    public void decrementer(){
+        compteur_blocs--;
+    }
+
+    public void resetBloc(){
+        compteur_blocs = 0;
     }
 }
