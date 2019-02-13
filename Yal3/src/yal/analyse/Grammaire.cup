@@ -240,7 +240,8 @@ EXP     ::=
         |
                IDF:i
                {: RESULT = new Variable(ileft + 1,i); :}
-
+        |
+               IDF:i PAROUVERT  PARFERMER
         ;
 
 OPERBINAIRE    ::=
