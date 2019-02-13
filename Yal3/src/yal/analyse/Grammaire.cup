@@ -154,7 +154,10 @@ INST    ::=     ECRIRE EXP:e POINTVIRGULE
                 {: RESULT = i; :}
         |
                 RETOURNE EXP:j
-                {:RESULT = new Retourne(jleft+1,j); :}
+                {:
+                    TDS.getInstance().sortieBlock();
+                    RESULT = new Retourne(jleft+1,j);
+                :}
         ;
 
 
@@ -190,9 +193,15 @@ CONDITION ::=   SI EXP:e ALORS LINST:alors SINON LINST:sinon FINSI
                 RESULT = new Condition(eleft + 1, e, null, null); :}
         ;
 
-DECL    ::= DECL_VAR
+DECL    ::= DECL_VAR:decl
+        {:
+             RESULT = decl;
+        :}
 |
-            DECL_FONCTION
+            DECL_FONCTION:decl
+        {:
+            RESULT = decl;
+        :}
         ;
 
 DECL_VAR    ::= TYPE:t IDF:i POINTVIRGULE
@@ -205,12 +214,17 @@ DECL_VAR    ::= TYPE:t IDF:i POINTVIRGULE
 
 DECL_FONCTION   ::= FONCTION IDF:i PARAMETRES DEBUT LDECL:l LINST:li FIN
                 {:
-
+                    /*TDS.getInstance().entreBlock();
+                    TDS.getInstance().ajouter(
+                        new EntreeFonction(i+GestionnaireNombres.getInstance().getCompteur_blocs()),
+                        new SymboleFonction());
+                    RESULT = new Fonction(ileft+1);*/
                 :}
                 |
                 FONCTION IDF:i PARAMETRES DEBUT LINST:li FIN
                 {:
-
+                    /*TDS.getInstance().entreBlock();
+                    RESULT = new Fonction(ileft+1);*/
                 :}
 ;
 
