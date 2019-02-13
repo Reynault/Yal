@@ -97,6 +97,10 @@ commentaire = [/][/].*
 
 ")"                    { return symbol(CodesLexicaux.PARFERMER); }
 
+"fonction"              { return symbol(CodesLexicaux.FONCTION); }
+
+"retourne"              { return symbol(CodesLexicaux.RETOURNE); }
+
 {csteE}      	       { return symbol(CodesLexicaux.CSTENTIERE, yytext()); }
 
 {idf}      	           { return symbol(CodesLexicaux.IDF, yytext()); }
