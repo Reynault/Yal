@@ -1,0 +1,6 @@
+programme test debut
+    entier a;;
+    a = 2/1;
+    ecrire a;
+
+fin

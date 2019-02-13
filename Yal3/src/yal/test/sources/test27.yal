@@ -1,0 +1,9 @@
+programme test debut
+    entier a;
+    entier b;
+    entier c;
+    a = 5;
+    b = 156 * 5641;
+    c = a * b;
+    ecrire c;
+fin

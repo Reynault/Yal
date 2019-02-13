@@ -1,0 +1,14 @@
+programme test debut
+    entier a;
+    entier b;
+    a = 10;
+    tantque a > 0 repeter
+        ecrire a;
+        b = 10;
+        tantque b > 0 repeter
+            ecrire b;
+            b = b - 1;
+        fintantque
+        a = a - 1;
+    fintantque
+fin
