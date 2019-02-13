@@ -154,7 +154,7 @@ INST    ::=     ECRIRE EXP:e POINTVIRGULE
                 {: RESULT = i; :}
         |
                 RETOURNE EXP:j
-                {:RESULT = j; :}
+                {:RESULT = new Retourne(jleft+1,j); :}
         ;
 
 
