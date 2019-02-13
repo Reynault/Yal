@@ -2,9 +2,11 @@ package yal.analyse.tds;
 
 import yal.analyse.tds.entree.Entree;
 import yal.analyse.tds.symbole.Symbole;
+import yal.arbre.GestionnaireNombres;
 import yal.exceptions.AnalyseSemantiqueException;
 
 import java.util.HashMap;
+import java.util.Iterator;
 
 /**
  * Classe TDS qui représente la table des symboles
@@ -19,14 +21,17 @@ public class TDS extends TableDesSymboles{
     private static TDS instance = new TDS();
     // Position actuelle dans la pile
     private int deplacement = 0;
-    // Dictionnaire qui permet de stocker et de retrouver les symboles via des entrées
-    private HashMap<Entree, Symbole> table;
+
+    private TDSLocale racine;
+    private TDSLocale tableCourante;
+
 
     /**
      * Constructeur de la classe
      */
     private TDS(){
-        table = new HashMap<Entree,Symbole>();
+        racine = new TDSLocale(0, null);
+        this.tableCourante = racine;
     }
 
     /**
@@ -48,7 +53,7 @@ public class TDS extends TableDesSymboles{
         if(existe(entree)){
             throw new AnalyseSemantiqueException(entree.getLigne(),"Variable déjà déclarée");
         }else {
-            table.put(entree, deplacement);
+            tableCourante.ajouter(entree, deplacement);
         }
     }
 
@@ -60,7 +65,7 @@ public class TDS extends TableDesSymboles{
      */
     public Symbole identifier(Entree entree){
         if(existe(entree)){
-            return table.get(entree);
+            return tableCourante.identifier(entree);
         }else{
             throw new AnalyseSemantiqueException(entree.getLigne(), "Variable non déclarée");
         }
@@ -72,7 +77,7 @@ public class TDS extends TableDesSymboles{
      * @return booléen qui indique si l'entrée existe
      */
     public boolean existe(Entree entree){
-        return table.containsKey(entree);
+        return tableCourante.existe(entree);
     }
 
     /**
@@ -87,18 +92,44 @@ public class TDS extends TableDesSymboles{
     }
 
     /**
-     * Méthode qui permet de réinitialiser la table des symboles
-     */
-    public void reinitialiserTable(){
-        deplacement = 0;
-        table = new HashMap<Entree,Symbole>();
-    }
-
-    /**
      * Méthode qui permet de récupérer le sommet de la pile sans le déplacer.
      * @return la valeur actuelle du déplacement
      */
     public int getDeplacement(){
         return deplacement;
+    }
+
+    public void entreBlock(){
+        GestionnaireNombres.getInstance().incrementer();
+        TDSLocale tdsLocale = new TDSLocale(GestionnaireNombres.getInstance().getCompteur_blocs(), tableCourante);
+        tableCourante.ajouterFils(tdsLocale);
+    }
+
+    public void sortieBlock(){
+        GestionnaireNombres.getInstance().decrementer();
+        tableCourante = this.tableCourante.getPere();
+    }
+
+    public void entreBlockVerif(){
+        GestionnaireNombres.getInstance().incrementer();
+        Iterator it = tableCourante.getLesFilles().iterator();
+        boolean trouver = false;
+        while (it.hasNext() && !trouver){
+            TDSLocale tdsLocale = (TDSLocale) it.next();
+            if (tdsLocale.getNumeroBlock() == GestionnaireNombres.getInstance().getCompteur_blocs()){
+                tableCourante = tdsLocale;
+                trouver = true;
+            }
+        }
+    }
+
+    @Override
+    public void reinitialiserTable() {
+        racine.reinitialiserTable();
+    }
+
+    public void sortieBlockVerif(){
+        GestionnaireNombres.getInstance().decrementer();
+        tableCourante = this.tableCourante.getPere();
     }
 }

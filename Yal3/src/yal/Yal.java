@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 import yal.analyse.AnalyseurLexical;
 import yal.analyse.AnalyseurSyntaxique;
 import yal.arbre.ArbreAbstrait;
+import yal.arbre.GestionnaireNombres;
 import yal.exceptions.AnalyseException;
 
 /**
@@ -28,6 +29,7 @@ public class Yal {
             ArbreAbstrait arbre = (ArbreAbstrait) analyseur.parse().value;
 
             // Vérification sémantique du code
+            GestionnaireNombres.getInstance().resetBloc();
             arbre.verifier() ;
             System.out.println("COMPILATION OK") ;
 
