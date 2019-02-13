@@ -14,7 +14,7 @@ import java.util.HashMap;
  *
  * Classe Singleton
  */
-public class TDS {
+public class TDS extends TableDesSymboles{
     // Instance de la classe
     private static TDS instance = new TDS();
     // Position actuelle dans la pile
