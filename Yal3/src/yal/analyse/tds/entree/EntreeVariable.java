@@ -10,8 +10,8 @@ public class EntreeVariable extends Entree{
      * Constructeur
      * @param nom nom de l'entrée
      */
-    public EntreeVariable(String nom, int ligne) {
-        super(nom, ligne);
+    public EntreeVariable(String nom, int numBloc, int ligne) {
+        super(nom, numBloc, ligne);
     }
 
     /**

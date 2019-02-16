@@ -1,13 +1,10 @@
 package yal.analyse.tds.entree;
 
 public class EntreeFonction extends Entree{
-    /**
-     * Constructeur
-     *
-     * @param nom   le nom de l'entrée
-     * @param ligne
-     */
-    protected EntreeFonction(String nom, int ligne) {
-        super(nom, ligne);
+    private int nbParam;
+
+    public EntreeFonction(String nom, int numBloc, int ligne, int nbParam) {
+        super(nom, numBloc, ligne);
+        this.nbParam = nbParam;
     }
 }

@@ -74,7 +74,8 @@ terminal String    IDF, CSTENTIERE, TYPE, EGALLOGIQUE, OU, ET, DIFFERENT, INFERI
    
 /* Non terminals used in the grammar section.  */
 
-non terminal ArbreAbstrait PROG, LINST, INST, LDECL, DECL, AFF, BOUCLE, CONDITION, DECL_VAR, DECL_FONCTION;
+non terminal ArbreAbstrait PROG, LINST, INST, LDECL, DECL, AFF, BOUCLE, CONDITION, DECL_VAR, DECL_FONCTION, LINSTFONCTION,
+        INSTFONCTION;
 non terminal Expression EXP, OPERBINAIRE;
 non terminal String PARAMETRES;
 
@@ -152,14 +153,32 @@ INST    ::=     ECRIRE EXP:e POINTVIRGULE
         |
                 CONDITION:i
                 {: RESULT = i; :}
-        |
-                RETOURNE EXP:j
-                {:
-                    TDS.getInstance().sortieBlock();
-                    RESULT = new Retourne(jleft+1,j);
-                :}
         ;
 
+INSTFONCTION    ::= INST:i
+                {:
+                    RESULT = i;
+                :}
+|
+                RETOURNE EXP:j
+                {:
+                    RESULT = new Retourne(jleft+1,j);
+                :}
+;
+
+LINSTFONCTION   ::= LINSTFONCTION:li INSTFONCTION:i
+                {:
+                    ((BlocDInstructions)li).ajouter(i) ;
+                    RESULT = li ;
+                 :}
+|
+                INSTFONCTION:i
+                {:
+                    BlocDInstructions b = new BlocDInstructions(ileft + 1) ;
+                    b.ajouter(i) ;
+                    RESULT = b ;
+                :}
+ ;
 
 BOUCLE  ::=     TANTQUE EXP:e REPETER LINST:l FINTANTQUE
                 {:
@@ -207,24 +226,30 @@ DECL    ::= DECL_VAR:decl
 DECL_VAR    ::= TYPE:t IDF:i POINTVIRGULE
                 {:
                     TDS instance = TDS.getInstance();
-                    instance.ajouter(new EntreeVariable(i, ileft+1), new SymboleVariable(instance.creerDeplacement(),t));
+                    instance.ajouter(new EntreeVariable(i, GestionnaireNombres.getInstance().getCompteur_blocs() ,ileft+1),
+                        new SymboleVariable(instance.creerDeplacement(),t));
                     RESULT = new AffectationSimple(ileft + 1,new ConstanteEntiere("0",ileft + 1),new Variable(ileft+1,i));
                 :}
 ;
 
-DECL_FONCTION   ::= FONCTION IDF:i PARAMETRES DEBUT LDECL:l LINST:li FIN
+DECL_FONCTION   ::= FONCTION IDF:i PARAMETRES DEBUT LDECL:l LINSTFONCTION:li FIN
                 {:
-                    /*TDS.getInstance().entreBlock();
+                    TDS.getInstance().entreBlock();
                     TDS.getInstance().ajouter(
-                        new EntreeFonction(i+GestionnaireNombres.getInstance().getCompteur_blocs()),
+                        new EntreeFonction(i, GestionnaireNombres.getInstance().getCompteur_blocs(), ileft+1, 0),
                         new SymboleFonction());
-                    RESULT = new Fonction(ileft+1);*/
+                    TDS.getInstance().sortieBlock();
+                    RESULT = new Fonction(ileft+1, i);
                 :}
                 |
-                FONCTION IDF:i PARAMETRES DEBUT LINST:li FIN
+                FONCTION IDF:i PARAMETRES DEBUT LINSTFONCTION:li FIN
                 {:
-                    /*TDS.getInstance().entreBlock();
-                    RESULT = new Fonction(ileft+1);*/
+                    TDS.getInstance().entreBlock();
+                    TDS.getInstance().ajouter(
+                        new EntreeFonction(i, GestionnaireNombres.getInstance().getCompteur_blocs(), ileft+1, 0),
+                        new SymboleFonction());
+                    TDS.getInstance().sortieBlock();
+                    RESULT = new Fonction(ileft+1, i);
                 :}
 ;
 

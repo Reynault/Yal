@@ -4,6 +4,8 @@ package yal.analyse.tds.symbole;
  * Classe qui représente un symbole de variable
  */
 public class SymboleVariable extends Symbole{
+    // Déplacemenet dans la pile
+    protected int deplacement;
     // Type de la variable : entier / tableau
     private String type;
 
@@ -13,7 +15,7 @@ public class SymboleVariable extends Symbole{
      * @param type type de la variable
      */
     public SymboleVariable(int deplacement, String type) {
-        super(deplacement);
+        this.deplacement = deplacement;
         this.type = type;
     }
 

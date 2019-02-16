@@ -42,6 +42,10 @@ public class TDS extends TableDesSymboles{
         return instance;
     }
 
+    public TDSLocale getTableCourante() {
+        return tableCourante;
+    }
+
     /**
      * Méthode ajouter qui permet d'ajouter une entrée dans la table
      * des symboles
