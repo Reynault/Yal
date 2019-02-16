@@ -1,0 +1,7 @@
+programme f debut
+    fonction test () debut
+        entier a;
+        ecrire a;
+    fin
+    ecrire 4;
+fin

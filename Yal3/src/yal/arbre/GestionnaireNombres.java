@@ -6,6 +6,7 @@ package yal.arbre;
  */
 public class GestionnaireNombres {
 
+    private int num_fonction;
     private int num_condition;
     private int num_iteration;
     private int num_expression;
@@ -25,6 +26,7 @@ public class GestionnaireNombres {
         num_expression = 0;
         num_iteration = 0;
         num_ecrire = 0;
+        num_fonction = 0;
         compteur_blocs = 0;
     }
     public static GestionnaireNombres getInstance(){
@@ -65,5 +67,10 @@ public class GestionnaireNombres {
 
     public void resetBloc(){
         compteur_blocs = 0;
+    }
+
+    public int nouvelleFonction(){
+        num_fonction++;
+        return num_fonction;
     }
 }

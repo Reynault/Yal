@@ -75,7 +75,7 @@ terminal String    IDF, CSTENTIERE, TYPE, EGALLOGIQUE, OU, ET, DIFFERENT, INFERI
 /* Non terminals used in the grammar section.  */
 
 non terminal ArbreAbstrait PROG, LINST, INST, LDECL, DECL, AFF, BOUCLE, CONDITION, DECL_VAR, DECL_FONCTION, LINSTFONCTION,
-        INSTFONCTION;
+        INSTFONCTION, LDECLFONCTION;
 non terminal Expression EXP, OPERBINAIRE;
 non terminal String PARAMETRES;
 
@@ -180,6 +180,21 @@ LINSTFONCTION   ::= LINSTFONCTION:li INSTFONCTION:i
                 :}
  ;
 
+LDECLFONCTION   ::= LDECLFONCTION:li DECL_VAR:i
+                    {:
+                     ((BlocDInstructions)li).ajouter(i) ;
+                     RESULT = li ;
+                     :}
+|
+                    DECL_VAR:i
+                    {:
+                    TDS.getInstance().entreBlock();
+                    BlocDInstructions b = new BlocDInstructions(ileft + 1) ;
+                    b.ajouter(i) ;
+                    RESULT = b ;
+                    :}
+                    ;
+
 BOUCLE  ::=     TANTQUE EXP:e REPETER LINST:l FINTANTQUE
                 {:
                 BlocDInstructions inst = new BlocDInstructions(eleft + 1);
@@ -232,24 +247,27 @@ DECL_VAR    ::= TYPE:t IDF:i POINTVIRGULE
                 :}
 ;
 
-DECL_FONCTION   ::= FONCTION IDF:i PARAMETRES DEBUT LDECL:l LINSTFONCTION:li FIN
+DECL_FONCTION   ::= FONCTION IDF:i PARAMETRES DEBUT LDECLFONCTION:l LINSTFONCTION:li FIN
                 {:
-                    TDS.getInstance().entreBlock();
+                    int nbFonc = GestionnaireNombres.getInstance().nouvelleFonction();
                     TDS.getInstance().ajouter(
                         new EntreeFonction(i, GestionnaireNombres.getInstance().getCompteur_blocs(), ileft+1, 0),
-                        new SymboleFonction());
+                        new SymboleFonction(nbFonc));
+
                     TDS.getInstance().sortieBlock();
-                    RESULT = new Fonction(ileft+1, i);
+
+                    RESULT = new Fonction(ileft+1, nbFonc, (BlocDInstructions)li);
                 :}
                 |
                 FONCTION IDF:i PARAMETRES DEBUT LINSTFONCTION:li FIN
                 {:
+                    int nbFonc = GestionnaireNombres.getInstance().nouvelleFonction();
                     TDS.getInstance().entreBlock();
                     TDS.getInstance().ajouter(
                         new EntreeFonction(i, GestionnaireNombres.getInstance().getCompteur_blocs(), ileft+1, 0),
-                        new SymboleFonction());
+                        new SymboleFonction(nbFonc));
                     TDS.getInstance().sortieBlock();
-                    RESULT = new Fonction(ileft+1, i);
+                    RESULT = new Fonction(ileft+1, nbFonc, (BlocDInstructions)li);
                 :}
 ;
 

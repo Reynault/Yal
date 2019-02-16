@@ -8,4 +8,6 @@ abstract class TableDesSymboles {
     public abstract Symbole identifier(Entree e);
     public abstract boolean existe(Entree e);
     public abstract void reinitialiserTable();
+    public abstract int creerDeplacement();
+    public abstract int getDeplacement();
 }

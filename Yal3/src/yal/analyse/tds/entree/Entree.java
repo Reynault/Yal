@@ -32,4 +32,6 @@ public abstract class Entree {
     public int getLigne() {
         return ligne;
     }
+
+    public abstract String type();
 }

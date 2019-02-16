@@ -19,8 +19,6 @@ import java.util.Iterator;
 public class TDS extends TableDesSymboles{
     // Instance de la classe
     private static TDS instance = new TDS();
-    // Position actuelle dans la pile
-    private int deplacement = 0;
 
     private TDSLocale racine;
     private TDSLocale tableCourante;
@@ -55,7 +53,7 @@ public class TDS extends TableDesSymboles{
     public void ajouter(Entree entree, Symbole deplacement){
         // Vérification
         if(existe(entree)){
-            throw new AnalyseSemantiqueException(entree.getLigne(),"Variable déjà déclarée");
+            throw new AnalyseSemantiqueException(entree.getLigne(), entree.type()+" déjà déclarée");
         }else {
             tableCourante.ajouter(entree, deplacement);
         }
@@ -71,7 +69,7 @@ public class TDS extends TableDesSymboles{
         if(existe(entree)){
             return tableCourante.identifier(entree);
         }else{
-            throw new AnalyseSemantiqueException(entree.getLigne(), "Variable non déclarée");
+            throw new AnalyseSemantiqueException(entree.getLigne(), entree.type()+" non déclarée");
         }
     }
 
@@ -90,9 +88,7 @@ public class TDS extends TableDesSymboles{
      * @return position du nouveau int
      */
     public int creerDeplacement(){
-        int temp = deplacement;
-        this.deplacement = deplacement - 4;
-        return temp;
+        return tableCourante.creerDeplacement();
     }
 
     /**
@@ -100,7 +96,7 @@ public class TDS extends TableDesSymboles{
      * @return la valeur actuelle du déplacement
      */
     public int getDeplacement(){
-        return deplacement;
+        return tableCourante.getDeplacement();
     }
 
     public void entreBlock(){

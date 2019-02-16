@@ -14,6 +14,11 @@ public class EntreeVariable extends Entree{
         super(nom, numBloc, ligne);
     }
 
+    @Override
+    public String type() {
+        return "Variable";
+    }
+
     /**
      * Méthode equals
      * @param o

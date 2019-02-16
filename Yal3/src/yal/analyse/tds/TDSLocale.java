@@ -24,6 +24,11 @@ public class TDSLocale extends TableDesSymboles {
     private int numeroBlock;
 
     /**
+     * Deplacement qui correspond aux variables du bloc courant
+     */
+    private int deplacement = 0;
+
+    /**
      * Table assosiaive entré symbol
      */
     private HashMap<Entree, Symbole> table;
@@ -83,6 +88,18 @@ public class TDSLocale extends TableDesSymboles {
         for (TableDesSymboles tds : lesFilles){
             tds.reinitialiserTable();
         }
+    }
+
+    @Override
+    public int creerDeplacement() {
+        int temp = deplacement;
+        this.deplacement = deplacement - 4;
+        return temp;
+    }
+
+    @Override
+    public int getDeplacement() {
+        return deplacement;
     }
 
     public int getNumeroBlock() {
