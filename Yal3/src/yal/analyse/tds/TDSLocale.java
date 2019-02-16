@@ -37,12 +37,20 @@ public class TDSLocale extends TableDesSymboles {
 
     @Override
     public void ajouter(Entree e, Symbole S) {
-
+        table.put(e,S);
     }
 
     @Override
     public Symbole identifier(Entree e) {
-        return null;
+        Symbole s = null;
+        if(table.containsKey(e)){
+            s = table.get(e);
+        }else{
+            if(pere != null){
+                s = pere.table.get(e);
+            }
+        }
+        return s;
     }
 
     @Override

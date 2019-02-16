@@ -1,6 +1,8 @@
 package yal.analyse.tds.symbole;
 
 public class SymboleFonction extends Symbole{
+    private String typeRetour;
+    private int nbParam;
     /**
      * Constructeur
      *
