@@ -26,7 +26,7 @@ Le compilateur ne traite que des programmes avec des instructions d'écriture su
 
 ### [Yal1](Yal1)
 #### description
-Le compilateur peut désormais traiter 
+Le compilateur peut désormais traiter  
 des programmes incluant des instructions de déclaration de variables entières, des affectations,
  des expressions résuites à une constante entière et des instructions de lecture.
 
