@@ -1,7 +1,5 @@
 package yal.analyse.tds.entree;
 
-import java.util.Objects;
-
 public class EntreeFonction extends Entree{
     private int nbParam;
 
@@ -20,15 +18,8 @@ public class EntreeFonction extends Entree{
         System.out.println("oui");
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
         EntreeFonction that = (EntreeFonction) o;
-        return nbParam == that.nbParam &&
-                Objects.equals(nom, that.nom);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), nom, nbParam);
+        return super.equals(o) && nbParam == that.nbParam;
     }
 
     @Override

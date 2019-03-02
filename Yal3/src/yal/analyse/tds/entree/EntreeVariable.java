@@ -20,20 +20,6 @@ public class EntreeVariable extends Entree{
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Entree entree = (Entree) o;
-        System.out.println("b");
-        return Objects.equals(nom, entree.nom);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(nom);
-    }
-
-    @Override
     public String toString() {
         return "EntreeVariable{" +
                 "nom='" + nom + '\'' +
