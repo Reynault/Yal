@@ -25,6 +25,11 @@ public class Retourne extends Instruction{
 
     @Override
     public String toMIPS() {
-        return null;
+        StringBuilder sb = new StringBuilder();
+        // récupération de l'adresse de retour
+        sb.append("\rlw $ra, $sp");
+        // On revient à l'adresse de retour
+        sb.append("\rjr $ra");
+        return sb.toString();
     }
 }

@@ -74,10 +74,9 @@ terminal String    IDF, CSTENTIERE, TYPE, EGALLOGIQUE, OU, ET, DIFFERENT, INFERI
    
 /* Non terminals used in the grammar section.  */
 
-non terminal ArbreAbstrait PROG, LINST, INST, LDECL, DECL, AFF, BOUCLE, CONDITION, DECL_VAR, DECL_FONCTION, LINSTFONCTION,
-        INSTFONCTION, LDECLFONCTION;
+non terminal ArbreAbstrait PROG, LINST, INST, LDECL, DECL, AFF, BOUCLE, CONDITION, DECL_VAR, DECL_FONCTION, LDECLFONCTION;
 non terminal Expression EXP, OPERBINAIRE;
-non terminal String PARAMETRES;
+non terminal String PARAMETRES, LINSTDUMP, INSTDUMP;
 
 precedence left OU;
 precedence left ET;
@@ -155,31 +154,6 @@ INST    ::=     ECRIRE EXP:e POINTVIRGULE
                 {: RESULT = i; :}
         ;
 
-INSTFONCTION    ::= INST:i
-                {:
-                    RESULT = i;
-                :}
-|
-                RETOURNE EXP:j
-                {:
-                    RESULT = new Retourne(jleft+1,j);
-                :}
-;
-
-LINSTFONCTION   ::= LINSTFONCTION:li INSTFONCTION:i
-                {:
-                    ((BlocDInstructions)li).ajouter(i) ;
-                    RESULT = li ;
-                 :}
-|
-                INSTFONCTION:i
-                {:
-                    BlocDInstructions b = new BlocDInstructions(ileft + 1) ;
-                    b.ajouter(i) ;
-                    RESULT = b ;
-                :}
- ;
-
 LDECLFONCTION   ::= LDECLFONCTION:li DECL_VAR:i
                     {:
                      ((BlocDInstructions)li).ajouter(i) ;
@@ -247,19 +221,18 @@ DECL_VAR    ::= TYPE:t IDF:i POINTVIRGULE
                 :}
 ;
 
-DECL_FONCTION   ::= FONCTION IDF:i PARAMETRES DEBUT LDECLFONCTION:l LINSTFONCTION:li FIN
+DECL_FONCTION   ::= FONCTION IDF:i PARAMETRES DEBUT LDECLFONCTION:l LINST:li RETOURNE EXP:e POINTVIRGULE FIN
                 {:
                     int nbFonc = GestionnaireNombres.getInstance().nouvelleFonction();
                     TDS.getInstance().ajouter(
                         new EntreeFonction(i, GestionnaireNombres.getInstance().getCompteur_blocs(), ileft+1, 0),
                         new SymboleFonction(nbFonc));
-
                     TDS.getInstance().sortieBlock();
-
-                    RESULT = new Fonction(ileft+1, nbFonc, (BlocDInstructions)li);
+                    Retourne ret = new Retourne(eleft+1,e);
+                    RESULT = new Fonction(ileft+1, nbFonc, (BlocDInstructions)li, ret);
                 :}
                 |
-                FONCTION IDF:i PARAMETRES DEBUT LINSTFONCTION:li FIN
+                FONCTION IDF:i PARAMETRES DEBUT LINST:li RETOURNE EXP:e POINTVIRGULE FIN
                 {:
                     int nbFonc = GestionnaireNombres.getInstance().nouvelleFonction();
                     TDS.getInstance().entreBlock();
@@ -267,8 +240,42 @@ DECL_FONCTION   ::= FONCTION IDF:i PARAMETRES DEBUT LDECLFONCTION:l LINSTFONCTIO
                         new EntreeFonction(i, GestionnaireNombres.getInstance().getCompteur_blocs(), ileft+1, 0),
                         new SymboleFonction(nbFonc));
                     TDS.getInstance().sortieBlock();
-                    RESULT = new Fonction(ileft+1, nbFonc, (BlocDInstructions)li);
+                    Retourne ret = new Retourne(eleft+1,e);
+                    RESULT = new Fonction(ileft+1, nbFonc, (BlocDInstructions)li, ret);
                 :}
+                |
+                FONCTION IDF:i PARAMETRES DEBUT LINST:li RETOURNE EXP:e POINTVIRGULE LINSTDUMP FIN
+                {:
+                    int nbFonc = GestionnaireNombres.getInstance().nouvelleFonction();
+                    TDS.getInstance().entreBlock();
+                    TDS.getInstance().ajouter(
+                    new EntreeFonction(i, GestionnaireNombres.getInstance().getCompteur_blocs(), ileft+1, 0),
+                    new SymboleFonction(nbFonc));
+                    TDS.getInstance().sortieBlock();
+                    Retourne ret = new Retourne(eleft+1,e);
+                    RESULT = new Fonction(ileft+1, nbFonc, (BlocDInstructions)li, ret);
+                :}
+                |
+                FONCTION IDF:i PARAMETRES DEBUT LDECLFONCTION:l LINST:li RETOURNE EXP:e POINTVIRGULE LINSTDUMP FIN
+                {:
+                    int nbFonc = GestionnaireNombres.getInstance().nouvelleFonction();
+                    TDS.getInstance().ajouter(
+                        new EntreeFonction(i, GestionnaireNombres.getInstance().getCompteur_blocs(), ileft+1, 0),
+                        new SymboleFonction(nbFonc));
+                    TDS.getInstance().sortieBlock();
+                    Retourne ret = new Retourne(eleft+1,e);
+                    RESULT = new Fonction(ileft+1, nbFonc, (BlocDInstructions)li, ret);
+                :}
+;
+
+LINSTDUMP   ::= LINSTDUMP INSTDUMP
+|
+                INSTDUMP
+;
+
+INSTDUMP    ::= INST
+|
+                RETOURNE EXP POINTVIRGULE
 ;
 
 PARAMETRES  ::= PAROUVERT PARFERMER
