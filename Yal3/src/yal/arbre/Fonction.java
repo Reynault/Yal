@@ -43,7 +43,8 @@ public class Fonction extends ArbreAbstrait{
         sb.append("\rsw $v7, 0($sp)");
         sb.append("\raddi $sp, $sp, -4");
         // On empile la base du bloc englobant : Chainage Statique
-
+//        sb.append("\rlw $t8, ");
+//        sb.append("\rsw $t8, 0($sp)");
         // On met à jour cette base
         sb.append("\rmove $s7, $sp");
         // On initialise les variables du bloc
