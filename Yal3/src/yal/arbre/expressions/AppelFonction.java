@@ -10,11 +10,10 @@ public class AppelFonction extends Expression{
     private int nbParam;
     private int numeroFonction;
 
-    public AppelFonction(int n, String id, int nbParam, int numeroFonction) {
+    public AppelFonction(int n, String id, int nbParam) {
         super(n);
         this.id = id;
         this.nbParam = nbParam;
-        this.numeroFonction = numeroFonction;
     }
 
     @Override
