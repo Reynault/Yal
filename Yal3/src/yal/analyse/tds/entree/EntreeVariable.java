@@ -19,25 +19,25 @@ public class EntreeVariable extends Entree{
         return "Variable";
     }
 
-    /**
-     * Méthode equals
-     * @param o
-     * @return
-     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        EntreeVariable entree = (EntreeVariable) o;
+        Entree entree = (Entree) o;
+        System.out.println("b");
         return Objects.equals(nom, entree.nom);
     }
 
-    /**
-     * Méthode de hashcode
-     * @return
-     */
     @Override
     public int hashCode() {
         return Objects.hash(nom);
+    }
+
+    @Override
+    public String toString() {
+        return "EntreeVariable{" +
+                "nom='" + nom + '\'' +
+                ", ligne=" + ligne +
+                '}';
     }
 }

@@ -5,7 +5,6 @@ import yal.analyse.tds.symbole.Symbole;
 import yal.arbre.GestionnaireNombres;
 import yal.exceptions.AnalyseSemantiqueException;
 
-import java.util.HashMap;
 import java.util.Iterator;
 
 /**
@@ -69,7 +68,7 @@ public class TDS extends TableDesSymboles{
         if(existe(entree)){
             return tableCourante.identifier(entree);
         }else{
-            throw new AnalyseSemantiqueException(entree.getLigne(), entree.type()+" non déclarée");
+            throw new AnalyseSemantiqueException(entree.getLigne(), entree.type()+" non déclarée ");
         }
     }
 
@@ -103,6 +102,7 @@ public class TDS extends TableDesSymboles{
         GestionnaireNombres.getInstance().incrementer();
         TDSLocale tdsLocale = new TDSLocale(GestionnaireNombres.getInstance().getCompteur_blocs(), tableCourante);
         tableCourante.ajouterFils(tdsLocale);
+        tableCourante = tdsLocale;
     }
 
     public void sortieBlock(){

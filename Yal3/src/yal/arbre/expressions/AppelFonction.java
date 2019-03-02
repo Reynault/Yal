@@ -27,9 +27,9 @@ public class AppelFonction extends Expression{
     public String toMIPS() {
         StringBuilder sb = new StringBuilder();
         // On commence par générer la place pour la valeur du retour
-        sb.append("\raddi $sp, $sp, -4\n");
+        sb.append("\taddi $sp, $sp, -4\n");
         // Puis on jump vers l'étiquette
-        sb.append("\rjal FONC"+numeroFonction+"\n");
+        sb.append("\tjal FONC"+numeroFonction+"\n");
         return sb.toString();
     }
 

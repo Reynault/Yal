@@ -40,25 +40,27 @@ public class Fonction extends ArbreAbstrait{
         StringBuilder sb = new StringBuilder();
         GestionnaireNombres gn = GestionnaireNombres.getInstance();
         // Étiquette de la fonction : identifiant plus numéro de bloc
+        sb.append("\tj FONCFIN"+numeroFonction+"\n");
         sb.append("FONC"+numeroFonction+":\n");
         // On empile l'adresse de retour
-        sb.append("\rsw $ra, $sp\n");
-        sb.append("\raddi $sp, $sp, -4\n");
+        sb.append("\tsw $ra, 0($sp)\n");
+        sb.append("\taddi $sp, $sp, -4\n");
         // On empile la base du bloc d'avant : Chainage dynamique
-        sb.append("\rsw $s7, 0($sp)\n");
-        sb.append("\raddi $sp, $sp, -4\n");
+        sb.append("\tsw $s7, 0($sp)\n");
+        sb.append("\taddi $sp, $sp, -4\n");
         // On empile le numéro de bloc
-        sb.append("\rli $t8, "+numBloc+"\n");
-        sb.append("\rsw $t8, 0($sp)");
-        sb.append("\raddi $sp, $sp, -4\n");
+        sb.append("\tli $t8, "+numBloc+"\n");
+        sb.append("\tsw $t8, 0($sp)\n");
+        sb.append("\taddi $sp, $sp, -4\n");
         // On met à jour cette base
-        sb.append("\rmove $s7, $sp\n");
+        sb.append("\tmove $s7, $sp\n");
         // On initialise les variables du bloc
-        sb.append("\raddi $sp, $sp, "+deplacements+"\n");
+        sb.append("\taddi $sp, $sp, "+deplacements+"\n");
         // Instructions du bloc
         sb.append(bloc.toMIPS());
         // Return
         re.toMIPS();
+        sb.append("\tFONCFIN"+numeroFonction+":\n");
         return sb.toString();
     }
 }

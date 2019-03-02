@@ -1,5 +1,7 @@
 package yal.analyse.tds.entree;
 
+import java.util.Objects;
+
 /**
  * Classe qui modélise une entrée dans la table des symboles
  */
@@ -31,4 +33,25 @@ public abstract class Entree {
     }
 
     public abstract String type();
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Entree entree = (Entree) o;
+        return Objects.equals(nom, entree.nom);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nom);
+    }
+
+    @Override
+    public String toString() {
+        return "Entree{" +
+                "nom='" + nom + '\'' +
+                ", ligne=" + ligne +
+                '}';
+    }
 }

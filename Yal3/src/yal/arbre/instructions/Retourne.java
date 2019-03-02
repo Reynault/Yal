@@ -34,15 +34,15 @@ public class Retourne extends Instruction{
         StringBuilder sb = new StringBuilder();
         // Mise à jour du pointeur de la pile
         int d = (-deplacement)+16;
-        sb.append("\raddi $sp, $sp, "+d+"\n");
+        sb.append("\taddi $sp, $sp, "+d+"\n");
         // Stockage de la valeur de retour
-        sb.append("\rsw $v0, 16($s7)\n");
+        sb.append("\tsw $v0, 16($s7)\n");
         // On revient à l'ancienne base
-        sb.append("\rlw $s7, 8($s7)\n");
+        sb.append("\tlw $s7, 8($s7)\n");
         // récupération de l'adresse de retour
-        sb.append("\rlw $ra, $sp\n");
+        sb.append("\tlw $ra, $sp\n");
         // On revient à l'adresse de retour
-        sb.append("\rjr $ra\n");
+        sb.append("\tjr $ra\n");
         return sb.toString();
     }
 }

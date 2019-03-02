@@ -15,25 +15,28 @@ public class EntreeFonction extends Entree{
         return "Fonction";
     }
 
-    /**
-     * Méthode equals
-     * @param o
-     * @return
-     */
     @Override
     public boolean equals(Object o) {
+        System.out.println("oui");
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        EntreeFonction entree = (EntreeFonction) o;
-        return Objects.equals(nom, entree.nom) && Objects.equals(nbParam, entree.nbParam);
+        if (!super.equals(o)) return false;
+        EntreeFonction that = (EntreeFonction) o;
+        return nbParam == that.nbParam &&
+                Objects.equals(nom, that.nom);
     }
 
-    /**
-     * Méthode de hashcode
-     * @return
-     */
     @Override
     public int hashCode() {
-        return Objects.hash(nom+nbParam);
+        return Objects.hash(super.hashCode(), nom, nbParam);
+    }
+
+    @Override
+    public String toString() {
+        return "EntreeFonction{" +
+                "nbParam=" + nbParam +
+                ", nom='" + nom + '\'' +
+                ", ligne=" + ligne +
+                '}';
     }
 }
