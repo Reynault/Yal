@@ -234,6 +234,7 @@ DECL_FONCTION   ::= FONCTION IDF:i PARAMETRES DEBUT LDECLFONCTION:l LINST:li RET
                 |
                 FONCTION IDF:i PARAMETRES DEBUT LINST:li RETOURNE EXP:e POINTVIRGULE FIN
                 {:
+                    System.out.println("coucou je cree bien une fonction");
                     int nbFonc = GestionnaireNombres.getInstance().nouvelleFonction();
                     TDS.getInstance().entreBlock();
                     TDS.getInstance().ajouter(

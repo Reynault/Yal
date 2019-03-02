@@ -106,4 +106,9 @@ public class TDSLocale extends TableDesSymboles {
     public int getNumeroBlock() {
         return numeroBlock;
     }
+
+    @Override
+    public String toString() {
+        return "numBlock : " + this.getNumeroBlock() + "\n" + table.toString();
+    }
 }

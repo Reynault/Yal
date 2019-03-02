@@ -36,6 +36,9 @@ public abstract class Entree {
 
     @Override
     public boolean equals(Object o) {
+
+        System.out.println("this: " + this.getClass());
+        System.out.println("obj: " + o.getClass());
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Entree entree = (Entree) o;

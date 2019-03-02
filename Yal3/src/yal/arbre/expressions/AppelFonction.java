@@ -19,7 +19,10 @@ public class AppelFonction extends Expression{
     @Override
     public void verifier() {
         super.verifier();
+        System.out.println("verification de fonction dans la tds");
+        System.out.println(TDS.getInstance());
         SymboleFonction sf = (SymboleFonction) TDS.getInstance().identifier(new EntreeFonction(id, noLigne, nbParam));
+        System.out.println("fin de verification de fonction dans la tds");
         numeroFonction = sf.getNumeroFonction();
     }
 

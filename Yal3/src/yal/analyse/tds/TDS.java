@@ -68,7 +68,7 @@ public class TDS extends TableDesSymboles{
         if(existe(entree)){
             return tableCourante.identifier(entree);
         }else{
-            throw new AnalyseSemantiqueException(entree.getLigne(), entree.type()+" non déclarée ");
+            throw new AnalyseSemantiqueException(entree.getLigne(), entree.type()+" non déclarée " + entree.getNom());
         }
     }
 
@@ -133,5 +133,11 @@ public class TDS extends TableDesSymboles{
         tableCourante = this.tableCourante.getPere();
     }
 
-
+    @Override
+    public String toString() {
+        return "TDS{" +
+                "racine=\n" + racine +
+                ", \ntableCourante=\n" + tableCourante +
+                '}';
+    }
 }

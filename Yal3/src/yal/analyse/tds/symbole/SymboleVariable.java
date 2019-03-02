@@ -33,4 +33,12 @@ public class SymboleVariable extends Symbole{
     public int getDeplacement() {
         return deplacement;
     }
+
+    @Override
+    public String toString() {
+        return "SymboleVariable{" +
+                "deplacement=" + deplacement +
+                ", numeroBlock=" + numeroBlock +
+                '}';
+    }
 }
