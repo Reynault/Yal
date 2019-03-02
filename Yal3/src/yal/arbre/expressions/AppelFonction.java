@@ -19,10 +19,7 @@ public class AppelFonction extends Expression{
     @Override
     public void verifier() {
         super.verifier();
-        System.out.println("verification de fonction dans la tds");
-        System.out.println(TDS.getInstance());
         SymboleFonction sf = (SymboleFonction) TDS.getInstance().identifier(new EntreeFonction(id, noLigne, nbParam));
-        System.out.println("fin de verification de fonction dans la tds");
         numeroFonction = sf.getNumeroFonction();
     }
 
@@ -33,6 +30,7 @@ public class AppelFonction extends Expression{
         sb.append("\taddi $sp, $sp, -4\n");
         // Puis on jump vers l'étiquette
         sb.append("\tjal FONC"+numeroFonction+"\n");
+        sb.append("\tlw $v0, 4($sp)\n");
         return sb.toString();
     }
 

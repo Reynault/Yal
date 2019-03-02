@@ -59,7 +59,7 @@ public class Fonction extends ArbreAbstrait{
         // Instructions du bloc
         sb.append(bloc.toMIPS());
         // Return
-        re.toMIPS();
+        sb.append(re.toMIPS());
         sb.append("\tFONCFIN"+numeroFonction+":\n");
         return sb.toString();
     }

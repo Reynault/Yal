@@ -15,9 +15,6 @@ public class EntreeFonction extends Entree{
 
     @Override
     public boolean equals(Object o) {
-        System.out.println(this.getClass());
-        System.out.println(o.getClass());
-        System.out.println("oui");
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         EntreeFonction that = (EntreeFonction) o;

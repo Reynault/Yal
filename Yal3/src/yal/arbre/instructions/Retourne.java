@@ -40,7 +40,7 @@ public class Retourne extends Instruction{
         // On revient à l'ancienne base
         sb.append("\tlw $s7, 8($s7)\n");
         // récupération de l'adresse de retour
-        sb.append("\tlw $ra, $sp\n");
+        //sb.append("\tlw $ra, 0($sp)\n");
         // On revient à l'adresse de retour
         sb.append("\tjr $ra\n");
         return sb.toString();

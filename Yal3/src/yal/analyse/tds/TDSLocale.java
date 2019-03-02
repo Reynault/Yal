@@ -60,7 +60,6 @@ public class TDSLocale extends TableDesSymboles {
 
     @Override
     public boolean existe(Entree e) {
-        System.out.println(e.type());
         if (table.containsKey(e)) {
             return true;
         } else {
