@@ -77,7 +77,7 @@ public class ArbreAbstraitTest {
         // Table des symboles
         TDS instance = TDS.getInstance();
         int depl = instance.creerDeplacement();
-        instance.ajouter(new EntreeVariable("a",0,2),new SymboleVariable(depl,"entier"));
+        instance.ajouter(new EntreeVariable("a",2),new SymboleVariable(depl,"entier",0));
         // Instructions
         BlocDInstructions b = new BlocDInstructions(1);
         b.ajouter(new Lire(new Variable(2,"a"),2));
@@ -89,9 +89,9 @@ public class ArbreAbstraitTest {
         // Table des symboles
         TDS instance = TDS.getInstance();
         int depl = instance.creerDeplacement();
-        instance.ajouter(new EntreeVariable("a",0,1),new SymboleVariable(instance.creerDeplacement(),"entier"));
+        instance.ajouter(new EntreeVariable("a",1),new SymboleVariable(instance.creerDeplacement(),"entier",0));
         depl = instance.creerDeplacement();
-        instance.ajouter(new EntreeVariable("b",0,1),new SymboleVariable(instance.creerDeplacement(),"entier"));
+        instance.ajouter(new EntreeVariable("b",1),new SymboleVariable(instance.creerDeplacement(),"entier",0));
         // Instructions
         BlocDInstructions b = new BlocDInstructions(1);
         b.ajouter(new AffectationSimple(2,new Variable(2,"b"),new Variable(2,"a")));
@@ -103,7 +103,7 @@ public class ArbreAbstraitTest {
         // Table des symboles
         TDS instance = TDS.getInstance();
         int depl = instance.creerDeplacement();
-        instance.ajouter(new EntreeVariable("a",0,1),new SymboleVariable(instance.creerDeplacement(),"entier"));
+        instance.ajouter(new EntreeVariable("a",1),new SymboleVariable(instance.creerDeplacement(),"entier",0));
         // Instructions
         BlocDInstructions b = new BlocDInstructions(1);
         b.ajouter(new AffectationSimple(2,new ConstanteEntiere("5",2),new Variable(2,"a")));
@@ -123,7 +123,7 @@ public class ArbreAbstraitTest {
         // Table des symboles
         TDS instance = TDS.getInstance();
         int depl = instance.creerDeplacement();
-        instance.ajouter(new EntreeVariable("b",0,1),new SymboleVariable(instance.creerDeplacement(),"entier"));
+        instance.ajouter(new EntreeVariable("b",1),new SymboleVariable(instance.creerDeplacement(),"entier",0));
         // Instructions
         BlocDInstructions b = new BlocDInstructions(1);
         b.ajouter(new AffectationSimple(2,new Variable(2,"b"),new Variable(2,"a")));
@@ -135,7 +135,7 @@ public class ArbreAbstraitTest {
         // Table des symboles
         TDS instance = TDS.getInstance();
         int depl = instance.creerDeplacement();
-        instance.ajouter(new EntreeVariable("a",0,1),new SymboleVariable(instance.creerDeplacement(),"entier"));
+        instance.ajouter(new EntreeVariable("a",1),new SymboleVariable(instance.creerDeplacement(),"entier",0));
         // Instructions
         BlocDInstructions b = new BlocDInstructions(1);
         b.ajouter(new Ecrire(new Variable(2,"a"),2));
@@ -161,8 +161,8 @@ public class ArbreAbstraitTest {
     @org.junit.Test (expected = AnalyseSemantiqueException.class)
     public void declarer_variable_deja_declare(){
         TDS instance = TDS.getInstance();
-        instance.ajouter(new EntreeVariable("b",0,1),new SymboleVariable(instance.creerDeplacement(),"entier"));
-        instance.ajouter(new EntreeVariable("b",0,1),new SymboleVariable(instance.creerDeplacement(),"entier"));
+        instance.ajouter(new EntreeVariable("b",1),new SymboleVariable(instance.creerDeplacement(),"entier",0));
+        instance.ajouter(new EntreeVariable("b",1),new SymboleVariable(instance.creerDeplacement(),"entier",0));
     }
 
     @Test (expected = AnalyseSemantiqueException.class)
@@ -204,7 +204,7 @@ public class ArbreAbstraitTest {
     @Test (expected = AnalyseSemantiqueException.class)
     public void affectation_logique(){
         TDS tds = TDS.getInstance();
-        tds.ajouter(new EntreeVariable("a",0,2), new SymboleVariable(tds.creerDeplacement(),"entier"));
+        tds.ajouter(new EntreeVariable("a",2), new SymboleVariable(tds.creerDeplacement(),"entier",0));
         BlocDInstructions b = new BlocDInstructions(2);
         b.ajouter(new AffectationSimple(2, new Different(2,new ConstanteEntiere("5",2),
                 new ConstanteEntiere("2",2)),new Variable(2,"a")));
