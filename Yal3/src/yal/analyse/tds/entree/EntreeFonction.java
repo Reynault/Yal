@@ -5,8 +5,8 @@ import java.util.Objects;
 public class EntreeFonction extends Entree{
     private int nbParam;
 
-    public EntreeFonction(String nom, int numBloc, int ligne, int nbParam) {
-        super(nom, numBloc, ligne);
+    public EntreeFonction(String nom, int ligne, int nbParam) {
+        super(nom, ligne);
         this.nbParam = nbParam;
     }
 

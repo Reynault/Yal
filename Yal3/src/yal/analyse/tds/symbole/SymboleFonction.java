@@ -11,4 +11,8 @@ public class SymboleFonction extends Symbole{
     public int getDeplacement() {
         return 0;
     }
+
+    public int getNumeroFonction() {
+        return numeroFonction;
+    }
 }

@@ -6,18 +6,15 @@ package yal.analyse.tds.entree;
 public abstract class Entree {
     // Nom de l'entrée
     protected String nom;
-    protected int numBloc;
     protected int ligne;
 
     /**
      * Constructeur
      * @param nom le nom de l'entrée
-     * @param numBloc numéro du bloc
      * @param ligne numéro de la ligne
      */
-    public Entree(String nom, int numBloc, int ligne) {
+    public Entree(String nom, int ligne) {
         this.nom = nom;
-        this.numBloc = numBloc;
         this.ligne = ligne;
     }
 

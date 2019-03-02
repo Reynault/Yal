@@ -31,6 +31,7 @@ public class Fonction extends ArbreAbstrait{
         deplacements = instance.getDeplacement();
         bloc.verifier();
         re.verifier();
+        re.setDeplacement(deplacements);
         instance.sortieBlockVerif();
     }
 
@@ -41,28 +42,21 @@ public class Fonction extends ArbreAbstrait{
         // Étiquette de la fonction : identifiant plus numéro de bloc
         sb.append("FONC"+numeroFonction+":\n");
         // On empile l'adresse de retour
-        sb.append("\rsw $ra, $sp");
-        sb.append("\raddi $sp, $sp, -4");
+        sb.append("\rsw $ra, $sp\n");
+        sb.append("\raddi $sp, $sp, -4\n");
         // On empile la base du bloc d'avant : Chainage dynamique
-        sb.append("\rsw $s7, 0($sp)");
-        sb.append("\raddi $sp, $sp, -4");
+        sb.append("\rsw $s7, 0($sp)\n");
+        sb.append("\raddi $sp, $sp, -4\n");
         // On empile le numéro de bloc
-        sb.append("\rli $t8, "+numBloc);
+        sb.append("\rli $t8, "+numBloc+"\n");
         sb.append("\rsw $t8, 0($sp)");
-        sb.append("\raddi $sp, $sp, -4");
+        sb.append("\raddi $sp, $sp, -4\n");
         // On met à jour cette base
-        sb.append("\rmove $s7, $sp");
+        sb.append("\rmove $s7, $sp\n");
         // On initialise les variables du bloc
-        sb.append("\raddi $sp, $sp, "+deplacements);
+        sb.append("\raddi $sp, $sp, "+deplacements+"\n");
         // Instructions du bloc
         sb.append(bloc.toMIPS());
-        // On revient à l'ancienne base
-        sb.append("\rlw $s7, 8($s7)");
-        // Mise à jour du pointeur de la pile
-        int d = (-deplacements)+12;
-        sb.append("\raddi $sp, $sp, "+d);
-        // Stockage de la valeur de retour
-        sb.append("\rsw $v0, 4($sp)");
         // Return
         re.toMIPS();
         return sb.toString();

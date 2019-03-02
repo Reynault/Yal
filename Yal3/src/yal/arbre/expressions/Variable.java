@@ -14,6 +14,9 @@ public class Variable extends Expression{
     // Identificateur de la variable
     protected String idf;
 
+    protected int blockCourant;
+    protected int blockVariable;
+
     // Déplacement de la variable mis à jour lors de la vérification de l'arbre
     protected int deplacement;
 
@@ -39,8 +42,10 @@ public class Variable extends Expression{
         // Récupération de l'instance de tds
         TDS instance = TDS.getInstance();
         // On récupère le deplacement de l'identificateur
-        Symbole sv = instance.identifier(new EntreeVariable(idf, instance.getTableCourante().getNumeroBlock(), noLigne));
+        SymboleVariable sv = (SymboleVariable) instance.identifier(new EntreeVariable(idf, noLigne));
         deplacement = sv.getDeplacement();
+        blockCourant = instance.getTableCourante().getNumeroBlock();
+        blockVariable = sv.getNumeroBlock();
     }
 
     /**
@@ -51,8 +56,12 @@ public class Variable extends Expression{
     public String toMIPS() {
         // Construction du code dans un string builder
         StringBuilder sb = new StringBuilder();
+        sb.append("\rmove $t8, $s7\n");
+        for(int i = 0 ; i < blockCourant-blockVariable; i++){
+            sb.append("\rlw $t8, 8($t8)\n");
+        }
         sb.append("\t# Chargement de la valeur de la variable dans v0\n");
-        sb.append("\tlw $v0, "+deplacement+"($s7)\n");
+        sb.append("\tlw $v0, "+deplacement+"($t8)\n");
         return sb.toString();
     }
 

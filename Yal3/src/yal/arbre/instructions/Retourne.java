@@ -5,6 +5,7 @@ import yal.exceptions.AnalyseSemantiqueException;
 
 public class Retourne extends Instruction{
     protected Expression e;
+    protected int deplacement;
     /**
      * Constructeur
      *
@@ -21,15 +22,27 @@ public class Retourne extends Instruction{
         if(!e.isArithmetique()){
             throw new AnalyseSemantiqueException(noLigne,"Une fonction doit retourner un entier.");
         }
+
+    }
+
+    public void setDeplacement(int deplacement) {
+        this.deplacement = deplacement;
     }
 
     @Override
     public String toMIPS() {
         StringBuilder sb = new StringBuilder();
+        // Mise à jour du pointeur de la pile
+        int d = (-deplacement)+16;
+        sb.append("\raddi $sp, $sp, "+d+"\n");
+        // Stockage de la valeur de retour
+        sb.append("\rsw $v0, 16($s7)\n");
+        // On revient à l'ancienne base
+        sb.append("\rlw $s7, 8($s7)\n");
         // récupération de l'adresse de retour
-        sb.append("\rlw $ra, $sp");
+        sb.append("\rlw $ra, $sp\n");
         // On revient à l'adresse de retour
-        sb.append("\rjr $ra");
+        sb.append("\rjr $ra\n");
         return sb.toString();
     }
 }
