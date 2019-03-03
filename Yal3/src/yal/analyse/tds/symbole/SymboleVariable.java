@@ -10,6 +10,8 @@ public class SymboleVariable extends Symbole{
     private String type;
     // Numéro de bloc de la variable
     private int idBlock;
+    // Profondeur du bloc
+    private int numBlock;
 
     /**
      * Constructeur
@@ -19,11 +21,11 @@ public class SymboleVariable extends Symbole{
     public SymboleVariable(int deplacement, String type, int block) {
         this.deplacement = deplacement;
         this.type = type;
-        this.idBlock = block;
+        this.numBlock = block;
     }
 
     public int getNumeroBlock() {
-        return idBlock;
+        return numBlock;
     }
 
     /**

@@ -216,7 +216,7 @@ DECL_VAR    ::= TYPE:t IDF:i POINTVIRGULE
                 {:
                     TDS instance = TDS.getInstance();
                     instance.ajouter(new EntreeVariable(i, ileft+1),
-                        new SymboleVariable(instance.creerDeplacement(), t, GestionnaireNombres.getInstance().getIdBlock()));
+                        new SymboleVariable(instance.creerDeplacement(), t, GestionnaireNombres.getInstance().getCompteur_blocs()));
                     RESULT = new AffectationSimple(ileft + 1,new ConstanteEntiere("0",ileft + 1),new Variable(ileft+1,i));
                 :}
 ;
