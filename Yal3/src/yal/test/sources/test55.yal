@@ -1,0 +1,25 @@
+programme pipop debut
+    entier a;
+    entier b;
+    entier c;
+    entier d;
+    entier e;
+
+
+    fonction ups() debut
+        si a == 0 alors
+            b = b;
+        sinon
+            a = a - 1;
+            b = ups() + a;
+        finsi
+        retourne b;
+    fin
+
+    a = 10;
+    b = 0;
+
+    ecrire ups();
+
+
+fin

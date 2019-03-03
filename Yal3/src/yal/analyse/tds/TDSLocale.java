@@ -45,6 +45,7 @@ public class TDSLocale extends TableDesSymboles {
 
     @Override
     public void ajouter(Entree e, Symbole S) {
+        //System.out.println(this.getNumeroBlock() + ": " + e.getNom());
         table.put(e,S);
     }
 
