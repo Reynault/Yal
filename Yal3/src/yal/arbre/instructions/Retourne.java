@@ -32,13 +32,14 @@ public class Retourne extends Instruction{
     @Override
     public String toMIPS() {
         StringBuilder sb = new StringBuilder();
+        // Stockage de la valeur de retour
+        sb.append(e.toMIPS());
         // Mise à jour du pointeur de la pile
         int d = (-deplacement)+16;
         sb.append("\taddi $sp, $sp, "+d+"\n");
-        // Stockage de la valeur de retour
-        sb.append(e.toMIPS());
         sb.append("\tsw $v0, 16($s7)\n");
         // On revient à l'ancienne base
+        sb.append("\tlw $ra, 12($s7)\n");
         sb.append("\tlw $s7, 8($s7)\n");
         // On revient à l'adresse de retour
         sb.append("\tjr $ra\n");

@@ -1,6 +1,6 @@
 programme f debut
+    entier a;
     fonction test () debut
-        entier a;
         ecrire a;
         retourne 0;
     fin
