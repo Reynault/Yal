@@ -27,7 +27,7 @@ public class TDS extends TableDesSymboles{
      * Constructeur de la classe
      */
     private TDS(){
-        racine = new TDSLocale(0, null);
+        racine = new TDSLocale(0, null, GestionnaireNombres.getInstance().getIdBlock());
         this.tableCourante = racine;
     }
 
@@ -100,7 +100,9 @@ public class TDS extends TableDesSymboles{
 
     public void entreBlock(){
         GestionnaireNombres.getInstance().incrementer();
-        TDSLocale tdsLocale = new TDSLocale(GestionnaireNombres.getInstance().getCompteur_blocs(), tableCourante);
+        GestionnaireNombres.getInstance().incrementerIdBlock();
+        TDSLocale tdsLocale = new TDSLocale(GestionnaireNombres.getInstance().getCompteur_blocs(), tableCourante,
+                GestionnaireNombres.getInstance().getIdBlock());
         tableCourante.ajouterFils(tdsLocale);
         tableCourante = tdsLocale;
     }
@@ -112,11 +114,12 @@ public class TDS extends TableDesSymboles{
 
     public void entreBlockVerif(){
         GestionnaireNombres.getInstance().incrementer();
+        GestionnaireNombres.getInstance().incrementerIdBlock();
         Iterator it = tableCourante.getLesFilles().iterator();
         boolean trouver = false;
         while (it.hasNext() && !trouver){
             TDSLocale tdsLocale = (TDSLocale) it.next();
-            if (tdsLocale.getNumeroBlock() == GestionnaireNombres.getInstance().getCompteur_blocs()){
+            if (tdsLocale.getIdBlock() == GestionnaireNombres.getInstance().getIdBlock()){
                 tableCourante = tdsLocale;
                 trouver = true;
             }

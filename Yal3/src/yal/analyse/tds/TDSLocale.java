@@ -23,6 +23,8 @@ public class TDSLocale extends TableDesSymboles {
      */
     private int numeroBlock;
 
+    private int idBlock;
+
     /**
      * Deplacement qui correspond aux variables du bloc courant
      */
@@ -33,11 +35,12 @@ public class TDSLocale extends TableDesSymboles {
      */
     private HashMap<Entree, Symbole> table;
 
-    public TDSLocale(int numeroBlock, TDSLocale pere) {
+    public TDSLocale(int numeroBlock, TDSLocale pere, int id) {
         this.numeroBlock = numeroBlock;
         this.pere = pere;
         this.lesFilles = new ArrayList<>();
         this.table = new HashMap<Entree, Symbole>();
+        this.idBlock = id;
     }
 
     @Override
@@ -104,6 +107,10 @@ public class TDSLocale extends TableDesSymboles {
 
     public int getNumeroBlock() {
         return numeroBlock;
+    }
+
+    public int getIdBlock() {
+        return idBlock;
     }
 
     @Override

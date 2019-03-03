@@ -216,7 +216,7 @@ DECL_VAR    ::= TYPE:t IDF:i POINTVIRGULE
                 {:
                     TDS instance = TDS.getInstance();
                     instance.ajouter(new EntreeVariable(i, ileft+1),
-                        new SymboleVariable(instance.creerDeplacement(), t, GestionnaireNombres.getInstance().getCompteur_blocs()));
+                        new SymboleVariable(instance.creerDeplacement(), t, GestionnaireNombres.getInstance().getIdBlock()));
                     RESULT = new AffectationSimple(ileft + 1,new ConstanteEntiere("0",ileft + 1),new Variable(ileft+1,i));
                 :}
 ;
@@ -265,6 +265,52 @@ DECL_FONCTION   ::= FONCTION IDF:i PARAMETRES DEBUT LDECLFONCTION:l LINST:li RET
                         new SymboleFonction(nbFonc));
                     Retourne ret = new Retourne(eleft+1,e);
                     RESULT = new Fonction(ileft+1, nbFonc, (BlocDInstructions)li, ret);
+                :}
+                |
+                FONCTION IDF:i PARAMETRES DEBUT LDECLFONCTION:l  RETOURNE EXP:e POINTVIRGULE LINSTDUMP FIN
+                {:
+                    TDS.getInstance().sortieBlock();
+                    int nbFonc = GestionnaireNombres.getInstance().nouvelleFonction();
+                    TDS.getInstance().ajouter(
+                        new EntreeFonction(i, ileft+1, 0),
+                        new SymboleFonction(nbFonc));
+                    Retourne ret = new Retourne(eleft+1,e);
+                    RESULT = new Fonction(ileft+1, nbFonc, new BlocDInstructions(eleft+1), ret);
+                :}
+                |
+                FONCTION IDF:i PARAMETRES DEBUT RETOURNE EXP:e POINTVIRGULE LINSTDUMP FIN
+                {:
+                    TDS.getInstance().entreBlock();
+                    TDS.getInstance().sortieBlock();
+                    int nbFonc = GestionnaireNombres.getInstance().nouvelleFonction();
+                    TDS.getInstance().ajouter(
+                        new EntreeFonction(i, ileft+1, 0),
+                        new SymboleFonction(nbFonc));
+                    Retourne ret = new Retourne(eleft+1,e);
+                    RESULT = new Fonction(ileft+1, nbFonc, new BlocDInstructions(eleft+1), ret);
+                :}
+                |
+                FONCTION IDF:i PARAMETRES DEBUT RETOURNE EXP:e POINTVIRGULE FIN
+                {:
+                    TDS.getInstance().entreBlock();
+                    TDS.getInstance().sortieBlock();
+                    int nbFonc = GestionnaireNombres.getInstance().nouvelleFonction();
+                    TDS.getInstance().ajouter(
+                        new EntreeFonction(i, ileft+1, 0),
+                        new SymboleFonction(nbFonc));
+                    Retourne ret = new Retourne(eleft+1,e);
+                    RESULT = new Fonction(ileft+1, nbFonc, new BlocDInstructions(eleft+1), ret);
+                :}
+                |
+                FONCTION IDF:i PARAMETRES DEBUT LDECLFONCTION:l  RETOURNE EXP:e POINTVIRGULE FIN
+                {:
+                    TDS.getInstance().sortieBlock();
+                    int nbFonc = GestionnaireNombres.getInstance().nouvelleFonction();
+                    TDS.getInstance().ajouter(
+                        new EntreeFonction(i, ileft+1, 0),
+                        new SymboleFonction(nbFonc));
+                    Retourne ret = new Retourne(eleft+1,e);
+                    RESULT = new Fonction(ileft+1, nbFonc, new BlocDInstructions(eleft+1), ret);
                 :}
 ;
 

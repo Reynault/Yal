@@ -1,9 +1,10 @@
 programme f debut
     entier a;
-    a = 5;
+    entier b;
     fonction test () debut
+        a = 6;
+        ecrire b;
         retourne a;
-        ecrire a;
     fin
     ecrire 4;
     si test() == 0 alors

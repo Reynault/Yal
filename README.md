@@ -48,7 +48,7 @@ des expressions générales (logiques, arithmetique), des conditions et des bouc
 
 ### [Yal3](Yal3)
 #### description
-Cette version permet à l'utilisateur de créer des fonctions sans paramètres.
+Cette version permet à l'utilisateur de créer des fonctions sans paramètres ni variables locales.
 Les fonctions sont gérées avec le chaînage statique et dynamique.
 La table des symboles possède un arbre qui possède les tables locales des
 fonctions du programme.

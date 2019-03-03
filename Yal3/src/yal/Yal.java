@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 
 import yal.analyse.AnalyseurLexical;
 import yal.analyse.AnalyseurSyntaxique;
+import yal.analyse.tds.TDS;
 import yal.arbre.ArbreAbstrait;
 import yal.arbre.GestionnaireNombres;
 import yal.exceptions.AnalyseException;
@@ -30,6 +31,7 @@ public class Yal {
 
             // Vérification sémantique du code
             GestionnaireNombres.getInstance().resetBloc();
+            GestionnaireNombres.getInstance().resetIdBlock();
             arbre.verifier() ;
             System.out.println("COMPILATION OK") ;
 

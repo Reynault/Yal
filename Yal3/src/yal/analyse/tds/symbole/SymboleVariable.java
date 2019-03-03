@@ -9,7 +9,7 @@ public class SymboleVariable extends Symbole{
     // Type de la variable : entier / tableau
     private String type;
     // Numéro de bloc de la variable
-    private int numeroBlock;
+    private int idBlock;
 
     /**
      * Constructeur
@@ -19,11 +19,11 @@ public class SymboleVariable extends Symbole{
     public SymboleVariable(int deplacement, String type, int block) {
         this.deplacement = deplacement;
         this.type = type;
-        this.numeroBlock = block;
+        this.idBlock = block;
     }
 
     public int getNumeroBlock() {
-        return numeroBlock;
+        return idBlock;
     }
 
     /**
@@ -38,7 +38,7 @@ public class SymboleVariable extends Symbole{
     public String toString() {
         return "SymboleVariable{" +
                 "deplacement=" + deplacement +
-                ", numeroBlock=" + numeroBlock +
+                ", numeroBlock=" + idBlock +
                 '}';
     }
 }

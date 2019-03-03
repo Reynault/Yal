@@ -1,0 +1,6 @@
+programme test debut
+    fonction a () debut
+        retourne 52;
+    fin
+    ecrire a();
+fin

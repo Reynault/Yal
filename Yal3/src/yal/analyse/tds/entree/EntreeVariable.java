@@ -1,11 +1,13 @@
 package yal.analyse.tds.entree;
 
-import java.util.Objects;
-
 /**
  * Classe qui représente une entrée de variable dans la table
  */
 public class EntreeVariable extends Entree{
+
+    // Numéro de bloc de la variable
+    private int idBlock;
+
     /**
      * Constructeur
      * @param nom nom de l'entrée

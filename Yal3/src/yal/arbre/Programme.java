@@ -23,10 +23,10 @@ public class Programme extends ArbreAbstrait {
             ".text\n" +
             "main :\n" +
             "\t# Initialisation de s7 avec sp\n" +
-            "\tmove $s7, $sp\n" +
             "\tli $v0, 0\n" +
             "\tsw $v0, 0($sp)\n" +
-            "\taddi $sp, $sp, -4\n";
+            "\taddi $sp, $sp, -4\n" +
+            "\tmove $s7, $sp\n";
     // Fin du programme
     protected static String finCode = "end :\n" +
             "    li $v0, 10\n" +

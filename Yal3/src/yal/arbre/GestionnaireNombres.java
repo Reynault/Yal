@@ -11,6 +11,7 @@ public class GestionnaireNombres {
     private int num_iteration;
     private int num_expression;
     private int num_ecrire;
+    private int id_bloc;
     private int compteur_blocs;
 
     /**
@@ -28,9 +29,22 @@ public class GestionnaireNombres {
         num_ecrire = 0;
         num_fonction = 0;
         compteur_blocs = 0;
+        id_bloc = 0;
     }
     public static GestionnaireNombres getInstance(){
         return instance;
+    }
+
+    public int getIdBlock(){
+        return id_bloc;
+    }
+
+    public void incrementerIdBlock(){
+        id_bloc++;
+    }
+
+    public void resetIdBlock(){
+        id_bloc = 0;
     }
 
     public int nouvelleIteration(){

@@ -34,6 +34,16 @@ public class Variable extends Expression{
         return deplacement;
     }
 
+    public String placerT8(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("\t# Deplacement de t8 vers le s7 de la variable\n");
+        sb.append("\tmove $t8, $s7\n");
+        for(int i = 0 ; i < blockCourant-blockVariable; i++){
+            sb.append("\rlw $t8, 8($t8)\n");
+        }
+        return sb.toString();
+    }
+
     /**
      * Méthode vérifier : vérification de la sémantique
      */
@@ -56,9 +66,9 @@ public class Variable extends Expression{
     public String toMIPS() {
         // Construction du code dans un string builder
         StringBuilder sb = new StringBuilder();
-        sb.append("\rmove $t8, $s7\n");
+        sb.append("\tmove $t8, $s7\n");
         for(int i = 0 ; i < blockCourant-blockVariable; i++){
-            sb.append("\rlw $t8, 8($t8)\n");
+            sb.append("\tlw $t8, 8($t8)\n");
         }
         sb.append("\t# Chargement de la valeur de la variable dans v0\n");
         sb.append("\tlw $v0, "+deplacement+"($t8)\n");

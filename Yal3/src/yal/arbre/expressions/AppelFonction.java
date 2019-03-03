@@ -30,7 +30,7 @@ public class AppelFonction extends Expression{
         sb.append("\taddi $sp, $sp, -4\n");
         // Puis on jump vers l'étiquette
         sb.append("\tjal FONC"+numeroFonction+"\n");
-        sb.append("\tlw $v0, 4($sp)\n");
+        sb.append("\tlw $v0, 0($sp)\n");
         return sb.toString();
     }
 

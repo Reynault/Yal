@@ -36,11 +36,10 @@ public class Retourne extends Instruction{
         int d = (-deplacement)+16;
         sb.append("\taddi $sp, $sp, "+d+"\n");
         // Stockage de la valeur de retour
+        sb.append(e.toMIPS());
         sb.append("\tsw $v0, 16($s7)\n");
         // On revient à l'ancienne base
         sb.append("\tlw $s7, 8($s7)\n");
-        // récupération de l'adresse de retour
-        //sb.append("\tlw $ra, 0($sp)\n");
         // On revient à l'adresse de retour
         sb.append("\tjr $ra\n");
         return sb.toString();

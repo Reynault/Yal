@@ -49,7 +49,8 @@ public class AffectationSimple extends Affectation {
         // Récupération du code de l'expression
         sb.append(exp.toMIPS());
         sb.append("\t# Affectation simple\n");
-        sb.append("\tsw $v0, "+idf.getDeplacement()+"($s7)\n");
+        sb.append(idf.placerT8());
+        sb.append("\tsw $v0, "+idf.getDeplacement()+"($t8)\n");
         return sb.toString();
     }
 }
