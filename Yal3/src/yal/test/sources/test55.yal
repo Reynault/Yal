@@ -11,6 +11,7 @@ programme pipop debut
             b = b;
         sinon
             a = a - 1;
+            ecrire a;
             b = ups() + a;
         finsi
         retourne b;

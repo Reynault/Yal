@@ -4,6 +4,7 @@ import yal.analyse.tds.entree.EntreeVariable;
 import yal.analyse.tds.symbole.Symbole;
 import yal.analyse.tds.TDS;
 import yal.analyse.tds.symbole.SymboleVariable;
+import yal.arbre.GestionnaireNombres;
 import yal.exceptions.AnalyseSemantiqueException;
 
 /**
@@ -37,10 +38,14 @@ public class Variable extends Expression{
     public String placerT8(){
         StringBuilder sb = new StringBuilder();
         sb.append("\t# Deplacement de t8 vers le s7 de la variable\n");
+        int numeroBoucle = GestionnaireNombres.getInstance().nouvelleIteration();
         sb.append("\tmove $t8, $s7\n");
-        for(int i = 0 ; i < blockCourant-blockVariable; i++){
-            sb.append("\rlw $t8, 8($t8)\n");
-        }
+        sb.append("BOUCLE" + numeroBoucle + ":\n");
+        sb.append("\tlw $v0, 4($t8)\n");
+        sb.append("\tbeqz $v0, BOUCLE"+numeroBoucle+"FIN\n");
+        sb.append("\tlw $t8, 8($t8)\n");
+        sb.append("\tb BOUCLE" + numeroBoucle + "\n");
+        sb.append("BOUCLE" + numeroBoucle + "FIN:\n");
         return sb.toString();
     }
 
@@ -66,10 +71,14 @@ public class Variable extends Expression{
     public String toMIPS() {
         // Construction du code dans un string builder
         StringBuilder sb = new StringBuilder();
+        int numeroBoucle = GestionnaireNombres.getInstance().nouvelleIteration();
         sb.append("\tmove $t8, $s7\n");
-        for(int i = 0 ; i < blockCourant-blockVariable; i++){
-            sb.append("\tlw $t8, 8($t8)\n");
-        }
+        sb.append("BOUCLE" + numeroBoucle + ":\n");
+        sb.append("\tlw $v0, 4($t8)\n");
+        sb.append("\tbeqz $v0 ,BOUCLE"+numeroBoucle+"FIN\n");
+        sb.append("\tlw $t8, 8($t8)\n");
+        sb.append("\tb BOUCLE" + numeroBoucle + "\n");
+        sb.append("BOUCLE" + numeroBoucle + "FIN:\n");
         sb.append("\t# Chargement de la valeur de la variable dans v0\n");
         sb.append("\tlw $v0, "+deplacement+"($t8)\n");
         return sb.toString();
