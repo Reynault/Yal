@@ -1,0 +1,10 @@
+programme test debut
+    fonction a() debut
+        retourne 0;
+    fin
+
+    entier a;
+    a = 45;
+    ecrire a;
+
+fin
