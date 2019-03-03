@@ -24,6 +24,10 @@ public class SymboleVariable extends Symbole{
         this.numBlock = block;
     }
 
+    /**
+     * Getteur du numéro de block
+     * @return
+     */
     public int getNumeroBlock() {
         return numBlock;
     }

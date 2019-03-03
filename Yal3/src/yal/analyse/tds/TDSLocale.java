@@ -6,6 +6,9 @@ import yal.analyse.tds.symbole.Symbole;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * Classe qui représente une table locale, un bloc dans le programme
+ */
 public class TDSLocale extends TableDesSymboles {
     /**
      * table pere dans l'arborecense a block
@@ -35,6 +38,12 @@ public class TDSLocale extends TableDesSymboles {
      */
     private HashMap<Entree, Symbole> table;
 
+    /**
+     * Constructeur qui prend trois paramètres
+     * @param numeroBlock le numéro du block
+     * @param pere la table père
+     * @param id l'id du block
+     */
     public TDSLocale(int numeroBlock, TDSLocale pere, int id) {
         this.numeroBlock = numeroBlock;
         this.pere = pere;
@@ -43,15 +52,27 @@ public class TDSLocale extends TableDesSymboles {
         this.idBlock = id;
     }
 
+    /**
+     * Ajout d'une entrée et d'un symbole
+     * @param e l'entrée
+     * @param S le symbole
+     */
     @Override
     public void ajouter(Entree e, Symbole S) {
         //System.out.println(this.getNumeroBlock() + ": " + e.getNom());
         table.put(e,S);
     }
 
+    /**
+     * Méthode d'identification d'une entrée
+     * @param e l'entrée à identifier
+     * @return Le symbole de l'entrée
+     */
     @Override
     public Symbole identifier(Entree e) {
         Symbole s = null;
+        // On commence par regarder dans la table locale, si
+        // on ne trouve pas, on regarde le père
         if(table.containsKey(e)){
             s = table.get(e);
         }else{
@@ -62,8 +83,15 @@ public class TDSLocale extends TableDesSymboles {
         return s;
     }
 
+    /**
+     * Méthode qui permet de savoir si une entrée existe
+     * @param e l'entrée à vérifier
+     * @return un booléen qui indique si l'entrée existe
+     */
     @Override
     public boolean existe(Entree e) {
+        // On regarde si la table locale contient l'entrée,
+        // si ce n'est pas le cas, on regarde pour le père
         if (table.containsKey(e)) {
             return true;
         } else {
@@ -74,18 +102,33 @@ public class TDSLocale extends TableDesSymboles {
         return false;
     }
 
+    /**
+     * Méthode d'ajout d'un fils
+     * @param tdsLocale le fils à ajouter
+     */
     public void ajouterFils(TDSLocale tdsLocale) {
         this.lesFilles.add(tdsLocale);
     }
 
+    /**
+     * Getteur du père
+     * @return le père
+     */
     public TDSLocale getPere() {
         return pere;
     }
 
+    /**
+     * Getteur des filles
+     * @return les filles de la tds locale
+     */
     public ArrayList<TDSLocale> getLesFilles() {
         return lesFilles;
     }
 
+    /**
+     * Méthode de réinitialisation de la table
+     */
     @Override
     public void reinitialiserTable() {
         table = new HashMap<Entree, Symbole>();
@@ -94,6 +137,10 @@ public class TDSLocale extends TableDesSymboles {
         }
     }
 
+    /**
+     * Création d'un déplacement dans la table locale
+     * @return le nouveau déplacement
+     */
     @Override
     public int creerDeplacement() {
         int temp = deplacement;

@@ -35,6 +35,17 @@ public class Variable extends Expression{
         return deplacement;
     }
 
+    /**
+     * Méthode qui permet de placer la base au bon endroit pour pouvoir modifier
+     * facilement la variable (juste avec son deplacement)
+     *
+     * Cette méthode est utilisée lorsqu'on veut modifier une variable,
+     * comme on ne connaît que la base s7, et le déplacement de la variable par rapport
+     * à la base où elle a été déclarée, on veut retrouver cette base
+     * temporairement pour pouvoir accéder à la variable.
+     *
+     * @return la liste des instructions
+     */
     public String placerT8(){
         StringBuilder sb = new StringBuilder();
         sb.append("\t# Deplacement de t8 vers le s7 de la variable\n");

@@ -28,10 +28,18 @@ public abstract class Entree {
         return nom;
     }
 
+    /**
+     * Méthode qui permet de récupérer la ligne de l'entrée
+     * @return
+     */
     public int getLigne() {
         return ligne;
     }
 
+    /**
+     * Méthode permettant de connaître le type d'entrée
+     * @return
+     */
     public abstract String type();
 
     @Override

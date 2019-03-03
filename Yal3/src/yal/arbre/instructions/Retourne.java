@@ -3,8 +3,14 @@ package yal.arbre.instructions;
 import yal.arbre.expressions.Expression;
 import yal.exceptions.AnalyseSemantiqueException;
 
+/**
+ * Classe qui représente l'instruction de retour d'une fonction
+ */
 public class Retourne extends Instruction{
+    // Expression à retourner
     protected Expression e;
+    // Deplacement de la fonction (celle des variables dans la fonction pour connaître le deplacement
+    // de sp à effectuer pour revenir à l'ancienne position)
     protected int deplacement;
     /**
      * Constructeur

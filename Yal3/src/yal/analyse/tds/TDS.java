@@ -98,6 +98,16 @@ public class TDS extends TableDesSymboles{
         return tableCourante.getDeplacement();
     }
 
+    /**
+     * Méthode qui indique qu'on entre dans un block
+     *
+     * Elle met à jour la table courante.
+     *
+     * Créer une nouvelle table
+     * Ajoute le nouveau fils à la table courante
+     * Ajoute la table courante en tant que père de la nouvelle table
+     * et remplace la table courante par la nouvelle table
+     */
     public void entreBlock(){
         GestionnaireNombres.getInstance().incrementer();
         GestionnaireNombres.getInstance().incrementerIdBlock();
@@ -107,16 +117,25 @@ public class TDS extends TableDesSymboles{
         tableCourante = tdsLocale;
     }
 
+    /**
+     * Méthode qui permet de sortir d'un block
+     *
+     * Elle met à jour la table courante (En prenant le père)
+     */
     public void sortieBlock(){
         GestionnaireNombres.getInstance().decrementer();
         tableCourante = this.tableCourante.getPere();
     }
 
+    /**
+     * Méthode qui permet d'entrée dans un block, dans la vérification de l'arbre
+     */
     public void entreBlockVerif(){
         GestionnaireNombres.getInstance().incrementer();
         GestionnaireNombres.getInstance().incrementerIdBlock();
         Iterator it = tableCourante.getLesFilles().iterator();
         boolean trouver = false;
+        // On cherche le prochain block, et on entre dedans en mettant à jour la table courante
         while (it.hasNext() && !trouver){
             TDSLocale tdsLocale = (TDSLocale) it.next();
             if (tdsLocale.getIdBlock() == GestionnaireNombres.getInstance().getIdBlock()){
@@ -126,11 +145,17 @@ public class TDS extends TableDesSymboles{
         }
     }
 
+    /**
+     * Méthode de réinitialisation de la table
+     */
     @Override
     public void reinitialiserTable() {
         racine.reinitialiserTable();
     }
 
+    /**
+     * Méthode qui permet de sortir d'une table lorsqu'on est dans la vérification de l'arbre
+     */
     public void sortieBlockVerif(){
         GestionnaireNombres.getInstance().decrementer();
         tableCourante = this.tableCourante.getPere();
