@@ -47,9 +47,13 @@ public class AffectationSimple extends Affectation {
         // Construction du code
         StringBuilder sb = new StringBuilder();
         // Récupération du code de l'expression
+        sb.append(idf.placerT8());
+        sb.append("\tsw $t8, 0($sp)\n");
+        sb.append("\taddi $sp, $sp, -4\n");
         sb.append(exp.toMIPS());
         sb.append("\t# Affectation simple\n");
-        sb.append(idf.placerT8());
+        sb.append("\taddi $sp, $sp, 4\n");
+        sb.append("\tlw $t8, 0($sp)\n");
         sb.append("\tsw $v0, "+idf.getDeplacement()+"($t8)\n");
         return sb.toString();
     }

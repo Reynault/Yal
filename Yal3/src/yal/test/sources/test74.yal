@@ -1,14 +1,14 @@
 programme f debut
     fonction test () debut
-        si test == 45 alors
-            test = test -15;
+        si a == 45 alors
+            a = a -15;
         sinon
-            test = test-1;
+            a = a-1;
         finsi
-        retourne test;
+        retourne a;
     fin
     
-     entier test;
-     test = 45;
+     entier a;
+     a = 45;
      ecrire test();
 fin
