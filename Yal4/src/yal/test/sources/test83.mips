@@ -1,0 +1,97 @@
+# Code généré par Yal
+.data
+# Caractère de fin de ligne
+finLigne:     .asciiz "\n"
+booleenVrai:   .asciiz "vrai"
+booleenFaux:   .asciiz "faux"
+              .align 2
+# Début du programme
+.text
+main :
+	# Initialisation de s7 avec sp
+	li $v0, 0
+	sw $v0, 0($sp)
+	addi $sp, $sp, -4
+	move $s7, $sp
+	# Réservation de l'espace dans la pile
+	addi $sp, $sp, -4
+	j FONCFIN1
+FONC1:
+	sw $ra, 0($sp)
+	addi $sp, $sp, -4
+	sw $s7, 0($sp)
+	addi $sp, $sp, -4
+	li $t8, 1
+	sw $t8, 0($sp)
+	addi $sp, $sp, -4
+	move $s7, $sp
+	addi $sp, $sp, 0
+	# Chargement immédiat d'une constante entière
+	li $v0, 3
+	sw $v0, 0($sp)
+	add $sp, $sp, -4
+	# Chargement immédiat d'une constante entière
+	li $v0, 3
+	add $sp, $sp, 4
+	lw $t8, 0($sp)
+	add $v0, $t8, $v0
+	addi $sp, $sp, 16
+	sw $v0, 16($s7)
+	lw $ra, 12($s7)
+	lw $s7, 8($s7)
+	jr $ra
+	FONCFIN1:
+	# Deplacement de t8 vers le s7 de la variable
+	move $t8, $s7
+BOUCLE1:
+	lw $v0, 4($t8)
+	beqz $v0, BOUCLE1FIN
+	lw $t8, 8($t8)
+	b BOUCLE1
+BOUCLE1FIN:
+	sw $t8, 0($sp)
+	addi $sp, $sp, -4
+	# Chargement immédiat d'une constante entière
+	li $v0, 0
+	# Affectation simple
+	addi $sp, $sp, 4
+	lw $t8, 0($sp)
+	sw $v0, 0($t8)
+	# Deplacement de t8 vers le s7 de la variable
+	move $t8, $s7
+BOUCLE2:
+	lw $v0, 4($t8)
+	beqz $v0, BOUCLE2FIN
+	lw $t8, 8($t8)
+	b BOUCLE2
+BOUCLE2FIN:
+	sw $t8, 0($sp)
+	addi $sp, $sp, -4
+	addi $sp, $sp, -4
+	jal FONC1
+	lw $v0, 0($sp)
+	# Affectation simple
+	addi $sp, $sp, 4
+	lw $t8, 0($sp)
+	sw $v0, 0($t8)
+	# affichage de l'expression
+	move $t8, $s7
+BOUCLE3:
+	lw $v0, 4($t8)
+	beqz $v0 ,BOUCLE3FIN
+	lw $t8, 8($t8)
+	b BOUCLE3
+BOUCLE3FIN:
+	# Chargement de la valeur de la variable dans v0
+	lw $v0, 0($t8)
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	li $v0, 4      # retour à la ligne
+	la $a0, finLigne
+	syscall
+	move $v0, $a0
+end :
+    li $v0, 10
+    syscall
+

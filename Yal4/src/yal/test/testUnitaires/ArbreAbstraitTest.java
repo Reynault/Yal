@@ -1,15 +1,14 @@
 package yal.test.testUnitaires;
 
 import org.junit.Test;
-import yal.analyse.tds.entree.EntreeVariable;
 import yal.analyse.tds.TDS;
+import yal.analyse.tds.entree.EntreeVariable;
 import yal.analyse.tds.symbole.SymboleVariable;
 import yal.arbre.BlocDInstructions;
 import yal.arbre.Programme;
 import yal.arbre.expressions.ConstanteEntiere;
 import yal.arbre.expressions.Variable;
 import yal.arbre.expressions.expressionBinaire.expressionArithmetique.Addition;
-import yal.arbre.expressions.expressionBinaire.expressionArithmetique.ExpressionArithmetiqueBinaire;
 import yal.arbre.expressions.expressionBinaire.expressionLogique.Different;
 import yal.arbre.expressions.expressionBinaire.expressionLogique.Et;
 import yal.arbre.expressions.expressionBinaire.expressionLogique.Inferieur;
@@ -18,7 +17,6 @@ import yal.arbre.instructions.Lire;
 import yal.arbre.instructions.affectation.AffectationSimple;
 import yal.exceptions.AnalyseSemantiqueException;
 
-import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertFalse;
 
 /**
