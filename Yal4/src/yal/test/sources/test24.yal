@@ -1,0 +1,5 @@
+programme qsd debut
+    entier aaez;
+    aaez = 9 / 4;
+    ecrire aaez;
+fin

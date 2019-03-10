@@ -1,0 +1,11 @@
+programme test debut
+    entier v;
+    entier s;
+    entier w;
+    entier z;
+    s = 50;
+    s = v;
+    w = s;
+    z = w;
+    ecrire w;
+fin

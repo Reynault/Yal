@@ -1,0 +1,5 @@
+programme test debut
+    entier v;
+    v = 15020 * 50 / 50;
+    ecrire v;
+fin

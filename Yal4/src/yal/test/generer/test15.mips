@@ -1,0 +1,26 @@
+# Code généré par Yal
+.data
+# Caractère de fin de ligne
+finLigne:     .asciiz "\n"
+booleenVrai:   .asciiz "vrai"
+booleenFaux:   .asciiz "faux"
+              .align 2
+# Début du programme
+.text
+main :
+	# Initialisation de s7 avec sp
+	move $s7, $sp
+	# Réservation de l'espace dans la pile
+	addi $sp, $sp, -4
+	# Chargement immédiat d'une constante entière
+	li $v0, 0
+	# Affectation simple
+	sw $v0, 0($s7)
+	# Lire un entier
+	li $v0 , 5 	# $v0 <- 5 (code du read entier)
+	syscall 	# le résultat de la lecture est dans $V0 
+	sw $v0, 0($s7)
+end :
+    li $v0, 10
+    syscall
+

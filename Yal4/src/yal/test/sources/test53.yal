@@ -1,0 +1,18 @@
+programme pipop debut
+
+    entier a;
+
+    fonction hop() debut
+        retourne b;
+    fin
+
+    fonction hop2() debut
+        retourne a;
+    fin
+
+    entier b;
+
+    ecrire hop();
+    ecrire hop2();
+
+fin

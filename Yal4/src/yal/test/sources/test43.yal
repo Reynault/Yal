@@ -1,0 +1,11 @@
+programme teste debut
+    entier a;
+    a = 0;
+    tantque a < 10 repeter
+        a = a + 1;
+        ecrire a;
+        si a < 5 alors
+            ecrire a;
+    fintantque
+    finsi
+fin

@@ -1,0 +1,7 @@
+programme f debut
+    fonction test () debut
+    fin
+     entier e;
+     e = 45;
+     ecrire test();
+fin
