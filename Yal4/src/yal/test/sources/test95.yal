@@ -1,0 +1,39 @@
+programme wow debut
+
+    // Fonction qui indique si  le nombre est pair ou non
+    fonction pair(entier a) debut
+        si a != 0 et a != 1 alors
+            a = pair(a-2);
+        finsi
+        retourne a;
+    fin
+
+    // Fonction qui calcule le n eme terme de la suite de fibonacci
+    fonction fibonacci(entier n) debut
+        entier resultat;
+        si n < 2 alors
+            resultat = n;
+        sinon
+            //ecrire n;
+            resultat = fibonacci(n - 1) + fibonacci (n - 2);
+        finsi
+        retourne resultat;
+    fin
+
+    entier fibonacci;
+    entier valeur;
+
+    // On lie la valeur à traiter
+    lire valeur;
+
+    ecrire valeur;
+
+    // On écrit si elle est paire ou non
+    ecrire pair(valeur);
+
+    // Puis on calcule le n eme terme
+    fibonacci = fibonacci(valeur);
+
+    // Et on l'écrit
+    ecrire fibonacci;
+fin

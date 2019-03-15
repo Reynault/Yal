@@ -19,7 +19,7 @@ de contrôles élémentaires et les fonctions.
 #### description 
 Le compilateur ne traite que des programmes avec des instructions d'écriture sur la sortie standard.
 
-#### Constructions Reconnues par le compilateur
+#### Constructions reconnues par le compilateur
 * Commentaires
 * Instructions d'écriture
 * Le compilateur reconnaît également un programme sans instructions
@@ -30,7 +30,7 @@ Le compilateur peut désormais traiter
 des programmes incluant des instructions de déclaration de variables entières, des affectations,
  des expressions résuites à une constante entière et des instructions de lecture.
 
-#### Constructions Reconnues par le compilateur
+#### Constructions reconnues par le compilateur
 * Déclaration de variables entières
 * Affectation
 * Instructions de lecture
@@ -41,7 +41,7 @@ des programmes incluant des instructions de déclaration de variables entières,
 Le compilateur peut désormais traiter des programmes incluant
 des expressions générales (logiques, arithmetique), des conditions et des boucles.
 
-#### Constructions Reconnues par le compilateur
+#### Constructions reconnues par le compilateur
 * Expressions quelconques
 * Instruction conditionnelle
 * Instruction itérative
@@ -53,8 +53,17 @@ Les fonctions sont gérées avec le chaînage statique et dynamique.
 La table des symboles possède un arbre qui possède les tables locales des
 fonctions du programme.
 
-#### Constructions Reconnues par le compilateur
+#### Constructions reconnues par le compilateur
 * Fonctions sans paramètres.
+
+##[Yal4](Yal4)
+#### description
+Cette version ajoute les fonctions paramétrées ainsi que les déclarations de variables dans
+les fonctions.
+
+### Constructions reconnues par le compilateur
+* Fonctions avec paramètres.
+* Variables dans une fonction.
 
 ## Participants
 * Sies Reynault

@@ -67,5 +67,4 @@ public class Yal {
         }
         new Yal(args[0]) ;
     }
-    
 }
