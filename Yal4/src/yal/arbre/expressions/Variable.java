@@ -51,12 +51,16 @@ public class Variable extends Expression{
         sb.append("\t# Deplacement de t8 vers le s7 de la variable\n");
         int numeroBoucle = GestionnaireNombres.getInstance().nouvelleIteration();
         sb.append("\tmove $t8, $s7\n");
+        sb.append("\tsw $v0, 0($sp)\n");
+        sb.append("\taddi $sp, $sp, -4\n");
         sb.append("BOUCLE" + numeroBoucle + ":\n");
         sb.append("\tlw $v0, 4($t8)\n");
-        sb.append("\tbeqz $v0, BOUCLE"+numeroBoucle+"FIN\n");
+        sb.append("\tbeq $v0, "+blockVariable+", BOUCLE"+numeroBoucle+"FIN\n");
         sb.append("\tlw $t8, 8($t8)\n");
         sb.append("\tb BOUCLE" + numeroBoucle + "\n");
         sb.append("BOUCLE" + numeroBoucle + "FIN:\n");
+        sb.append("\taddi $sp, $sp, 4\n");
+        sb.append("\tlw $v0, 0($sp)\n");
         return sb.toString();
     }
 
@@ -86,7 +90,7 @@ public class Variable extends Expression{
         sb.append("\tmove $t8, $s7\n");
         sb.append("BOUCLE" + numeroBoucle + ":\n");
         sb.append("\tlw $v0, 4($t8)\n");
-        sb.append("\tbeqz $v0 ,BOUCLE"+numeroBoucle+"FIN\n");
+        sb.append("\tbeq $v0, "+blockVariable+",BOUCLE"+numeroBoucle+"FIN\n");
         sb.append("\tlw $t8, 8($t8)\n");
         sb.append("\tb BOUCLE" + numeroBoucle + "\n");
         sb.append("BOUCLE" + numeroBoucle + "FIN:\n");

@@ -225,7 +225,7 @@ DECL_FONCTION   ::= FONCTION IDF:i PARAMETRES:param DEBUT LDECLFONCTION:l LINST:
                         new EntreeFonction(i, ileft+1, param),
                         new SymboleFonction(nbFonc));
                     Retourne ret = new Retourne(eleft+1,e);
-                    RESULT = new Fonction(ileft+1, nbFonc, (BlocDInstructions)li, ret);
+                    RESULT = new Fonction(ileft+1, nbFonc, (BlocDInstructions)li, ret, param);
                 :}
                 |
                 FONCTION IDF:i PARAMETRES:param DEBUT LINST:li RETOURNE EXP:e POINTVIRGULE FIN
@@ -236,7 +236,7 @@ DECL_FONCTION   ::= FONCTION IDF:i PARAMETRES:param DEBUT LDECLFONCTION:l LINST:
                         new EntreeFonction(i, ileft+1, param),
                         new SymboleFonction(nbFonc));
                     Retourne ret = new Retourne(eleft+1,e);
-                    RESULT = new Fonction(ileft+1, nbFonc, (BlocDInstructions)li, ret);
+                    RESULT = new Fonction(ileft+1, nbFonc, (BlocDInstructions)li, ret, param);
                 :}
                 |
                 FONCTION IDF:i PARAMETRES:param DEBUT LINST:li RETOURNE EXP:e POINTVIRGULE LINSTDUMP FIN
@@ -247,7 +247,7 @@ DECL_FONCTION   ::= FONCTION IDF:i PARAMETRES:param DEBUT LDECLFONCTION:l LINST:
                     new EntreeFonction(i, ileft+1, param),
                     new SymboleFonction(nbFonc));
                     Retourne ret = new Retourne(eleft+1,e);
-                    RESULT = new Fonction(ileft+1, nbFonc, (BlocDInstructions)li, ret);
+                    RESULT = new Fonction(ileft+1, nbFonc, (BlocDInstructions)li, ret, param);
                 :}
                 |
                 FONCTION IDF:i PARAMETRES:param DEBUT LDECLFONCTION:l LINST:li RETOURNE EXP:e POINTVIRGULE LINSTDUMP FIN
@@ -258,7 +258,7 @@ DECL_FONCTION   ::= FONCTION IDF:i PARAMETRES:param DEBUT LDECLFONCTION:l LINST:
                         new EntreeFonction(i, ileft+1, param),
                         new SymboleFonction(nbFonc));
                     Retourne ret = new Retourne(eleft+1,e);
-                    RESULT = new Fonction(ileft+1, nbFonc, (BlocDInstructions)li, ret);
+                    RESULT = new Fonction(ileft+1, nbFonc, (BlocDInstructions)li, ret, param);
                 :}
                 |
                 FONCTION IDF:i PARAMETRES:param DEBUT LDECLFONCTION:l  RETOURNE EXP:e POINTVIRGULE LINSTDUMP FIN
@@ -269,7 +269,7 @@ DECL_FONCTION   ::= FONCTION IDF:i PARAMETRES:param DEBUT LDECLFONCTION:l LINST:
                         new EntreeFonction(i, ileft+1, param),
                         new SymboleFonction(nbFonc));
                     Retourne ret = new Retourne(eleft+1,e);
-                    RESULT = new Fonction(ileft+1, nbFonc, new BlocDInstructions(eleft+1), ret);
+                    RESULT = new Fonction(ileft+1, nbFonc, new BlocDInstructions(eleft+1), ret, param);
                 :}
                 |
                 FONCTION IDF:i PARAMETRES:param DEBUT RETOURNE EXP:e POINTVIRGULE LINSTDUMP FIN
@@ -280,7 +280,7 @@ DECL_FONCTION   ::= FONCTION IDF:i PARAMETRES:param DEBUT LDECLFONCTION:l LINST:
                         new EntreeFonction(i, ileft+1, param),
                         new SymboleFonction(nbFonc));
                     Retourne ret = new Retourne(eleft+1,e);
-                    RESULT = new Fonction(ileft+1, nbFonc, new BlocDInstructions(eleft+1), ret);
+                    RESULT = new Fonction(ileft+1, nbFonc, new BlocDInstructions(eleft+1), ret, param);
                 :}
                 |
                 FONCTION IDF:i PARAMETRES:param DEBUT RETOURNE EXP:e POINTVIRGULE FIN
@@ -291,7 +291,7 @@ DECL_FONCTION   ::= FONCTION IDF:i PARAMETRES:param DEBUT LDECLFONCTION:l LINST:
                         new EntreeFonction(i, ileft+1, param),
                         new SymboleFonction(nbFonc));
                     Retourne ret = new Retourne(eleft+1,e);
-                    RESULT = new Fonction(ileft+1, nbFonc, new BlocDInstructions(eleft+1), ret);
+                    RESULT = new Fonction(ileft+1, nbFonc, new BlocDInstructions(eleft+1), ret, param);
                 :}
                 |
                 FONCTION IDF:i PARAMETRES:param DEBUT LDECLFONCTION:l  RETOURNE EXP:e POINTVIRGULE FIN
@@ -302,7 +302,7 @@ DECL_FONCTION   ::= FONCTION IDF:i PARAMETRES:param DEBUT LDECLFONCTION:l LINST:
                         new EntreeFonction(i, ileft+1, param),
                         new SymboleFonction(nbFonc));
                     Retourne ret = new Retourne(eleft+1,e);
-                    RESULT = new Fonction(ileft+1, nbFonc, new BlocDInstructions(eleft+1), ret);
+                    RESULT = new Fonction(ileft+1, nbFonc, new BlocDInstructions(eleft+1), ret, param);
                 :}
 ;
 
@@ -333,7 +333,7 @@ LISTEPARAM  ::= LISTEPARAM:ids POINTVIRGULE TYPE:e IDF:i
                     // Ajout dans la table
                     TDS instance = TDS.getInstance();
                     instance.ajouter(new EntreeVariable(i, ileft+1),
-                        new SymboleVariable(instance.creerDeplacementParam(ids), e,
+                        new SymboleVariable(instance.creerDeplacementParam(ids+1), e,
                         GestionnaireNombres.getInstance().getCompteur_blocs()));
                     RESULT = ids+1;
                 :}
@@ -344,7 +344,7 @@ LISTEPARAM  ::= LISTEPARAM:ids POINTVIRGULE TYPE:e IDF:i
                     // Ajout dans la table
                     TDS instance = TDS.getInstance();
                     instance.ajouter(new EntreeVariable(i, ileft+1),
-                        new SymboleVariable(instance.creerDeplacementParam(0), e,
+                        new SymboleVariable(instance.creerDeplacementParam(1), e,
                         GestionnaireNombres.getInstance().getCompteur_blocs()));
                     RESULT = 1;
                 :}

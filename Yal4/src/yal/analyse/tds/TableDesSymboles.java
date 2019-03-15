@@ -44,4 +44,6 @@ abstract class TableDesSymboles {
      * @return
      */
     public abstract int getDeplacement();
+
+    public abstract boolean existeTableLocale(Entree e);
 }

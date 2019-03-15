@@ -1,0 +1,11 @@
+programme test debut
+    entier a;
+    fonction oui(  ) debut
+        retourne 5;
+    fin
+    fonction oui (  ) debut
+        entier b;
+        retourne 1;
+    fin
+    ecrire 2 == 1;
+fin

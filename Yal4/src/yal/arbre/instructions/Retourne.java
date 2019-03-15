@@ -12,6 +12,7 @@ public class Retourne extends Instruction{
     // Deplacement de la fonction (celle des variables dans la fonction pour connaître le deplacement
     // de sp à effectuer pour revenir à l'ancienne position)
     protected int deplacement;
+    protected int nbparam;
     /**
      * Constructeur
      *
@@ -31,6 +32,10 @@ public class Retourne extends Instruction{
 
     }
 
+    public void setNbParam(int nbParam){
+        this.nbparam = nbParam;
+    }
+
     public void setDeplacement(int deplacement) {
         this.deplacement = deplacement;
     }
@@ -41,7 +46,7 @@ public class Retourne extends Instruction{
         // Stockage de la valeur de retour
         sb.append(e.toMIPS());
         // Mise à jour du pointeur de la pile
-        int d = (-deplacement)+16;
+        int d = (-deplacement)+16+(nbparam*4);
         sb.append("\taddi $sp, $sp, "+d+"\n");
         sb.append("\tsw $v0, 16($s7)\n");
         // On revient à l'ancienne base

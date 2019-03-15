@@ -51,7 +51,7 @@ public class TDS extends TableDesSymboles{
      */
     public void ajouter(Entree entree, Symbole deplacement){
         // Vérification
-        if(existe(entree)){
+        if(existeTableLocale(entree)){
             throw new AnalyseSemantiqueException(entree.getLigne(), entree.type()+" déjà déclarée");
         }else {
             tableCourante.ajouter(entree, deplacement);
@@ -79,6 +79,11 @@ public class TDS extends TableDesSymboles{
      */
     public boolean existe(Entree entree){
         return tableCourante.existe(entree);
+    }
+
+    @Override
+    public boolean existeTableLocale(Entree e) {
+        return tableCourante.existeTableLocale(e);
     }
 
     /**

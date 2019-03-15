@@ -12,6 +12,7 @@ public class Fonction extends ArbreAbstrait{
     private int numeroFonction;
     private int numBloc;
     private int deplacements;
+    private int nbparam;
 
     /**
      * Constructeur
@@ -20,11 +21,12 @@ public class Fonction extends ArbreAbstrait{
      * @param numero le numéro de la fonction
      * @param bloc le bloc d'instructions
      */
-    public Fonction(int n, int numero, BlocDInstructions bloc, Retourne retourne) {
+    public Fonction(int n, int numero, BlocDInstructions bloc, Retourne retourne, int nbparam) {
         super(n);
         numeroFonction = numero;
         this.re = retourne;
         this.bloc = bloc;
+        this.nbparam = nbparam;
     }
 
     @Override
@@ -36,6 +38,7 @@ public class Fonction extends ArbreAbstrait{
         bloc.verifier();
         re.verifier();
         re.setDeplacement(deplacements);
+        re.setNbParam(nbparam);
         instance.sortieBlockVerif();
     }
 

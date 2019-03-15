@@ -34,10 +34,6 @@ public class TDSLocale extends TableDesSymboles {
     private int deplacement = 0;
 
     /**
-     * Deplacement des paramètres
-     */
-    private int deplacementParam = 0 ;
-    /**
      * Table assosiaive entré symbol
      */
     private HashMap<Entree, Symbole> table;
@@ -104,6 +100,11 @@ public class TDSLocale extends TableDesSymboles {
             }
         }
         return false;
+    }
+
+    @Override
+    public boolean existeTableLocale(Entree e) {
+        return table.containsKey(e);
     }
 
     /**
