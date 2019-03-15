@@ -34,6 +34,10 @@ public class TDSLocale extends TableDesSymboles {
     private int deplacement = 0;
 
     /**
+     * Deplacement des paramètres
+     */
+    private int deplacementParam = 0 ;
+    /**
      * Table assosiaive entré symbol
      */
     private HashMap<Entree, Symbole> table;
@@ -146,6 +150,10 @@ public class TDSLocale extends TableDesSymboles {
         int temp = deplacement;
         this.deplacement = deplacement - 4;
         return temp;
+    }
+
+    public int creerDeplacementParam(int nbparam){
+        return 16 + nbparam * 4;
     }
 
     @Override

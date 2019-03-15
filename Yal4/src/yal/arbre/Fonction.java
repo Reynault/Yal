@@ -1,6 +1,7 @@
 package yal.arbre;
 
 import yal.analyse.tds.TDS;
+import yal.analyse.tds.entree.Entree;
 import yal.arbre.instructions.Retourne;
 
 import java.util.ArrayList;
@@ -11,7 +12,7 @@ public class Fonction extends ArbreAbstrait{
     private int numeroFonction;
     private int numBloc;
     private int deplacements;
-    private ArrayList<String> idfs;
+
     /**
      * Constructeur
      *
@@ -19,12 +20,11 @@ public class Fonction extends ArbreAbstrait{
      * @param numero le numéro de la fonction
      * @param bloc le bloc d'instructions
      */
-    public Fonction(int n, int numero, BlocDInstructions bloc, Retourne retourne, ArrayList<String> idfs) {
+    public Fonction(int n, int numero, BlocDInstructions bloc, Retourne retourne) {
         super(n);
         numeroFonction = numero;
         this.re = retourne;
         this.bloc = bloc;
-        this.idfs = idfs;
     }
 
     @Override

@@ -91,6 +91,13 @@ public class TDS extends TableDesSymboles{
     }
 
     /**
+     *
+     */
+    public int creerDeplacementParam(int nbparam){
+        return tableCourante.creerDeplacementParam(nbparam);
+    }
+
+    /**
      * Méthode qui permet de récupérer le sommet de la pile sans le déplacer.
      * @return la valeur actuelle du déplacement
      */
