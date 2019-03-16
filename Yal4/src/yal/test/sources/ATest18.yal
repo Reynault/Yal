@@ -1,0 +1,23 @@
+programme Test18 debut
+    entier premier;
+    fonction f() debut
+        tantque (premier < 10) repeter
+            ecrire premier;
+            premier = premier + 1;
+        fintantque
+        retourne premier * 2;
+    fin
+    entier second;
+    fonction g() debut
+        si (second == 0) alors
+            second = premier * f();
+            ecrire second;
+            retourne second;
+        sinon
+            ecrire premier * 2;
+            retourne premier * 2;
+        finsi
+    fin
+    entier h;
+    ecrire f() + g();
+fin

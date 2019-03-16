@@ -1,0 +1,20 @@
+programme Test27 debut
+    entier[2] tabMain;
+    fonction f() debut
+        entier[tabMain.longueur] tab;
+        ecrire tab[0];
+        tab[0] = 1;
+        ecrire tab[0];
+        ecrire tab[1];
+        tab[1] = 2;
+        ecrire tab[1];
+        retourne tab.longueur;
+    fin
+    ecrire f();
+    ecrire tabMain[0];
+    tabMain[0] = 10;
+    ecrire tabMain[0];
+    ecrire tabMain[1];
+    tabMain[1] = 20;
+    ecrire tabMain[1];
+fin
