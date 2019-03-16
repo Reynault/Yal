@@ -1,0 +1,55 @@
+programme entierNaturel debut
+
+    fonction successeur(entier a) debut
+        retourne a+1;
+    fin
+
+    fonction predecesseur(entier a) debut
+        retourne a-1;
+    fin
+
+
+    fonction addition(entier a; entier b) debut
+        si b > 0 alors
+            retourne addition(successeur(a), predecesseur(b));
+        sinon
+            retourne a;
+        finsi
+    fin
+
+    fonction soustraction(entier a; entier b) debut
+        si b > 0 alors
+            retourne soustraction(predecesseur(a), predecesseur(b));
+        sinon
+            retourne a;
+        finsi
+    fin
+
+    fonction multiplication(entier a; entier b) debut
+        si a == 0 ou b == 0 alors
+            retourne 0;
+        sinon
+            si b == 1 alors
+                retourne a;
+            sinon
+                retourne addition(a , multiplication(a, predecesseur(b)));
+            finsi
+        finsi
+    fin
+
+    entier a;
+    entier b;
+    a = 5;
+    b = 3;
+    ecrire a;                       // affiche 5
+    ecrire b;                       // affiche 3
+    ecrire predecesseur(a);         // affiche 4
+    ecrire successeur(a);           // affiche 6
+    ecrire addition(a, b);          // affiche 8
+    ecrire soustraction(a, b);      // affiche 2
+    ecrire multiplication(a, b);    // affiche 15
+
+
+
+
+fin
