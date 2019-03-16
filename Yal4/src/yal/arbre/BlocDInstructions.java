@@ -1,5 +1,8 @@
 package yal.arbre;
 
+import yal.arbre.instructions.Retourne;
+
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -19,6 +22,19 @@ public class BlocDInstructions extends ArbreAbstrait {
     public BlocDInstructions(int n) {
         super(n) ;
         programme = new ArrayList<>() ;
+    }
+
+    @Override
+    public ArrayList<Retourne> get_retourne() {
+        ArrayList<Retourne> liste = new ArrayList<Retourne>();
+        ArrayList<Retourne> res;
+        for (ArbreAbstrait a : programme){
+            res = a.get_retourne();
+            if(res != null){
+                liste.addAll(res);
+            }
+        }
+        return liste;
     }
 
     /**

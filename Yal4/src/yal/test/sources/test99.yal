@@ -1,0 +1,12 @@
+programme test debut
+    fonction t(entier a; entier b; entier c) debut
+        tantque a > b repeter
+            retourne a;
+        fintantque
+        retourne a;
+        ecrire 5;
+    fin
+    entier a;
+    a = t(1,4,3);
+    ecrire a;
+fin

@@ -2,6 +2,8 @@ package yal.arbre.instructions;
 
 import yal.arbre.expressions.Variable;
 
+import java.util.ArrayList;
+
 /**
  * Classe qui représente une lecture en entrée
  */
@@ -17,6 +19,11 @@ public class Lire extends Instruction{
     public Lire(Variable idf, int n) {
         super(n);
         this.idf = idf;
+    }
+
+    @Override
+    public ArrayList<Retourne> get_retourne() {
+        return null;
     }
 
     /**
@@ -42,4 +49,5 @@ public class Lire extends Instruction{
         stringBuilder.append("\tsw $v0, "+idf.getDeplacement()+"($t8)\n");
         return stringBuilder.toString();
     }
+
 }

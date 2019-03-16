@@ -1,5 +1,9 @@
 package yal.arbre;
 
+import yal.arbre.instructions.Retourne;
+
+import java.util.ArrayList;
+
 /**
  * Classe qui représente un arbre abstrait dans lequel on va stocker le code fourni
  * par l'utilisateur
@@ -24,6 +28,8 @@ public abstract class ArbreAbstrait {
     public int getNoLigne() {
             return noLigne ;
     }
+
+    public abstract ArrayList<Retourne> get_retourne();
 
     /**
      * Méthode de vérification de la sémantique

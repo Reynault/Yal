@@ -1,6 +1,9 @@
 package yal.arbre;
 
 import yal.analyse.tds.TDS;
+import yal.arbre.instructions.Retourne;
+
+import java.util.ArrayList;
 
 /**
  * Classe qui représente un programme yal
@@ -40,6 +43,11 @@ public class Programme extends ArbreAbstrait {
     public Programme(int n,BlocDInstructions bloc) {
         super(n);
         instructions = bloc;
+    }
+
+    @Override
+    public ArrayList<Retourne> get_retourne() {
+        return null;
     }
 
     @Override

@@ -1,14 +1,13 @@
 package yal.arbre;
 
 import yal.analyse.tds.TDS;
-import yal.analyse.tds.entree.Entree;
 import yal.arbre.instructions.Retourne;
+import yal.exceptions.AnalyseSemantiqueException;
 
 import java.util.ArrayList;
 
 public class Fonction extends ArbreAbstrait{
     private BlocDInstructions bloc;
-    private Retourne re;
     private int numeroFonction;
     private int numBloc;
     private int deplacements;
@@ -21,12 +20,16 @@ public class Fonction extends ArbreAbstrait{
      * @param numero le numéro de la fonction
      * @param bloc le bloc d'instructions
      */
-    public Fonction(int n, int numero, BlocDInstructions bloc, Retourne retourne, int nbparam) {
+    public Fonction(int n, int numero, BlocDInstructions bloc, int nbparam) {
         super(n);
         numeroFonction = numero;
-        this.re = retourne;
         this.bloc = bloc;
         this.nbparam = nbparam;
+    }
+
+    @Override
+    public ArrayList<Retourne> get_retourne() {
+        return null;
     }
 
     @Override
@@ -36,9 +39,15 @@ public class Fonction extends ArbreAbstrait{
         numBloc = GestionnaireNombres.getInstance().getCompteur_blocs();
         deplacements = instance.getDeplacement();
         bloc.verifier();
-        re.verifier();
-        re.setDeplacement(deplacements);
-        re.setNbParam(nbparam);
+        ArrayList<Retourne> liste_retourne = bloc.get_retourne();
+        if(liste_retourne.size() == 0){
+            throw new AnalyseSemantiqueException(noLigne, "Une fonction doit contenir au moins un retourne");
+        }else{
+            for (Retourne r : liste_retourne){
+                r.setDeplacement(deplacements);
+                r.setNbParam(nbparam);
+            }
+        }
         instance.sortieBlockVerif();
     }
 
@@ -65,8 +74,6 @@ public class Fonction extends ArbreAbstrait{
         sb.append("\taddi $sp, $sp, "+deplacements+"\n");
         // Instructions du bloc
         sb.append(bloc.toMIPS());
-        // Return
-        sb.append(re.toMIPS());
         sb.append("\tFONCFIN"+numeroFonction+":\n");
         return sb.toString();
     }

@@ -3,6 +3,8 @@ package yal.arbre.instructions;
 import yal.arbre.GestionnaireNombres;
 import yal.arbre.expressions.Expression;
 
+import java.util.ArrayList;
+
 /**
  * Classe qui représente une instruction d'écriture
  */
@@ -20,6 +22,11 @@ public class Ecrire extends Instruction {
     public Ecrire (Expression e, int n) {
         super(n) ;
         exp = e ;
+    }
+
+    @Override
+    public ArrayList<Retourne> get_retourne() {
+        return null;
     }
 
     /**

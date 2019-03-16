@@ -1,6 +1,9 @@
 package yal.arbre.expressions;
 
 import yal.arbre.ArbreAbstrait;
+import yal.arbre.instructions.Retourne;
+
+import java.util.ArrayList;
 
 /**
  * Classe qui représente une expression
@@ -14,6 +17,11 @@ public class Expression extends ArbreAbstrait {
      */
     protected Expression(int n) {
         super(n) ;
+    }
+
+    @Override
+    public ArrayList<Retourne> get_retourne() {
+        return null;
     }
 
     @Override

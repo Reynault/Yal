@@ -1,7 +1,5 @@
 package yal.arbre.expressions;
 
-import yal.exceptions.AnalyseSemantiqueException;
-
 /**
  * Classe qui représente une constante dans une expression
  */

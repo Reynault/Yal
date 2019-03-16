@@ -69,11 +69,10 @@ terminal String    IDF, CSTENTIERE, TYPE, EGALLOGIQUE, OU, ET, DIFFERENT, INFERI
    
 /* Non terminals used in the grammar section.  */
 
-non terminal ArbreAbstrait PROG, LINST, INST, LDECL, DECL, AFF, BOUCLE, CONDITION, DECL_VAR, DECL_FONCTION, LDECLFONCTION;
+non terminal ArbreAbstrait PROG, LINST, LINSTFONCTION, INSTFONCTION, INST, LDECL, DECL, AFF, BOUCLEFONC, CONDITIONFONC, BOUCLE, CONDITION, DECL_VAR, DECL_FONCTION, LDECLFONCTION;
 non terminal Expression EXP, OPERBINAIRE;
 non terminal ArrayList<Expression> PAR_EFF;
 non terminal Integer LISTEPARAM, PARAMETRES;
-non terminal String LINSTDUMP, INSTDUMP;
 
 precedence left OU;
 precedence left ET;
@@ -217,103 +216,90 @@ DECL_VAR    ::= TYPE:t IDF:i POINTVIRGULE
                 :}
 ;
 
-DECL_FONCTION   ::= FONCTION IDF:i PARAMETRES:param DEBUT LDECLFONCTION:l LINST:li RETOURNE EXP:e POINTVIRGULE FIN
+DECL_FONCTION   ::= FONCTION IDF:i PARAMETRES:param DEBUT LDECLFONCTION:l LINSTFONCTION:liste FIN
                 {:
                     TDS.getInstance().sortieBlock();
                     int nbFonc = GestionnaireNombres.getInstance().nouvelleFonction();
                     TDS.getInstance().ajouter(
                         new EntreeFonction(i, ileft+1, param),
                         new SymboleFonction(nbFonc));
-                    Retourne ret = new Retourne(eleft+1,e);
-                    RESULT = new Fonction(ileft+1, nbFonc, (BlocDInstructions)li, ret, param);
+                    RESULT = new Fonction(ileft+1, nbFonc, (BlocDInstructions)liste, param);
                 :}
                 |
-                FONCTION IDF:i PARAMETRES:param DEBUT LINST:li RETOURNE EXP:e POINTVIRGULE FIN
+                FONCTION IDF:i PARAMETRES:param DEBUT LINSTFONCTION:liste FIN
                 {:
                     TDS.getInstance().sortieBlock();
                     int nbFonc = GestionnaireNombres.getInstance().nouvelleFonction();
                     TDS.getInstance().ajouter(
                         new EntreeFonction(i, ileft+1, param),
                         new SymboleFonction(nbFonc));
-                    Retourne ret = new Retourne(eleft+1,e);
-                    RESULT = new Fonction(ileft+1, nbFonc, (BlocDInstructions)li, ret, param);
-                :}
-                |
-                FONCTION IDF:i PARAMETRES:param DEBUT LINST:li RETOURNE EXP:e POINTVIRGULE LINSTDUMP FIN
-                {:
-                    TDS.getInstance().sortieBlock();
-                    int nbFonc = GestionnaireNombres.getInstance().nouvelleFonction();
-                    TDS.getInstance().ajouter(
-                    new EntreeFonction(i, ileft+1, param),
-                    new SymboleFonction(nbFonc));
-                    Retourne ret = new Retourne(eleft+1,e);
-                    RESULT = new Fonction(ileft+1, nbFonc, (BlocDInstructions)li, ret, param);
-                :}
-                |
-                FONCTION IDF:i PARAMETRES:param DEBUT LDECLFONCTION:l LINST:li RETOURNE EXP:e POINTVIRGULE LINSTDUMP FIN
-                {:
-                    TDS.getInstance().sortieBlock();
-                    int nbFonc = GestionnaireNombres.getInstance().nouvelleFonction();
-                    TDS.getInstance().ajouter(
-                        new EntreeFonction(i, ileft+1, param),
-                        new SymboleFonction(nbFonc));
-                    Retourne ret = new Retourne(eleft+1,e);
-                    RESULT = new Fonction(ileft+1, nbFonc, (BlocDInstructions)li, ret, param);
-                :}
-                |
-                FONCTION IDF:i PARAMETRES:param DEBUT LDECLFONCTION:l  RETOURNE EXP:e POINTVIRGULE LINSTDUMP FIN
-                {:
-                    TDS.getInstance().sortieBlock();
-                    int nbFonc = GestionnaireNombres.getInstance().nouvelleFonction();
-                    TDS.getInstance().ajouter(
-                        new EntreeFonction(i, ileft+1, param),
-                        new SymboleFonction(nbFonc));
-                    Retourne ret = new Retourne(eleft+1,e);
-                    RESULT = new Fonction(ileft+1, nbFonc, new BlocDInstructions(eleft+1), ret, param);
-                :}
-                |
-                FONCTION IDF:i PARAMETRES:param DEBUT RETOURNE EXP:e POINTVIRGULE LINSTDUMP FIN
-                {:
-                    TDS.getInstance().sortieBlock();
-                    int nbFonc = GestionnaireNombres.getInstance().nouvelleFonction();
-                    TDS.getInstance().ajouter(
-                        new EntreeFonction(i, ileft+1, param),
-                        new SymboleFonction(nbFonc));
-                    Retourne ret = new Retourne(eleft+1,e);
-                    RESULT = new Fonction(ileft+1, nbFonc, new BlocDInstructions(eleft+1), ret, param);
-                :}
-                |
-                FONCTION IDF:i PARAMETRES:param DEBUT RETOURNE EXP:e POINTVIRGULE FIN
-                {:
-                    TDS.getInstance().sortieBlock();
-                    int nbFonc = GestionnaireNombres.getInstance().nouvelleFonction();
-                    TDS.getInstance().ajouter(
-                        new EntreeFonction(i, ileft+1, param),
-                        new SymboleFonction(nbFonc));
-                    Retourne ret = new Retourne(eleft+1,e);
-                    RESULT = new Fonction(ileft+1, nbFonc, new BlocDInstructions(eleft+1), ret, param);
-                :}
-                |
-                FONCTION IDF:i PARAMETRES:param DEBUT LDECLFONCTION:l  RETOURNE EXP:e POINTVIRGULE FIN
-                {:
-                    TDS.getInstance().sortieBlock();
-                    int nbFonc = GestionnaireNombres.getInstance().nouvelleFonction();
-                    TDS.getInstance().ajouter(
-                        new EntreeFonction(i, ileft+1, param),
-                        new SymboleFonction(nbFonc));
-                    Retourne ret = new Retourne(eleft+1,e);
-                    RESULT = new Fonction(ileft+1, nbFonc, new BlocDInstructions(eleft+1), ret, param);
+                    RESULT = new Fonction(ileft+1, nbFonc, (BlocDInstructions)liste, param);
                 :}
 ;
 
-LINSTDUMP   ::= LINSTDUMP INSTDUMP
-|
-                INSTDUMP
-;
+INSTFONCTION    ::= ECRIRE EXP:e POINTVIRGULE
+                    {: RESULT = new Ecrire(e, eleft + 1) ; :}
+            |
+                    LIRE IDF:i POINTVIRGULE
+                    {: RESULT = new Lire(new Variable(ileft+1,i), ileft + 1); :}
+            |
+                    AFF:i POINTVIRGULE
+                    {: RESULT = i;  :}
+            |
+                    RETOURNE EXP:e POINTVIRGULE
+                    {: RESULT = new Retourne(eleft+1, e); :}
+            |
+                    BOUCLEFONC:i
+                    {: RESULT = i; :}
+            |
+                    CONDITIONFONC:i
+                    {: RESULT = i; :}
+            ;
 
-INSTDUMP    ::= INST
+BOUCLEFONC      ::= TANTQUE EXP:e REPETER LINSTFONCTION:l FINTANTQUE
+                   {:
+                   BlocDInstructions inst = new BlocDInstructions(eleft + 1);
+                   inst.ajouter(l);
+                   RESULT = new Boucle(eleft+1,e,inst); :}
+           ;
+
+CONDITIONFONC   ::=  SI EXP:e ALORS LINSTFONCTION:alors SINON LINSTFONCTION:sinon FINSI
+                   {:
+                   BlocDInstructions a = new BlocDInstructions(eleft + 1);
+                   a.ajouter(alors);
+                   BlocDInstructions s = new BlocDInstructions(eleft + 1);
+                   s.ajouter(sinon);
+                   RESULT = new Condition(eleft + 1, e, a, s); :}
+                   |
+                   SI EXP:e ALORS LINSTFONCTION:alors FINSI
+                   {:
+                   BlocDInstructions a = new BlocDInstructions(eleft + 1);
+                   a.ajouter(alors);
+                   RESULT = new Condition(eleft + 1, e, a, null); :}
+                   |
+                   SI EXP:e ALORS SINON LINSTFONCTION:sinon FINSI
+                   {:
+                   BlocDInstructions s = new BlocDInstructions(eleft + 1);
+                   s.ajouter(sinon);
+                   RESULT = new Condition(eleft + 1, e, null, s); :}
+                   |
+                   SI EXP:e ALORS FINSI
+                   {:
+                   RESULT = new Condition(eleft + 1, e, null, null); :}
+           ;
+
+LINSTFONCTION   ::= LINSTFONCTION:liste INSTFONCTION:i
+                {:
+                ((BlocDInstructions) liste).ajouter(i);
+                RESULT = liste;
+                :}
 |
-                RETOURNE EXP POINTVIRGULE
+                INSTFONCTION:i
+                {:
+                BlocDInstructions b = new BlocDInstructions(ileft + 1);
+                b.ajouter(i);
+                RESULT =  b;
+                :}
 ;
 
 PARAMETRES  ::= PAROUVERT PARFERMER

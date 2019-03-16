@@ -2,7 +2,10 @@ package yal.arbre.instructions.affectation;
 
 import yal.arbre.expressions.Expression;
 import yal.arbre.expressions.Variable;
+import yal.arbre.instructions.Retourne;
 import yal.exceptions.AnalyseSemantiqueException;
+
+import java.util.ArrayList;
 
 /**
  * Classe qui représente une affectation simple (à une variable entière)
@@ -23,6 +26,11 @@ public class AffectationSimple extends Affectation {
         super(n);
         this.exp = exp;
         this.idf = idf;
+    }
+
+    @Override
+    public ArrayList<Retourne> get_retourne() {
+        return null;
     }
 
     /**

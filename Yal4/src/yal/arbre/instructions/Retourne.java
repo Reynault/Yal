@@ -3,6 +3,8 @@ package yal.arbre.instructions;
 import yal.arbre.expressions.Expression;
 import yal.exceptions.AnalyseSemantiqueException;
 
+import java.util.ArrayList;
+
 /**
  * Classe qui représente l'instruction de retour d'une fonction
  */
@@ -21,6 +23,13 @@ public class Retourne extends Instruction{
     public Retourne(int n, Expression e) {
         super(n);
         this.e = e;
+    }
+
+    @Override
+    public ArrayList<Retourne> get_retourne() {
+        ArrayList<Retourne> res = new ArrayList<Retourne>();
+        res.add(this);
+        return res;
     }
 
     @Override

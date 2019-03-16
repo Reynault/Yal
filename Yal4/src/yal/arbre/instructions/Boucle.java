@@ -5,6 +5,8 @@ import yal.arbre.GestionnaireNombres;
 import yal.arbre.expressions.Expression;
 import yal.exceptions.AnalyseSemantiqueException;
 
+import java.util.ArrayList;
+
 /**
  * Classe boucle qui modélise une boucle dans un programme yal
  */
@@ -29,6 +31,11 @@ public class Boucle extends Instruction {
             throw new AnalyseSemantiqueException(noLigne,"Une boucle doit prendre une expression logique en " +
                     "condition");
         }
+    }
+
+    @Override
+    public ArrayList<Retourne> get_retourne() {
+        return null;
     }
 
     @Override
