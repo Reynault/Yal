@@ -33,6 +33,11 @@ public class Retourne extends Instruction{
     }
 
     @Override
+    public int get_nb_retourne() {
+        return 1;
+    }
+
+    @Override
     public void verifier() {
         e.verifier();
         if(!e.isArithmetique()){

@@ -37,6 +37,15 @@ public class BlocDInstructions extends ArbreAbstrait {
         return liste;
     }
 
+    @Override
+    public int get_nb_retourne() {
+        int res = 0;
+        for (ArbreAbstrait a : programme){
+            res += a.get_nb_retourne();
+        }
+        return res;
+    }
+
     /**
      * Méthode qui permet d'ajouter un arbre abstrait
      * @param a le nouvel arbre

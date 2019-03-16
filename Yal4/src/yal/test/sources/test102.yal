@@ -16,6 +16,6 @@ programme test debut
         finsi
     fin
     entier a;
-    a = t(1,4,3);
+    a = t(2,1,3);
     ecrire a;
 fin

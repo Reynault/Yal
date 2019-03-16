@@ -2,8 +2,6 @@ package yal.arbre.instructions;
 
 import yal.arbre.ArbreAbstrait;
 
-import java.util.ArrayList;
-
 /**
  * Classe qui représente une instruction
  */

@@ -35,7 +35,12 @@ public class Boucle extends Instruction {
 
     @Override
     public ArrayList<Retourne> get_retourne() {
-        return null;
+        return instructions.get_retourne();
+    }
+
+    @Override
+    public int get_nb_retourne() {
+        return 0;
     }
 
     @Override

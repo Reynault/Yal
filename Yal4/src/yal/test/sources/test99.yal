@@ -1,12 +1,14 @@
 programme test debut
     fonction t(entier a; entier b; entier c) debut
         tantque a > b repeter
+            ecrire 266;
             retourne a;
+            ecrire 666;
         fintantque
         retourne a;
         ecrire 5;
     fin
     entier a;
-    a = t(1,4,3);
+    a = t(5,4,3);
     ecrire a;
 fin

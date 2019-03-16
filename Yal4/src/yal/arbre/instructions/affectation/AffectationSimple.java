@@ -33,6 +33,11 @@ public class AffectationSimple extends Affectation {
         return null;
     }
 
+    @Override
+    public int get_nb_retourne() {
+        return 0;
+    }
+
     /**
      * Méthode de vérification de la sémantique
      */

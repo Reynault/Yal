@@ -29,6 +29,11 @@ public class Ecrire extends Instruction {
         return null;
     }
 
+    @Override
+    public int get_nb_retourne() {
+        return 0;
+    }
+
     /**
      * Méthode de vérification de la sémantique
      */

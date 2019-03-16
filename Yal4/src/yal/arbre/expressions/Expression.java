@@ -20,6 +20,11 @@ public class Expression extends ArbreAbstrait {
     }
 
     @Override
+    public int get_nb_retourne() {
+        return 0;
+    }
+
+    @Override
     public ArrayList<Retourne> get_retourne() {
         return null;
     }

@@ -31,6 +31,7 @@ public abstract class ArbreAbstrait {
 
     public abstract ArrayList<Retourne> get_retourne();
 
+    public abstract int get_nb_retourne();
     /**
      * Méthode de vérification de la sémantique
      */

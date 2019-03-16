@@ -26,6 +26,11 @@ public class Lire extends Instruction{
         return null;
     }
 
+    @Override
+    public int get_nb_retourne() {
+        return 0;
+    }
+
     /**
      * Méthode qui permet de vérifier la sémantique
      */

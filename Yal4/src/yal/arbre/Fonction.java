@@ -33,14 +33,20 @@ public class Fonction extends ArbreAbstrait{
     }
 
     @Override
+    public int get_nb_retourne() {
+        return 0;
+    }
+
+    @Override
     public void verifier() {
         TDS instance = TDS.getInstance();
         instance.entreBlockVerif();
         numBloc = GestionnaireNombres.getInstance().getCompteur_blocs();
         deplacements = instance.getDeplacement();
         bloc.verifier();
+        int nbRetourne = bloc.get_nb_retourne();
         ArrayList<Retourne> liste_retourne = bloc.get_retourne();
-        if(liste_retourne.size() == 0){
+        if(nbRetourne == 0){
             throw new AnalyseSemantiqueException(noLigne, "Une fonction doit contenir au moins un retourne");
         }else{
             for (Retourne r : liste_retourne){

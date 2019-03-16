@@ -51,11 +51,32 @@ public class Condition extends Instruction{
             }
         }
 
+        if(alors != null && sinon == null){
+            resAlors = alors.get_retourne();
+            if(resAlors.size() != 0){
+                res.addAll(resAlors);
+            }
+        }
+
         if(sinon != null && alors == null){
             resSinon = sinon.get_retourne();
             if (resSinon.size() != 0){
                 throw new AnalyseSemantiqueException(noLigne, "L'instruction retourne doit apparaître dans la clause si " +
                         "ET dans la clause alors");
+            }
+        }
+        return res;
+    }
+
+    @Override
+    public int get_nb_retourne() {
+        int res, resAlors, resSinon;
+        res = 0;
+        if(alors != null && sinon != null) {
+            resAlors = alors.get_nb_retourne();
+            resSinon = sinon.get_nb_retourne();
+            if(resAlors > 0 && resSinon > 0){
+                res = 1;
             }
         }
         return res;
