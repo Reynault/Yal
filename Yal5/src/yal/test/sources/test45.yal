@@ -1,0 +1,14 @@
+programme f debut
+    entier a;
+    entier b;
+    fonction test () debut
+        a = 6;
+        ecrire b;
+        retourne a;
+    fin
+    ecrire 4;
+    si test() == 0 alors
+        ecrire 2;
+    finsi
+    ecrire test();
+fin

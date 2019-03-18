@@ -1,0 +1,6 @@
+programme test debut
+    fonction oui (entier a) debut
+        entier a;
+        retourne a;
+    fin
+fin

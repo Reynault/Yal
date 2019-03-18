@@ -1,0 +1,6 @@
+programme test debut
+    fonction a () debut
+        retourne 5 +5  * 5;
+    fin
+    ecrire a();
+fin

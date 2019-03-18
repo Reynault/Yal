@@ -1,0 +1,15 @@
+programme f debut
+
+    fonction test () debut
+        si e == 45 alors
+            e = e -15;
+        sinon
+            e = e-1;
+        retourne e;
+    fin
+    finsi
+
+        entier e;
+        e = 45;
+    ecrire test();
+fin

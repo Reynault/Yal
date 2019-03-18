@@ -1,0 +1,8 @@
+programme test debut
+    entier a;
+    fonction a () debut
+        a = 50;
+        retourne a +5  * 5;
+    fin
+    ecrire a();
+fin

@@ -1,0 +1,17 @@
+programme Test25 debut
+    fonction fact(entier n) debut
+        entier res;
+        si (n > 1) alors
+            res = n * fact(n - 1);
+        sinon
+            res = 1;
+        finsi
+        retourne res;
+    fin
+    entier i;
+    i = 5;
+    tantque (i > 0) repeter
+        ecrire fact(i);
+        i = i - 1;
+    fintantque
+fin

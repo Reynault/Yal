@@ -1,0 +1,11 @@
+programme Test26 debut
+    fonction f(entier a) debut
+        entier[a] tab;
+        retourne tab.longueur;
+    fin
+    ecrire f(10);
+    ecrire f(20);
+    ecrire f(30);
+    ecrire f(40);
+    ecrire f(50);
+fin

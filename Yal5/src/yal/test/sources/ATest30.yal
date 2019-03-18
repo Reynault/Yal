@@ -1,0 +1,43 @@
+programme Test30 debut
+    entier[10] tab;
+    fonction globaleIncr() debut
+        entier cpt;
+        tantque cpt < tab.longueur repeter
+            tab[cpt] = tab[cpt] + cpt;
+            cpt = cpt + 1;
+        fintantque
+        retourne 0;
+    fin
+    fonction globaleAffichage() debut
+        entier cpt;
+        tantque cpt < tab.longueur repeter
+            ecrire tab[cpt];
+            cpt = cpt + 1;
+        fintantque
+        retourne 0;
+    fin
+    fonction inverse(entier size) debut
+        entier[size] tmp;
+        entier cpt;
+        tantque cpt < size repeter
+            tmp[cpt] = tab[size - cpt - 1];
+            cpt = cpt + 1;
+        fintantque
+        cpt = 0;
+        tantque cpt < size repeter
+            tab[cpt] = tmp[cpt];
+            cpt = cpt + 1;
+        fintantque
+        retourne 0;
+    fin
+    entier retour;
+    retour = globaleIncr();
+    retour = globaleIncr();
+    retour = globaleIncr();
+    retour = globaleIncr();
+    retour = globaleAffichage();
+    retour = inverse(tab.longueur);
+    retour = globaleAffichage();
+    retour = inverse(tab.longueur);
+    retour = globaleAffichage();
+fin

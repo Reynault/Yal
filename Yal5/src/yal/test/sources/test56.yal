@@ -1,0 +1,20 @@
+programme pipop debut
+
+    entier a;
+    entier b;
+
+    fonction test() debut
+        si a == 0 alors
+            retourne a;
+        sinon
+            a = a - 1;
+            retourne b + test();
+        finsi
+    fin
+
+    a = 10;
+    b = 2;
+
+    ecrire test();
+
+fin
