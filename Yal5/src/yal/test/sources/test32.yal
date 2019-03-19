@@ -1,0 +1,16 @@
+programme test debut
+    entier a;
+    entier b;
+    entier c;
+    lire a;
+    tantque a != 1 repeter
+        b = a/2;
+        si b*2 == a alors
+            a = a/2;
+        sinon
+            a = 3*a + 1;
+        finsi
+        c = c + 1;
+    fintantque
+    ecrire c;
+fin

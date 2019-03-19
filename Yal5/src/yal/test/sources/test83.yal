@@ -1,0 +1,8 @@
+programme test debut
+    fonction t(entier a; entier b; entier c) debut
+        retourne 3+3;
+    fin
+    entier a;
+    a = t(1,2,3);
+    ecrire a;
+fin

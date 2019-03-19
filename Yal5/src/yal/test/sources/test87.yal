@@ -1,0 +1,29 @@
+programme test debut
+    entier aze;
+    entier a;
+    entier b;
+    // Fonction qui permet de
+    // diminuer la valeur de a par quoi
+    fonction hip(entier a; entier quoi) debut
+        a = a - quoi;
+        ecrire a;
+        retourne a;
+    fin
+    // Voici un commentaire sur la fonction
+    // On sait pas ce qu'elle fait
+    // .
+    fonction hop(entier b) debut
+        entier quoi;
+        entier nbfois;
+        quoi = b;
+        tantque a/quoi > b-1 repeter
+            nbfois = nbfois + 1;
+            a = hip(a, quoi);
+        fintantque
+        retourne nbfois;
+    fin
+    lire a;
+    lire b;
+    aze = hop(b);
+    ecrire aze;
+fin

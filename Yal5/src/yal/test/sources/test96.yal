@@ -1,0 +1,49 @@
+programme wow debut
+
+    fonction hip(entier nb) debut
+        entier hip;
+        hip = nb;
+        tantque hip > 0 repeter
+            // Oui
+            hip = hip - 1;
+            ecrire hip;
+        fintantque
+        retourne hip;
+    fin
+
+    entier hop;
+
+    entier hip;
+
+    fonction hop ( entier a ) debut
+        entier hop;
+        hop = a + 1;
+        retourne hop;
+    fin
+
+    // Fonction qui affiche et retourne le max
+    fonction hop ( entier a; entier b ) debut
+        entier hop;
+
+        si a > b alors
+            ecrire a;
+            hop = a;
+        sinon
+            ecrire b;
+            hop = b;
+        finsi
+
+        retourne hop;
+    fin
+
+    ecrire hop;
+
+    ecrire hop( 50, 20);
+
+    ecrire hop(50);
+
+    hip = 5;
+
+    ecrire hip(5);
+
+fin

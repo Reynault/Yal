@@ -1,0 +1,23 @@
+programme pipop debut
+    entier a;
+    entier b;
+    entier c;
+    fonction invers() debut
+        c = a;
+        a = b;
+        b = c;
+        retourne 0;
+    fin
+
+    a = 10;
+    b = 20;
+    ecrire a;
+    ecrire b;
+    ecrire c;
+
+    c = invers();
+
+    ecrire a;
+    ecrire b;
+    ecrire c;
+fin

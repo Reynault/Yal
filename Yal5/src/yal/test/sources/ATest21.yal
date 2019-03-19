@@ -1,0 +1,20 @@
+programme Test21 debut
+    fonction f() debut
+        entier tmp;
+        tmp = 10;
+        retourne tmp * r();
+    fin
+    fonction r() debut
+        entier tmp;
+        tmp = 10;
+        retourne tmp * tmp();
+    fin
+    fonction tmp() debut
+        entier tmp;
+        tmp = 10;
+        retourne tmp;
+    fin
+    entier tmp;
+    tmp = f();
+    ecrire tmp;
+fin

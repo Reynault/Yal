@@ -1,0 +1,12 @@
+programme Test20 debut
+    entier i;
+    fonction f() debut
+        entier i;
+        i = (10 * 2 + 3 * 5) / 5;
+        retourne i;
+    fin
+    ecrire i;
+    i = 10;
+    ecrire f();
+    ecrire i;
+fin

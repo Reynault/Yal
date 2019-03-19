@@ -1,0 +1,15 @@
+programme test debut
+    fonction t(entier a; entier b; entier c) debut
+        entier d;
+        d = 7;
+        ecrire d;
+        ecrire a;
+        ecrire c;
+        ecrire b;
+        ecrire a == b;
+        retourne a+d;
+    fin
+    entier a;
+    a = t(1,4,3);
+    ecrire a;
+fin
