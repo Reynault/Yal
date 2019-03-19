@@ -1,0 +1,6 @@
+programme test debut
+    fonction oui (entier a; entier a) debut
+        retourne 50;
+    fin
+    ecrire 5;
+fin

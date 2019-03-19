@@ -1,0 +1,8 @@
+programme test debut
+    fonction a () debut
+        entier a;
+        retourne 5;
+    fin
+
+    a = 5;
+fin
