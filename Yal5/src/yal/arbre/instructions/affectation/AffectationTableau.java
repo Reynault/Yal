@@ -47,10 +47,14 @@ public class AffectationTableau extends Affectation {
     @Override
     public String toMIPS() {
         StringBuilder sb = new StringBuilder();
-        // Récupération de la position de l'indice dans $t9
-        sb.append(idf.toMIPS());
         // Récupération de la valeur de l'expression dans $v0
         sb.append(e.toMIPS());
+        sb.append("\tsw $v0, 0($sp)\n");
+        sb.append("\taddi $sp, $sp, -4\n");
+        // Récupération de la position de l'indice dans $t9
+        sb.append(idf.toMIPS());
+        sb.append("\taddi $sp, $sp, 4\n");
+        sb.append("\tlw $v0, 0($sp)\n");
         // Utilisation de $t9 pour stocker la variable
         sb.append("\tsw $v0, 0($t9)\n");
         return sb.toString();

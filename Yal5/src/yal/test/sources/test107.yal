@@ -1,0 +1,9 @@
+programme azerty debut
+    entier i;
+    entier[20] tab;
+    i = 0;
+    tantque i < tab.longueur repeter
+        ecrire i;
+        i = i + 1;
+    fintantque
+fin

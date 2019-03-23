@@ -17,7 +17,7 @@ import yal.exceptions.AnalyseException;
 public class Yal {
     /**
      * Constructeur qui initialise l'analyseur syntaxique et lexicale.
-     *
+     * <p>
      * Qui contruit l'arbre abstrait et qui créer le fichier mips avec
      * le code généré.
      *
@@ -32,18 +32,18 @@ public class Yal {
             // Vérification sémantique du code
             GestionnaireNombres.getInstance().resetBloc();
             GestionnaireNombres.getInstance().resetIdBlock();
-            arbre.verifier() ;
-            System.out.println("COMPILATION OK") ;
+            arbre.verifier();
+            System.out.println("COMPILATION OK");
 
             // Création du fichier mips, et ecriture du code mips
-            String nomSortie = nomFichier.replaceAll("[.]yal", ".mips") ;
-            PrintWriter flot = new PrintWriter(new BufferedWriter(new FileWriter(nomSortie))) ;
+            String nomSortie = nomFichier.replaceAll("[.]yal", ".mips");
+            PrintWriter flot = new PrintWriter(new BufferedWriter(new FileWriter(nomSortie)));
             flot.println(arbre.toMIPS());
-            flot.close() ;
+            flot.close();
         }
         // Gestion des erreurs liées au fichier
         catch (FileNotFoundException ex) {
-            System.err.println("Fichier " + nomFichier + " inexistant") ;
+            System.err.println("Fichier " + nomFichier + " inexistant");
         }
         // Gestion des erreurs de l'application
         catch (AnalyseException ex) {
@@ -57,14 +57,15 @@ public class Yal {
 
     /**
      * Méthode main
+     *
      * @param args
      */
     public static void main(String[] args) {
         if (args.length != 1) {
-            System.err.println("Nombre incorrect d'arguments") ;
-            System.err.println("\tjava -jar yal.jar <fichierSource.yal>") ;
-            System.exit(1) ;
+            System.err.println("Nombre incorrect d'arguments");
+            System.err.println("\tjava -jar yal.jar <fichierSource.yal>");
+            System.exit(1);
         }
-        new Yal(args[0]) ;
+        new Yal(args[0]);
     }
 }

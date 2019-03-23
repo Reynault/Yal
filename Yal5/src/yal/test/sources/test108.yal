@@ -1,0 +1,18 @@
+programme oui debut
+    entier i;
+    entier [20] tab;
+
+    i = 0;
+
+    tantque i < tab.longueur repeter
+        tab[i] = i;
+        i = i + 1;
+    fintantque
+
+    i = 0;
+
+    tantque i < tab.longueur repeter
+        ecrire tab[i];
+        i = i + 1;
+    fintantque
+fin

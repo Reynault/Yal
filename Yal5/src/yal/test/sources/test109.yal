@@ -1,0 +1,35 @@
+programme test debut
+    entier i;
+    entier j;
+    entier min;
+    entier[5] tab;
+
+    tab[0] = 51;
+    tab[1] = 20;
+    tab[2] = 115;
+    tab[3] = 150;
+    tab[4] = 100;
+
+    // tri de tab
+    tantque i < tab.longueur repeter
+        min = i;
+        j = i+1;
+        tantque j < tab.longueur repeter
+            si tab[j] < tab[min] alors
+                min = j;
+            finsi
+            j = j + 1;
+        fintantque
+        j = tab[i];
+        tab[i] = tab[min];
+        tab[min] = j;
+        i = i + 1;
+    fintantque
+
+    // Ecriture de tab
+    i = 0;
+    tantque i < tab.longueur repeter
+        ecrire tab[i];
+        i = i + 1;
+    fintantque
+fin
