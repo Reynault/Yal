@@ -21,6 +21,14 @@ public class SymboleTableau extends Symbole {
         return deplacement;
     }
 
+    /**
+     * Getteur du numéro de block
+     * @return
+     */
+    public int getNumeroBlock() {
+        return numBlock;
+    }
+
     @Override
     public String toString() {
         return "SymboleTableau{" +

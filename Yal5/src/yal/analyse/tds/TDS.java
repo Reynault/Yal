@@ -95,6 +95,8 @@ public class TDS extends TableDesSymboles{
         return tableCourante.creerDeplacement();
     }
 
+    public int creerDeplacementTableau(){return tableCourante.creerDeplacementTableau();}
+
     /**
      *
      */

@@ -1,0 +1,4 @@
+programme pipop debut
+    entier[23] tab;
+    ecrire tab.longueur;
+fin

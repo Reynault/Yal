@@ -157,6 +157,12 @@ public class TDSLocale extends TableDesSymboles {
         return 16 + nbparam * 4;
     }
 
+    public int creerDeplacementTableau(){
+        int temp = deplacement;
+        this.deplacement = deplacement - 8;
+        return temp;
+    }
+
     @Override
     public int getDeplacement() {
         return deplacement;

@@ -1,0 +1,7 @@
+programme pipop debut
+    fonction chiant() debut
+        entier[23] tab;
+        retourne tab.longueur;
+    fin
+    ecrire chiant();
+fin

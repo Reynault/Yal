@@ -38,6 +38,8 @@ public class Expression extends ArbreAbstrait {
         return null;
     }
 
+    public String placerT8(){return null;}
+
     /**
      * Méthode isArithmetique qui permet d'identifier les expressions qui sont
      * des expressions arithmétiques.

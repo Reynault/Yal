@@ -162,6 +162,20 @@ LDECLFONCTION   ::= LDECLFONCTION:li DECL_VAR:i
                     b.ajouter(i) ;
                     RESULT = b ;
                     :}
+                    |
+                    LDECLFONCTION:li DECL_TABLEAU:i
+                    {:
+                     ((BlocDInstructions)li).ajouter(i) ;
+                     RESULT = li ;
+                     :}
+|
+                    DECL_TABLEAU:i
+                    {:
+                    BlocDInstructions b = new BlocDInstructions(ileft + 1) ;
+                    b.ajouter(i) ;
+                    RESULT = b ;
+                    :}
+
                     ;
 
 BOUCLE  ::=     TANTQUE EXP:e REPETER LINST:l FINTANTQUE
@@ -212,11 +226,13 @@ DECL    ::= DECL_VAR:decl
             :}
         ;
 
-DECL_TABLEAU ::= TYPE:t CROUV EXP:exp CRFERM IDF:idf
+DECL_TABLEAU ::= TYPE:t CROUV EXP:exp CRFERM IDF:i POINTVIRGULE
             {:
                 TDS instance = TDS.getInstance();
                 //ajouter dans la table
-                RESULT = null;
+                instance.ajouter(new EntreeTableau(i, ileft+1),
+                                new SymboleTableau(instance.creerDeplacementTableau(), t, GestionnaireNombres.getInstance().getCompteur_blocs()));
+                RESULT = new Tableau(ileft+1, exp, i);
             :}
             ;
 
@@ -366,7 +382,7 @@ PAR_EFF     ::= PAR_EFF:liste VIRGULE EXP:e
 AFF     ::=     IDF:i EGAL EXP:e
                 {: RESULT = new AffectationSimple(eleft + 1,e,new Variable(eleft+1,i)); :}
                 |
-                IDF:idf CROUV EXP:exp1 CRFERM EGAL EXP:exp2
+                IDF:i CROUV EXP:e1 CRFERM EGAL EXP:e2
                 {:
                     //affectation dans une case tableau
                 :}
@@ -402,14 +418,14 @@ EXP     ::=
                 RESULT = new AppelFonction(ileft+1, i, e.size(), e);
                :}
        |
-                IDF:idf CROUV EXP:exp CRFERM
+                IDF:i CROUV EXP:exp CRFERM
                 {:
                     //acest case tableau
                 :}
         |
-                IDF:idf POINT LONGUEUR
+                IDF:i POINT LONGUEUR
                 {:
-                    //demande de la longueur du tableau
+                    RESULT = new LongueurTableau(ileft+1, i);
                 :}
         ;
 
