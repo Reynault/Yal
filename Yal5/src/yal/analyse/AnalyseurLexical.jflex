@@ -99,6 +99,12 @@ commentaire = [/][/].*
 
 ")"                    { return symbol(CodesLexicaux.PARFERMER); }
 
+"["                     { return symbol(CodesLexicaux.CROUV); }
+
+"]"                     { return symbol(CodesLexicaux.CRFERM); }
+"."                     { return symbol(CodesLexicaux.POINT); }
+"longueur"                     { return symbol(CodesLexicaux.LONGUEUR); }
+
 "fonction"              { return symbol(CodesLexicaux.FONCTION); }
 
 "retourne"              { return symbol(CodesLexicaux.RETOURNE); }
