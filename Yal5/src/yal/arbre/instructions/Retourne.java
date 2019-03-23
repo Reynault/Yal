@@ -60,8 +60,9 @@ public class Retourne extends Instruction{
         // Stockage de la valeur de retour
         sb.append(e.toMIPS());
         // Mise à jour du pointeur de la pile
-        int d = (-deplacement)+16+(nbparam*4);
-        sb.append("\taddi $sp, $sp, "+d+"\n");
+        //int d = (-deplacement)+16+(nbparam*4);
+        sb.append("\tadd $sp, $s7, $zero\n");
+        sb.append("\taddi $sp, $sp, "+(16+(nbparam*4))+"\n");
         sb.append("\tsw $v0, 16($s7)\n");
         // On revient à l'ancienne base
         sb.append("\tlw $ra, 12($s7)\n");
