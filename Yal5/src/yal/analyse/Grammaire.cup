@@ -252,7 +252,7 @@ DECL_FONCTION   ::= FONCTION IDF:i PARAMETRES:param DEBUT LDECLFONCTION:l LINSTF
                     TDS.getInstance().ajouter(
                         new EntreeFonction(i, ileft+1, param),
                         new SymboleFonction(nbFonc));
-                    RESULT = new Fonction(ileft+1, nbFonc, (BlocDInstructions)liste, param);
+                    RESULT = new Fonction(ileft+1, nbFonc, (BlocDInstructions)liste, param, (BlocDInstructions)l);
                 :}
                 |
                 FONCTION IDF:i PARAMETRES:param DEBUT LINSTFONCTION:liste FIN
@@ -262,7 +262,7 @@ DECL_FONCTION   ::= FONCTION IDF:i PARAMETRES:param DEBUT LDECLFONCTION:l LINSTF
                     TDS.getInstance().ajouter(
                         new EntreeFonction(i, ileft+1, param),
                         new SymboleFonction(nbFonc));
-                    RESULT = new Fonction(ileft+1, nbFonc, (BlocDInstructions)liste, param);
+                    RESULT = new Fonction(ileft+1, nbFonc, (BlocDInstructions)liste, param, new BlocDInstructions(ileft+1));
                 :}
 ;
 

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 public class Fonction extends ArbreAbstrait{
     private BlocDInstructions bloc;
+    private BlocDInstructions declaration;
     private int numeroFonction;
     private int numBloc;
     private int deplacements;
@@ -20,8 +21,9 @@ public class Fonction extends ArbreAbstrait{
      * @param numero le numéro de la fonction
      * @param bloc le bloc d'instructions
      */
-    public Fonction(int n, int numero, BlocDInstructions bloc, int nbparam) {
+    public Fonction(int n, int numero, BlocDInstructions bloc, int nbparam, BlocDInstructions declaration) {
         super(n);
+        this.declaration = declaration;
         numeroFonction = numero;
         this.bloc = bloc;
         this.nbparam = nbparam;
@@ -78,6 +80,8 @@ public class Fonction extends ArbreAbstrait{
         sb.append("\tmove $s7, $sp\n");
         // On initialise les variables du bloc
         sb.append("\taddi $sp, $sp, "+deplacements+"\n");
+        //initialisation des variables/tableau
+        sb.append(declaration.toMIPS());
         // Instructions du bloc
         sb.append(bloc.toMIPS());
         sb.append("\tFONCFIN"+numeroFonction+":\n");
