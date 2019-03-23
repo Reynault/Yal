@@ -1,0 +1,5 @@
+programme test debut
+    entier[23] test;
+    test[1] = 58;
+    ecrire test[1];
+fin

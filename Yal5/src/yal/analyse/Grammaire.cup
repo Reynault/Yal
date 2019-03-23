@@ -384,7 +384,7 @@ AFF     ::=     IDF:i EGAL EXP:e
                 |
                 IDF:i CROUV EXP:e1 CRFERM EGAL EXP:e2
                 {:
-                    //affectation dans une case tableau
+                    RESULT = new AffectationTableau(ileft + 1, new IndiceTableau(ileft + 1, i, e1), e2);
                 :}
         ;
 
@@ -420,7 +420,7 @@ EXP     ::=
        |
                 IDF:i CROUV EXP:exp CRFERM
                 {:
-                    //acest case tableau
+                    RESULT = new IndiceTableau(ileft+1, i, exp);
                 :}
         |
                 IDF:i POINT LONGUEUR
