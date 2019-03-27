@@ -1,0 +1,11 @@
+programme test debut
+    entier[5] tab;
+    fonction salut () debut
+        entier i;
+        ecrire tab.longueur;
+        retourne tab.longueur;
+    fin
+    tab[1] = 7;
+    ecrire tab.longueur;
+    ecrire salut();
+fin

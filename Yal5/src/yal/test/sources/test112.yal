@@ -8,6 +8,7 @@ programme trie debut
         entier i;
         i = 0;
         tantque i < tab.longueur repeter
+            ecrire i;
             ecrire tab[i];
             i = i + 1;
         fintantque
@@ -41,6 +42,7 @@ programme trie debut
     fintantque
 
     balec = afficheTab();
+
     ecrire tab[0];
 
 fin

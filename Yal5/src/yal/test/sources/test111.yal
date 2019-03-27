@@ -46,14 +46,12 @@ programme test debut
 
         tantque i < max repeter
             j = i + 1;
-            tantque j < max-i repeter
-                ecrire j;
-                tmp = tab[0];
-                //si tab[j] < tab[j-1] alors
-                //    tmp = tab[j];
-                //   tab[j] = tab[j-1];
-                //    tab[j] = tmp;
-                //finsi
+            tantque j < max repeter
+                si tab[j] < tab[j-1] alors
+                    tmp = tab[j-1];
+                    tab[j-1] = tab[j];
+                    tab[j-1] = tmp;
+                finsi
                 j = j + 1;
             fintantque
             i = i + 1;
@@ -65,18 +63,19 @@ programme test debut
     fonction premier (entier a; entier b; entier c) debut
         tantque a < tab.longueur repeter
             ecrire tab[a];
+            ecrire a;
             a = a + 1;
         fintantque
         retourne a;
     fin
 
-    tab[0] = 51;
-    tab[1] = 20;
-    tab[2] = 115;
-    tab[3] = 150;
-    tab[4] = 100;
+    tab[4] = 51;
+    tab[3] = 20;
+    tab[1] = 115;
+    tab[2] = 150;
+    tab[0] = 100;
 
     a = premier();
 
-    a = premier(a);
+    a = premier(0);
 fin
