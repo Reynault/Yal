@@ -46,6 +46,7 @@ public class Fonction extends ArbreAbstrait{
         numBloc = GestionnaireNombres.getInstance().getCompteur_blocs();
         deplacements = instance.getDeplacement();
         bloc.verifier();
+        declaration.verifier();
         int nbRetourne = bloc.get_nb_retourne();
         ArrayList<Retourne> liste_retourne = bloc.get_retourne();
         if(nbRetourne == 0){

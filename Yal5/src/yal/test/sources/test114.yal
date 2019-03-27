@@ -1,0 +1,4 @@
+programme test debut
+    entier[5] b;
+    ecrire b.longueur;
+fin
