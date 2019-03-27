@@ -1,0 +1,46 @@
+programme trie debut
+    entier[16] tab;
+    entier i;
+    entier temp;
+    entier balec;
+
+    fonction afficheTab() debut
+        entier i;
+        i = 0;
+        tantque i < tab.longueur repeter
+            ecrire tab[i];
+            i = i + 1;
+        fintantque
+        retourne 0;
+    fin
+
+    tab[0] = 2;
+    tab[1] = 3;
+    tab[2] = 1;
+    tab[3] = 6;
+    tab[4] = 4;
+    tab[5] = 3;
+    tab[6] = 7;
+    tab[7] = 9;
+    tab[8] = 7;
+    tab[9] = 8;
+    tab[10] = 13;
+    tab[11] = 4;
+    tab[12] = 17;
+    tab[13] = 5;
+    tab[14] = 18;
+    tab[15] = 14;
+
+    tantque i < tab.longueur repeter
+        si tab[i] > tab[i+1] alors
+            temp = tab[i];
+            tab[i] = tab[i+1];
+            tab[i+1] = temp;
+        finsi
+        i = i + 2;
+    fintantque
+
+    balec = afficheTab();
+    ecrire tab[0];
+
+fin
