@@ -1,0 +1,5 @@
+programme test debut
+    entier a;
+    a = 5/(5-5);
+    ecrire 5000;
+fin

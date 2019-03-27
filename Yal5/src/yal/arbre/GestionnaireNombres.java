@@ -13,6 +13,7 @@ public class GestionnaireNombres {
     private int num_ecrire;
     private int id_bloc;
     private int compteur_blocs;
+    private int error;
 
     /**
      * Instance unique
@@ -30,6 +31,7 @@ public class GestionnaireNombres {
         num_fonction = 0;
         compteur_blocs = 0;
         id_bloc = 0;
+        error = 0;
     }
     public static GestionnaireNombres getInstance(){
         return instance;
@@ -50,6 +52,11 @@ public class GestionnaireNombres {
     public int nouvelleIteration(){
         num_iteration ++;
         return num_iteration;
+    }
+
+    public int nouvelleErreur(){
+        error ++;
+        return error;
     }
 
     public int nouvelleCondition(){

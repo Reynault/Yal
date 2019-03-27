@@ -50,6 +50,17 @@ public class Tableau extends ArbreAbstrait {
     public String toMIPS() {
         StringBuilder sb = new StringBuilder();
         sb.append(expression.toMIPS());
+        int numero = GestionnaireNombres.getInstance().nouvelleErreur();
+        // Suite à l'évaluation de l'expression
+        // Vérification de la valeur pour éviter d'avoir
+        // des valeurs négatives
+        sb.append("\tbgtz $v0, INDICE"+numero+"\n");
+        sb.append("\tli $v0, 4\n");
+        sb.append("\tla $a0, indiceNegatif\n");
+        sb.append("\tsyscall\n");
+        sb.append("\tli $v0, 10\n");
+        sb.append("\tsyscall\n");
+        sb.append("\tINDICE"+numero+":\n");
         sb.append("   sw $v0, "+deplacement+"($s7)\n");
         sb.append("   sw $sp, "+(deplacement-4)+"($s7)\n");
         sb.append("   mul $v0, $v0, -4\n");

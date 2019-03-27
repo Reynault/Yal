@@ -20,6 +20,9 @@ public class Programme extends ArbreAbstrait {
             "finLigne:     .asciiz \"\\n\"\n" +
             "booleenVrai:   .asciiz \"vrai\"\n"+
             "booleenFaux:   .asciiz \"faux\"\n"+
+            "divisionZero:   .asciiz \"division par zero\"\n"+
+            "indiceNegatif:   .asciiz \"indice de tableau négative\"\n"+
+            "indiceIncorrecte:   .asciiz \"indice de tableau incorrecte\"\n"+
             "              .align 2\n" ;
     // Début du programme
     protected static String debutCode = "# Début du programme\n" +
@@ -31,7 +34,7 @@ public class Programme extends ArbreAbstrait {
             "\taddi $sp, $sp, -4\n" +
             "\tmove $s7, $sp\n";
     // Fin du programme
-    protected static String finCode = "end :\n" +
+    public static String finCode = "end :\n" +
             "    li $v0, 10\n" +
             "    syscall\n" ;
 

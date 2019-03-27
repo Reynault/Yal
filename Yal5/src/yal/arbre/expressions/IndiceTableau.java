@@ -69,6 +69,16 @@ public class IndiceTableau extends Expression {
         StringBuilder sb = new StringBuilder();
         // Récupération du résultat de l'expression dans $v0
         sb.append(exp.toMIPS());
+        int numero = GestionnaireNombres.getInstance().nouvelleErreur();
+        // Vérification de l'expression
+        // Inférieur à 0
+        sb.append("\tbgtz $v0, INDICE"+numero+"\n");
+        sb.append("\tli $v0, 4\n");
+        sb.append("\tla $a0, indiceNegatif\n");
+        sb.append("\tsyscall\n");
+        sb.append("\tli $v0, 10\n");
+        sb.append("\tsyscall\n");
+        sb.append("\tINDICE"+numero+":\n");
         // On commence par placer la base locale à partir de laquelle se trouve le tableau
         sb.append(placerT8());
         // Ensuite, on récupère l'indice de la case voulue avec le déplacement du tableau
