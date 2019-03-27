@@ -1,4 +1,66 @@
 programme test debut
     entier[5] b;
-    ecrire b.longueur;
+    entier[5] a;
+    entier i;
+    // Méthode qui fait la somme des tableaux
+    fonction somme() debut
+        entier i;
+        entier[a.longueur] somme;
+        i = 0;
+        tantque i < b.longueur repeter
+            somme[i] = a[i] + b[i];
+            i = i + 1;
+        fintantque
+
+        i = 0;
+        tantque i < somme.longueur repeter
+            ecrire somme[i];
+            i = i + 1;
+        fintantque
+        retourne 0;
+    fin
+
+    // Méthode d'inversion des tableaux
+    fonction inverser() debut
+        entier i;
+        entier tmp;
+        i = 0;
+        tantque i < a.longueur repeter
+            tmp = a[i];
+            a[i] = b[i];
+            b[i] = tmp;
+            i = i + 1;
+        fintantque
+
+        i = 0;
+        tantque i < a.longueur repeter
+            ecrire a[i];
+            i = i + 1;
+        fintantque
+        retourne 0;
+    fin
+
+    // Initialisation des variables
+    i = 0;
+    // Remplissage des deux tableaux
+    tantque i < a.longueur repeter
+        a[i] = i * 24 + 1;
+        ecrire a[i];
+        i = i + 1;
+    fintantque
+
+    ecrire 111111111;
+
+    i = 0;
+    tantque i < b.longueur repeter
+        b[i] = i * 13 + 1;
+        ecrire b[i];
+        i = i + 1;
+    fintantque
+
+    // Somme des deux tableaux
+    i = somme();
+
+    // Inversion
+    i = inverser();
 fin
