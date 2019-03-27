@@ -83,7 +83,7 @@ public class IndiceTableau extends Expression {
         sb.append(placerT8());
         numero = GestionnaireNombres.getInstance().nouvelleErreur();
         // Récupération de la borne
-        sb.append("\tlw $t9, "+deplacement+"($s7)\n");
+        sb.append("\tlw $t9, "+deplacement+"($t8)\n");
         // Test de l'indice (inférieur à la borne)
         sb.append("\tblt $v0, $t9, INDICE"+numero+"\n");
         sb.append("\tli $v0, 4\n");
@@ -93,7 +93,7 @@ public class IndiceTableau extends Expression {
         sb.append("\tsyscall\n");
         sb.append("\tINDICE"+numero+":\n");
         // Récupération de l'indice de la case
-        sb.append("\tlw $t9, "+(deplacement-4)+"($s7)\n");
+        sb.append("\tlw $t9, "+(deplacement-4)+"($t8)\n");
         sb.append("\tmul $v0, $v0, -4\n");
         sb.append("\tadd $t9, $t9, $v0\n");
         // Puis stockage de la valeur de l'indice dans $v0

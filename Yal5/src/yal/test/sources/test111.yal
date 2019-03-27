@@ -1,3 +1,82 @@
 programme test debut
+    entier a;
+    entier[5] tab;
+    // Tri fusion
+    fonction premier (entier a; entier b) debut
+        // Création du premier tableau
+        entier i;
+        entier min;
+        entier j;
 
+        // Boucle dans laquelle on va faire le tri de selection
+        tantque i < tab.longueur repeter
+            min = i;
+            j = i+1;
+            tantque j < tab.longueur repeter
+                si tab[j] < tab[min] alors
+                    min = j;
+                finsi
+                j = j + 1;
+            fintantque
+            j = tab[i];
+            tab[i] = tab[min];
+            tab[min] = j;
+            i = i + 1;
+        fintantque
+
+        retourne tab.longueur;
+    fin
+
+    fonction premier (entier a) debut
+        tantque a < tab.longueur repeter
+            ecrire tab[a];
+            a = a + 1;
+        fintantque
+        retourne a;
+    fin
+
+    // Tri à bulles
+    fonction premier () debut
+        entier i;
+        entier j;
+        entier max;
+        entier tmp;
+
+        max = tab.longueur;
+
+        tantque i < max repeter
+            j = i + 1;
+            tantque j < max-i repeter
+                ecrire j;
+                tmp = tab[0];
+                //si tab[j] < tab[j-1] alors
+                //    tmp = tab[j];
+                //   tab[j] = tab[j-1];
+                //    tab[j] = tmp;
+                //finsi
+                j = j + 1;
+            fintantque
+            i = i + 1;
+        fintantque
+
+        retourne tab.longueur;
+    fin
+
+    fonction premier (entier a; entier b; entier c) debut
+        tantque a < tab.longueur repeter
+            ecrire tab[a];
+            a = a + 1;
+        fintantque
+        retourne a;
+    fin
+
+    tab[0] = 51;
+    tab[1] = 20;
+    tab[2] = 115;
+    tab[3] = 150;
+    tab[4] = 100;
+
+    a = premier();
+
+    a = premier(a);
 fin

@@ -1,6 +1,6 @@
 programme test debut
     entier[50] a;
     entier b;
-    b = a[-1];
+    b = a[0];
     ecrire 500;
 fin
