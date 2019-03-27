@@ -72,7 +72,7 @@ public class IndiceTableau extends Expression {
         int numero = GestionnaireNombres.getInstance().nouvelleErreur();
         // Vérification de l'expression
         // Inférieur à 0
-        sb.append("\tbgtz $v0, INDICE"+numero+"\n");
+        sb.append("\tbgezal $v0, INDICE"+numero+"\n");
         sb.append("\tli $v0, 4\n");
         sb.append("\tla $a0, indiceNegatif\n");
         sb.append("\tsyscall\n");
@@ -81,7 +81,18 @@ public class IndiceTableau extends Expression {
         sb.append("\tINDICE"+numero+":\n");
         // On commence par placer la base locale à partir de laquelle se trouve le tableau
         sb.append(placerT8());
-        // Ensuite, on récupère l'indice de la case voulue avec le déplacement du tableau
+        numero = GestionnaireNombres.getInstance().nouvelleErreur();
+        // Récupération de la borne
+        sb.append("\tlw $t9, "+deplacement+"($s7)\n");
+        // Test de l'indice (inférieur à la borne)
+        sb.append("\tblt $v0, $t9, INDICE"+numero+"\n");
+        sb.append("\tli $v0, 4\n");
+        sb.append("\tla $a0, indiceIncorrect\n");
+        sb.append("\tsyscall\n");
+        sb.append("\tli $v0, 10\n");
+        sb.append("\tsyscall\n");
+        sb.append("\tINDICE"+numero+":\n");
+        // Récupération de l'indice de la case
         sb.append("\tlw $t9, "+(deplacement-4)+"($s7)\n");
         sb.append("\tmul $v0, $v0, -4\n");
         sb.append("\tadd $t9, $t9, $v0\n");

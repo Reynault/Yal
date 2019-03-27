@@ -1,5 +1,6 @@
 programme test debut
-    entier a;
-    a = 5/(5-5);
-    ecrire 5000;
+    entier[50] a;
+    entier b;
+    b = a[-1];
+    ecrire 500;
 fin

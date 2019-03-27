@@ -22,7 +22,7 @@ public class Programme extends ArbreAbstrait {
             "booleenFaux:   .asciiz \"faux\"\n"+
             "divisionZero:   .asciiz \"division par zero\"\n"+
             "indiceNegatif:   .asciiz \"indice de tableau négative\"\n"+
-            "indiceIncorrecte:   .asciiz \"indice de tableau incorrecte\"\n"+
+            "indiceIncorrect:   .asciiz \"indice de tableau incorrect\"\n"+
             "              .align 2\n" ;
     // Début du programme
     protected static String debutCode = "# Début du programme\n" +
