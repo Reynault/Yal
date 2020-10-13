@@ -56,7 +56,7 @@ fonctions du programme.
 #### Constructions reconnues par le compilateur
 * Fonctions sans paramètres.
 
-##[Yal4](Yal4)
+### [Yal4](Yal4)
 #### description
 Cette version ajoute les fonctions paramétrées ainsi que les déclarations de variables dans
 les fonctions.
